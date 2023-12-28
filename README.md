@@ -13,4 +13,7 @@ para no tener que estar copiando manualmente el jwt para los endpoint protegidos
 Los roles de usuario posibles son ROLE_ADMIN y ROLE_USER, 
 cada controller tiene ciertas limitaciones o no para el rol de cada usuario.
 
+Es importante, ejecutar por orden la colección postman y partir creando usuario y realizar el login. 
+Posteriormente se pueden crear primero una tarea y posteriormente asignar, finalizar, visualizar, etc...
+
 
