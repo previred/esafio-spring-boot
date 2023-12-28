@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "74e791d9-9511-4d40-82eb-cbe4a0e79901",
+		"name": "prueba-tecnica",
+		"description": "<img src=\"https://content.pstmn.io/4e81beff-ce36-4f77-856b-558206cdb84b/aW1hZ2UucG5n\" alt=\"\" height=\"600\" width=\"1031\">",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8585523"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8995/create-user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcm9kcmlndWV6QGdtYWlsLmNvbSIsImlhdCI6MTcwMzc4OTAzMCwianRpIjoiMjI0YzY2ZmQtYjlkYS00NThlLTg4NDMtODdjNDA5YjUzZWY2IiwiZXhwIjoxNzAzNzg5MzkwfQ.qMC3L-bsJQwhuzUL2jlkOL9v0WoH2mFLHDvTGMGm6f8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jorge Rodriguez\",\n    \"password\": \"Nuevospa123\",\n    \"email\" : \"jorgerodriguez3@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/create-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"create-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8995/tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcm9kcmlndWV6QGdtYWlsLmNvbSIsImlhdCI6MTcwMzc5MTgwNiwianRpIjoiMjNjZWQ0MDktNDZhZi00ZWJmLWIyMmEtZWU2MTgxY2MxMDk3IiwiZXhwIjoxNzAzNzkyMTY2fQ.j9qTogNU6ah_iNZZxVNxDHilDdDPQLxDHs1V4v4x36Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8995/create-task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcm9kcmlndWV6QGdtYWlsLmNvbSIsImlhdCI6MTcwMzc4OTI0MywianRpIjoiODk3NjczYzItY2JlOS00YzljLThiMWEtOWQ0ZWQ0ZjMyMDc1IiwiZXhwIjoxNzAzNzg5NjAzfQ.Jj1dWUk45ro42m10sHI3d7qLTwbsItOZAycCmT3XcZI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"tarea 1\",\n    \"description\": \"descripción tarea 1\",\n    \"priority\": \"medium\",\n    \"emailAsignado\": \"jrodriguez@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/create-task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"create-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8995/edit-task/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcm9kcmlndWV6QGdtYWlsLmNvbSIsImlhdCI6MTcwMzc5MTM1NSwianRpIjoiOGYwYWNhMjMtMTJmZS00NzgyLWEzNWYtZWY2N2ZiY2MwZGM5IiwiZXhwIjoxNzAzNzkxNzE1fQ.AWnVqOzkbDdJlfqzevHKbD0piR1USo8Ysn8Uc9YkH8w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"tarea editada 1\",\n    \"description\": \"descripción editada\",\n    \"priority\": \"medium\",\n    \"emailAsignado\": \"jrodriguez@gmail.com\",\n    \"status\": \"DONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/edit-task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"edit-task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8995/delete-task/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcm9kcmlndWV6QGdtYWlsLmNvbSIsImlhdCI6MTcwMzc5MTgwNiwianRpIjoiMjNjZWQ0MDktNDZhZi00ZWJmLWIyMmEtZWU2MTgxY2MxMDk3IiwiZXhwIjoxNzAzNzkyMTY2fQ.j9qTogNU6ah_iNZZxVNxDHilDdDPQLxDHs1V4v4x36Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/delete-task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"delete-task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8995/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \n    \"email\" : \"jrodriguez@gmail.com\",\n    \"password\": \"Nuevospa123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8995/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8995",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
