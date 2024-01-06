@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "59237ffc-7ce0-464a-9e97-8cf27e684c7e",
+		"name": "Reto Tenico Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4266560",
+		"_collection_link": "https://serfor-dev.postman.co/workspace/Dev---Serfor~91bc1435-3b9f-4196-81a7-1acd78adcccc/collection/4266560-59237ffc-7ce0-464a-9e97-8cf27e684c7e?action=share&source=collection_link&creator=4266560"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJyeUBnbWFpbC5jb20iLCJleHAiOjE3MDcxNTI4OTQsIm5vbWJyZSI6ImhhcnJ5In0.kmnJlTl0RVZo-8FiPSNlXcebcErfAw0XqD-Z2CciHL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBleGFtcGxlLmNvbSIsImlhdCI6MTcwMDc3NDQxNiwiZXhwIjoxNzAwNzc4MDE2fQ.JAFto1km9XhTsn2Sywx-i8Qtxl9VUMf5UsHukpTMJwY",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Tarea5\",\r\n    \"description\": \"descripcion tarea 3\",\r\n    \"taskState\": {\r\n        \"id\":2\r\n    }   \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJyeUBnbWFpbC5jb20iLCJleHAiOjE3MDcxNTI4OTQsIm5vbWJyZSI6ImhhcnJ5In0.kmnJlTl0RVZo-8FiPSNlXcebcErfAw0XqD-Z2CciHL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJyeUBnbWFpbC5jb20iLCJleHAiOjE3MDcxNTI4OTQsIm5vbWJyZSI6ImhhcnJ5In0.kmnJlTl0RVZo-8FiPSNlXcebcErfAw0XqD-Z2CciHL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBleGFtcGxlLmNvbSIsImlhdCI6MTcwMDc3NDQxNiwiZXhwIjoxNzAwNzc4MDE2fQ.JAFto1km9XhTsn2Sywx-i8Qtxl9VUMf5UsHukpTMJwY",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJyeUBnbWFpbC5jb20iLCJleHAiOjE3MDcxNTI4OTQsIm5vbWJyZSI6ImhhcnJ5In0.kmnJlTl0RVZo-8FiPSNlXcebcErfAw0XqD-Z2CciHL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBleGFtcGxlLmNvbSIsImlhdCI6MTcwMDc3NDQxNiwiZXhwIjoxNzAwNzc4MDE2fQ.JAFto1km9XhTsn2Sywx-i8Qtxl9VUMf5UsHukpTMJwY",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Tarea 100000\",\r\n    \"description\": \"descripcion tarea 1000\",\r\n    \"taskState\": {\r\n        \"id\":3\r\n    }   \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
