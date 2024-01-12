@@ -2,7 +2,7 @@
  * @ Author: Eduardo 'Ph1L' Rodríguez Bahamonde
  * @ Create Time: 2024-01-11 19:05:39
  * @ Modified by: Eduardo 'Ph1L' Rodríguez Bahamonde
- * @ Modified time: 2024-01-11 20:52:20
+ * @ Modified time: 2024-01-11 21:52:20
  * @ Description:
  */
 
@@ -27,5 +27,4 @@ public class EstadoTarea {
     private Integer id;
 
     private String estado;
-    private String pass;
 }
