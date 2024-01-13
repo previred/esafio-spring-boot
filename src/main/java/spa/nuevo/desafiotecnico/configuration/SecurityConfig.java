@@ -2,7 +2,7 @@
  * @ Author: Eduardo 'Ph1L' Rodríguez Bahamonde
  * @ Create Time: 2024-01-11 20:00:05
  * @ Modified by: Eduardo 'Ph1L' Rodríguez Bahamonde
- * @ Modified time: 2024-01-12 18:53:04
+ * @ Modified time: 2024-01-12 22:06:02
  * @ Description:
  */
 
@@ -34,7 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/authenticate",
             "/v2/api-docs",
             "/swagger*/**",
-            "/h2-console/**",
     };
 
     public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtRequestFilter jwtRequestFilter) {
