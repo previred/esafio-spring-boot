@@ -74,6 +74,7 @@ pasando un json como el siguiente:
 }
 
 ```
+<<<<<<< HEAD
 
 # Desafío Técnico: Gestión de Tareas con Spring Boot y Java
 
@@ -165,3 +166,5 @@ Se evaluará la solución en función de los siguientes criterios:
   <br>
   <br>
   <br>
+=======
+>>>>>>> 2d86594 (Crea CRUDS, implementa JWT, completa SQL de carga inicial. Genera DTOs para omitir data sensible en respuestas.)

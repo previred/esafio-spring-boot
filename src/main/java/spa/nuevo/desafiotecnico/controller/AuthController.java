@@ -2,7 +2,7 @@
  * @ Author: Eduardo 'Ph1L' Rodríguez Bahamonde
  * @ Create Time: 2024-01-11 21:55:09
  * @ Modified by: Eduardo 'Ph1L' Rodríguez Bahamonde
- * @ Modified time: 2024-01-11 22:07:43
+ * @ Modified time: 2024-01-12 22:00:10
  * @ Description:
  */
 
@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import spa.nuevo.desafiotecnico.dto.AuthRequest;
 import spa.nuevo.desafiotecnico.dto.AuthResponse;
 import spa.nuevo.desafiotecnico.jwt.JwtTokenUtil;
-import spa.nuevo.desafiotecnico.service.implementations.UserDetailsServiceImpl;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,8 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
-    private final UserDetailsServiceImpl userDetailsService;
 
+    @ApiOperation(value = "Autenticación de usuarios y generación de token")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponse> createAuthenticationToken(@RequestBody AuthRequest authRequest) {
         // Autenticar el usuario

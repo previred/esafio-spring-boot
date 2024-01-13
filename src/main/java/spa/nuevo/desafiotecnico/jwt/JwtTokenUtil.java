@@ -2,7 +2,7 @@
  * @ Author: Eduardo 'Ph1L' Rodríguez Bahamonde
  * @ Create Time: 2024-01-11 20:06:36
  * @ Modified by: Eduardo 'Ph1L' Rodríguez Bahamonde
- * @ Modified time: 2024-01-11 20:10:02
+ * @ Modified time: 2024-01-12 22:01:40
  * @ Description:
  */
 
@@ -54,7 +54,7 @@ public class JwtTokenUtil {
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 horas de vigencia
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 3)) // 3 horas de vigencia
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 

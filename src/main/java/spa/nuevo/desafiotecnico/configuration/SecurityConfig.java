@@ -2,7 +2,7 @@
  * @ Author: Eduardo 'Ph1L' Rodríguez Bahamonde
  * @ Create Time: 2024-01-11 20:00:05
  * @ Modified by: Eduardo 'Ph1L' Rodríguez Bahamonde
- * @ Modified time: 2024-01-11 22:14:44
+ * @ Modified time: 2024-01-12 18:53:04
  * @ Description:
  */
 
@@ -30,6 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
 
+    private final String[] AUTH_WHITELIST = {
+            "/authenticate",
+            "/v2/api-docs",
+            "/swagger*/**",
+            "/h2-console/**",
+    };
+
     public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtRequestFilter jwtRequestFilter) {
         this.userDetailsService = userDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
@@ -42,9 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+                .antMatchers(AUTH_WHITELIST)
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
