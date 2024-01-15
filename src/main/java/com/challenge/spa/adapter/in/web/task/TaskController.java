@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -68,7 +69,7 @@ public class TaskController {
                   @Content(schema = @Schema()) }),
           @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
   @PostMapping("/task")
-  public ResponseEntity<Void> save(@RequestBody TaskRequest taskRequest) {
+  public ResponseEntity<Void> save(@Valid @RequestBody TaskRequest taskRequest) {
     processTaskPort.save(taskRequest.toDomain());
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }

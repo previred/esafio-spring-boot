@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 @Tag(name = "Authentication", description = "Authentication management APIs")
@@ -34,7 +36,7 @@ public class AuthController {
           @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
           @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
   @PostMapping("login")
-  public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+  public ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest request) {
     return ResponseEntity.ok(AuthResponse
             .fromDomain(authenticationPort.authenticate(request.toUserDomain())));
   }
