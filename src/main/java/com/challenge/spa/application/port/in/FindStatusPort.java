@@ -4,5 +4,5 @@ import com.challenge.spa.application.shared.Status;
 import com.challenge.spa.domain.StatusTask;
 
 public interface FindStatusPort {
-  StatusTask findByStatus(Status status);
+  StatusTask findByStatus(String status);
 }

@@ -11,7 +11,7 @@ public record TaskResponse(
   public static TaskResponse fromDomain(Task task) {
     return new TaskResponse(
       task.getId(),
-      task.getStatusTask().getStatus().name(),
+      task.getStatusTask().getStatus(),
       task.getNameTask(),
       task.getDescriptionTask()
     );

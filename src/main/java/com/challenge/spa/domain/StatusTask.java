@@ -12,9 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class StatusTask {
   private String id;
-  private Status status;
+  private String status;
 
-  public StatusTask(Status status) {
+  public StatusTask(String status) {
     this.status = status;
   }
 

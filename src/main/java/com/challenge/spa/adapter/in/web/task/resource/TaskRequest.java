@@ -14,7 +14,7 @@ public record TaskRequest(
     domain.setNameTask(name);
     domain.setDescriptionTask(description);
     if(status != null)
-      domain.setStatusTask(new StatusTask(Status.valueOf(status)));
+      domain.setStatusTask(new StatusTask(status));
     return domain;
   }
 }

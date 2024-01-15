@@ -4,6 +4,7 @@ import com.challenge.spa.application.port.in.FindStatusPort;
 import com.challenge.spa.application.port.out.statustask.StatusTaskPort;
 import com.challenge.spa.application.shared.Status;
 import com.challenge.spa.domain.StatusTask;
+import com.challenge.spa.domain.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,9 +17,9 @@ public class StatusTaskService implements FindStatusPort {
   }
 
   @Override
-  public StatusTask findByStatus(Status status) {
+  public StatusTask findByStatus(String status) {
     return statusTaskPort
-            .findByStatus(status)
-            .orElseThrow(() -> new RuntimeException("Not found status"));
+            .findByStatus(Status.getValue(status))
+            .orElseThrow(() -> new ResourceNotFoundException("Not found status " + status));
   }
 }

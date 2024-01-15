@@ -8,6 +8,7 @@ import com.challenge.spa.application.port.out.user.UserPort;
 import com.challenge.spa.application.shared.Status;
 import com.challenge.spa.common.UseCase;
 import com.challenge.spa.domain.Task;
+import com.challenge.spa.domain.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,9 @@ public class ProcessTaskService implements ProcessTaskPort {
 
   @Override
   public Task load(String id) {
-    return crudTaskPort.load(id).orElse(new Task());
+    return crudTaskPort
+            .load(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Not found task with id " + id));
   }
 
   @Override
@@ -36,7 +39,7 @@ public class ProcessTaskService implements ProcessTaskPort {
 
   @Override
   public void save(Task task) {
-    Status status = (task.getStatusTask() == null) ? Status.CREATED : task.getStatusTask().getStatus();
+    String status = (task.getStatusTask() == null) ? Status.CREATED.name() : task.getStatusTask().getStatus();
     task.setStatusTask(findStatusPort.findByStatus(status));
     crudTaskPort.save(task);
   }
@@ -45,17 +48,24 @@ public class ProcessTaskService implements ProcessTaskPort {
   public void update(String uuid, Task task) {
     crudTaskPort
         .load(uuid)
-        .ifPresent(taskUpdate -> {
+        .ifPresentOrElse(taskUpdate -> {
           taskUpdate.setNameTask(task.getNameTask());
           taskUpdate.setDescriptionTask(task.getDescriptionTask());
           if(task.getStatusTask() != null)
             taskUpdate.setStatusTask(findStatusPort.findByStatus(task.getStatusTask().getStatus()));
           crudTaskPort.save(taskUpdate);
+        }, () -> {
+          throw new ResourceNotFoundException("Not found task with id " + uuid);
         });
   }
 
   @Override
   public void delete(String id) {
-    crudTaskPort.delete(id);
+    crudTaskPort
+            .load(id)
+            .ifPresentOrElse(taskDelete -> crudTaskPort.delete(id),
+                    () -> {
+              throw new ResourceNotFoundException("Not found task with id " + id);
+            });
   }
 }
