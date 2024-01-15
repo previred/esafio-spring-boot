@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "7e3a7fa1-4fc8-4d43-b2ae-3b339cdb1c56",
+		"name": "Prueba-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11437656",
+		"_collection_link": "https://winter-trinity-983833.postman.co/workspace/C-HUB-Workspace~a7bf2368-1358-4872-83a9-ff2e5323d199/collection/11437656-7e3a7fa1-4fc8-4d43-b2ae-3b339cdb1c56?action=share&source=collection_link&creator=11437656"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"admin@admin.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-by-id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MDUyNzQ2NjgsImV4cCI6MTcwNTI3NTI2OH0.SL512hkgUyOy5vAcZ4lUuketpxX5wO70BOrOH08Fd_xbgtpkS7NQirwXQVZ_gVhQUgOGiDHU5EOh-bH4yb7Mow",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-by-email",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "create-new-task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MDUyNzQ2NjgsImV4cCI6MTcwNTI3NTI2OH0.SL512hkgUyOy5vAcZ4lUuketpxX5wO70BOrOH08Fd_xbgtpkS7NQirwXQVZ_gVhQUgOGiDHU5EOh-bH4yb7Mow",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": null,\r\n    \"description\": \"Primera tarea\",\r\n    \"user\": {\r\n        \"email\": \"admin@admin.com\"\r\n    },\r\n    \"status\": {\r\n        \"status\": \"OPEN\"\r\n    },\r\n    \"comment\": \"Primera Tarea\",\r\n    \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-task-batch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MDUyNzQ2NjgsImV4cCI6MTcwNTI3NTI2OH0.SL512hkgUyOy5vAcZ4lUuketpxX5wO70BOrOH08Fd_xbgtpkS7NQirwXQVZ_gVhQUgOGiDHU5EOh-bH4yb7Mow",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": null,\r\n        \"description\": \"Primera tarea\",\r\n        \"user\": {\r\n            \"email\": \"admin@admin.com\",\r\n            \"role\": \"ADMIN\",\r\n            \"name\": \"admin\",\r\n            \"lastName\": \"admin\",\r\n            \"status\": \"ACTIVE\",\r\n            \"lastLoginDate\": \"2024-01-14T20:09:45.648228-03:00\"\r\n        },\r\n        \"status\": {\r\n            \"status\": \"OPEN\",\r\n            \"description\": \"Tarea creada\"\r\n        },\r\n        \"comment\": \"Primera Tarea\",\r\n        \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n    },\r\n    {\r\n        \"id\": null,\r\n        \"description\": \"Primera tarea\",\r\n        \"user\": {\r\n            \"email\": \"admin@admin.com\",\r\n            \"role\": \"ADMIN\",\r\n            \"name\": \"admin\",\r\n            \"lastName\": \"admin\",\r\n            \"status\": \"ACTIVE\",\r\n            \"lastLoginDate\": \"2024-01-14T20:09:45.648228-03:00\"\r\n        },\r\n        \"status\": {\r\n            \"status\": \"OPEN\",\r\n            \"description\": \"Tarea creada\"\r\n        },\r\n        \"comment\": \"Primera Tarea\",\r\n        \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n    },\r\n    {\r\n        \"id\": null,\r\n        \"description\": \"Primera tarea\",\r\n        \"user\": {\r\n            \"email\": \"admin@admin.com\",\r\n            \"role\": \"ADMIN\",\r\n            \"name\": \"admin\",\r\n            \"lastName\": \"admin\",\r\n            \"status\": \"ACTIVE\",\r\n            \"lastLoginDate\": \"2024-01-14T20:09:45.648228-03:00\"\r\n        },\r\n        \"status\": {\r\n            \"status\": \"OPEN\",\r\n            \"description\": \"Tarea creada\"\r\n        },\r\n        \"comment\": \"Primera Tarea\",\r\n        \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n    },\r\n    {\r\n        \"id\": null,\r\n        \"description\": \"Primera tarea\",\r\n        \"user\": {\r\n            \"email\": \"admin@admin.com\",\r\n            \"role\": \"ADMIN\",\r\n            \"name\": \"admin\",\r\n            \"lastName\": \"admin\",\r\n            \"status\": \"ACTIVE\",\r\n            \"lastLoginDate\": \"2024-01-14T20:09:45.648228-03:00\"\r\n        },\r\n        \"status\": {\r\n            \"status\": \"OPEN\",\r\n            \"description\": \"Tarea creada\"\r\n        },\r\n        \"comment\": \"Primera Tarea\",\r\n        \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n        \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MDUyNzYwODYsImV4cCI6MTcwNTM2MjQ4Nn0.hO5ALh4kX-1WPrX-VUt2CdllLYqOHene-SFSj23O7rlyIrYA0vQOJ3TPIKnsgg3iqn6ou7-RNjO2uYUtnK4gfQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"description\": \"Primera tarea\",\r\n    \"user\": {\r\n        \"email\": \"admin@admin.com\",\r\n        \"role\": \"ADMIN\",\r\n        \"name\": \"admin\",\r\n        \"lastName\": \"admin\",\r\n        \"status\": \"ACTIVE\",\r\n        \"lastLoginDate\": \"2024-01-14T20:09:45.648228-03:00\"\r\n    },\r\n    \"status\": {\r\n        \"status\": \"IN_PROGRESS\",\r\n        \"description\": \"Tarea creada\"\r\n    },\r\n    \"comment\": \"Primera Tarea\",\r\n    \"assignedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"initDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"blockedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"completedDate\": \"2024-01-14T09:30:00-03:00\",\r\n    \"lastModifiedDate\": \"2024-01-14T09:30:00-03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch-task",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MDUyNzYwODYsImV4cCI6MTcwNTM2MjQ4Nn0.hO5ALh4kX-1WPrX-VUt2CdllLYqOHene-SFSj23O7rlyIrYA0vQOJ3TPIKnsgg3iqn6ou7-RNjO2uYUtnK4gfQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  { \"op\": \"replace\", \"path\": \"/status/status\", \"value\": \"CANCELLED\" },\r\n  { \"op\": \"remove\", \"path\": \"/comment\" }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
