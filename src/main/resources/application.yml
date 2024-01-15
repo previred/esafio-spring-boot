@@ -16,3 +16,8 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
+
+spa:
+  openapi:
+    dev-url: "http://localhost:8080"
+    prod-url: "https://spa-api.com"

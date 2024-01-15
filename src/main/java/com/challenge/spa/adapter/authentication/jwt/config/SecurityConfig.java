@@ -34,6 +34,8 @@ public class SecurityConfig {
                     authRequest
                             .antMatchers("/auth/**").permitAll()
                             .antMatchers("/h2-console/**").permitAll()
+                            .antMatchers("/swagger-ui/**").permitAll()
+                            .antMatchers("/v3/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                     )
             .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
