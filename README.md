@@ -1,69 +1,101 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+#Project Name
+ 
+task-control 
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+#Description
+ 
+Este es un micro-servicio rest para poder agregar, leer, actualizar y eliminar tareas para un usuario #Installation 
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+#Required
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+Java 17 version and Maven 3.9.5 
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+#Compilation and test ejecution
+ 
+Correr 'mvn clean install' 
 
-### Base de Datos:
+#Test endpoints 
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+Correr la aplicación como aplicación Spring boot y acceder a http://localhost:8080/swagger-ui/index.html para ejecutar solicitudes http a los distintos endpoints de la API 
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+#Endpoints 
 
-### JWT (JSON Web Token):
+#enpoint login 
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+	Este endpoint es para obtener el token de acceso jwt para acceder a los demás recursos (endpoints). 	IMPORTANTE: Se debe ejecutar este endpoint en primer lugar para obtener el token jwt de autorizacion para 	ejecutar los demás endpoints 
 
-### OpenAPI y Swagger:
+#Curl de prueba: 
 
-- Documenta la API utilizando OpenAPI y Swagger.
+curl -X 'GET'
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT.
+'http://localhost:8080/task-control/login/Pepe%20Grillo/a2asfGfdfdf3'
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+-H 'accept: /' 
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+#endpoint add-task 
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
+	Este endpoint es para agregar una nueva tarea a un usuario 
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+#Curl de prueba: 
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+curl -X 'POST'
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+'http://localhost:8080/task-control/add-task'
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
+-H 'accept: /'
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIEdyaWxsbyxhMmFzZkdmZGZkZjMiLCJpYXQiOjE3MDU0NTQ2ODEsImV4cCI6MTcwNTU0MTA4MX0.NaKvjYFubj2JHu-nJJbip3wchrc8bFxP90PuRMwJP5s'
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
+-H 'Content-Type: application/json'
+
+-d '{ "nombre": "tarea 1", "descripcion": "descripción tarea 1", "idUsuario": 2 }' 
+
+#enpoint read-task 
+
+	Este endpoint es para obtener una tarea de un usuario 
+
+#Curl de prueba:
+ 
+curl -X 'GET'
+
+'http://localhost:8080/task-control/read-task/1'
+
+-H 'accept: /'
+
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIEdyaWxsbyxhMmFzZkdmZGZkZjMiLCJpYXQiOjE3MDU0NTQ2ODEsImV4cCI6MTcwNTU0MTA4MX0.NaKvjYFubj2JHu-nJJbip3wchrc8bFxP90PuRMwJP5s' 
+
+#endpoint update-task
+ 
+Este endpoint es para actualizar una tarea de un usuario 
+
+#Curl de prueba: 
+
+curl -X 'POST'
+
+'http://localhost:8080/task-control/update-task'
+
+-H 'accept: /'
+
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIEdyaWxsbyxhMmFzZkdmZGZkZjMiLCJpYXQiOjE3MDU0NTQ2ODEsImV4cCI6MTcwNTU0MTA4MX0.NaKvjYFubj2JHu-nJJbip3wchrc8bFxP90PuRMwJP5s'
+
+-H 'Content-Type: application/json'
+
+-d '{ "idTarea": 1, "nombre": "tarea 1", "descripcion": "Esta es la nueva descripcion", "idUsuario": 1, "idEstadoTarea": 2 }' 
+
+#endpoint delete-task 
+
+	Este endpoint es para eliminar una tarea de un usuario 
+
+#Curl de prueba: 
+
+curl -X 'POST'
+
+'http://localhost:8080/task-control/delete-task'
+
+-H 'accept: /'
+
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIEdyaWxsbyxhMmFzZkdmZGZkZjMiLCJpYXQiOjE3MDU0NTQ2ODEsImV4cCI6MTcwNTU0MTA4MX0.NaKvjYFubj2JHu-nJJbip3wchrc8bFxP90PuRMwJP5s'
+
+-H 'Content-Type: application/json'
+
+-d '{ "idTarea": 1 }'
