@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: local
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+challenge:
+  security:
+    jwt-signing-key: A6s5D4f3G2h1J0kL
+
+
+#server:
+#  servlet:
+#    context-path: /task-manager
+
+
+

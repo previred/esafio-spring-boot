@@ -1,0 +1,7 @@
+Instrucciones para levantar proyecto localmente
+
+1 - compilar y generar jar: .\mvnw clean install
+2 - entrar a carpeta target y ejecutar jar: java -jar rest-api-0.0.1-SNAPSHOT.jar
+3 - api rest quedará disponible en url: http://localhost:8080/
+4 - consola h2: http://localhost:8080/h2-console/l (user: vm, pass: 321)
+5 - documentacion swagger: http://localhost:8080/swagger-ui/
