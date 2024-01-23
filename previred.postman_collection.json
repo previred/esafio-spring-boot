@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "9c97873d-f7ad-4a51-904e-5542341d5e23",
+		"name": "previred",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19930846"
+	},
+	"item": [
+		{
+			"name": "getTokenUsuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "eliasgodoy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/getTokenUsuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"getTokenUsuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregarTarea",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"descripcion\":\"BAÑOS SEGUNDO PISO\",\r\n        \"fecha_inicio\":\"2023-12-31\",\r\n        \"fecha_termino\":\"2023-12-31\",\r\n        \"nombre\":\"LIMPIAR\",\r\n        \"prioridad\":\"MEDIA\",\r\n        \"estadotarea\":\r\n        {\r\n            \"id\":1\r\n        },\r\n        \"usuario\":\r\n        {\r\n            \"id\":1\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/agregarTarea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregarTarea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregarTareas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"descripcion\":\"BAÑOS SEGUNDO PISO\",\r\n        \"fecha_inicio\":\"2023-12-31\",\r\n        \"fecha_termino\":\"2023-12-31\",\r\n        \"nombre\":\"LIMPIAR\",\r\n        \"prioridad\":\"MEDIA\",\r\n        \"estadotarea\":\r\n        {\r\n            \"id\":1\r\n        },\r\n        \"usuario\":\r\n        {\r\n            \"id\":1\r\n        }\r\n    },\r\n    {\r\n        \"descripcion\":\"LENTEJAS PARA 5 PERSONAS\",\r\n        \"fecha_inicio\":\"2023-12-31\",\r\n        \"fecha_termino\":\"2023-12-31\",\r\n        \"nombre\":\"COCINAR\",\r\n        \"prioridad\":\"ALTA\",\r\n        \"estadotarea\":\r\n        {\r\n            \"id\":1\r\n        },\r\n        \"usuario\":\r\n        {\r\n            \"id\":2\r\n        }\r\n    },\r\n    {\r\n        \"descripcion\":\"PINTAR COMEDOR COLOR BLANCO\",\r\n        \"fecha_inicio\":\"2023-12-31\",\r\n        \"fecha_termino\":\"2024-01-05\",\r\n        \"nombre\":\"PINTAR\",\r\n        \"prioridad\":\"BAJA\",\r\n        \"estadotarea\":\r\n        {\r\n            \"id\":1\r\n        },\r\n        \"usuario\":\r\n        {\r\n            \"id\":3\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/agregarTareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregarTareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrarTarea",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "actualizarTarea",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\":1,\r\n        \"descripcion\":\"BAÑOS PRIMER Y SEGUNDO PISO\",\r\n        \"fecha_inicio\":\"2023-12-31\",\r\n        \"fecha_termino\":\"2023-12-31\",\r\n        \"nombre\":\"LIMPIAR\",\r\n        \"prioridad\":\"ALTA\",\r\n        \"estadotarea\":\r\n        {\r\n            \"id\":1\r\n        },\r\n        \"usuario\":\r\n        {\r\n            \"id\":1\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/actualizarTarea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"actualizarTarea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarTarea",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/eliminarTarea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"eliminarTarea"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
