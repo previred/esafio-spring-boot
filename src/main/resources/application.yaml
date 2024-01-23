@@ -1,0 +1,39 @@
+name: task-manager
+version: v1
+server:
+  servlet:
+    context-path: /api/${name}/${version}
+  port: 8092
+
+swagger:
+  title: ${name}
+  description: Spring Boot REST task manager application
+  version: ${version}
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+
+spring:
+  config:
+    import: classpath:demo/users.yaml
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  jackson:
+    default-property-inclusion: non_null
+
+security:
+  jwt:
+    secret-key: "umjld9Nh7n71RrNWTdABxHYpqWvXFouZ7twsuVPxXkwTctzGoDnnC7vMzTlAFPR5W39IUGso0M46x8iJOx1"
+    expiration-in-minutes: 10

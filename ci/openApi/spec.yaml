@@ -1,0 +1,574 @@
+openapi: 3.0.1
+info:
+  title: task-manager
+  description: Spring Boot REST task manager application
+  version: v1
+servers:
+  - url: http://localhost:8092/api/task-manager/v1/
+    description: Generated server url
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get all users
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+    put:
+      tags:
+        - users
+      summary: Update an existing user
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - users
+      summary: Create a new user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistryDto'
+        required: true
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+  /tasks:
+    get:
+      tags:
+        - tasks
+      summary: Get all tasks
+      operationId: getAllTasks
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+      security:
+        - bearerAuth: []
+    put:
+      tags:
+        - tasks
+      summary: Update an existing task
+      operationId: updateTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+        required: true
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '400':
+          description: Invalid task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - tasks
+      summary: Create a new task
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+        required: true
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '400':
+          description: Invalid task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+  /auth/authenticate:
+    post:
+      tags:
+        - authentication
+      summary: Authenticate user
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequestDto'
+        required: true
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: Get a user by ID
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - users
+      summary: Delete a user by ID
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: User deleted successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+  /tasks/{taskId}:
+    get:
+      tags:
+        - tasks
+      summary: Get a task by ID
+      operationId: getTaskById
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - tasks
+      summary: Delete a task by ID
+      operationId: deleteTask
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Task deleted successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBaseExceptionDetail'
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User ID
+          format: int64
+        name:
+          type: string
+          description: User name
+        userName:
+          type: string
+          description: Username
+        roles:
+          uniqueItems: true
+          type: array
+          description: User roles
+          items:
+            type: string
+            description: User roles
+            enum:
+              - ROLE_USER
+              - ROLE_ADMIN
+        jwt:
+          type: string
+          description: JWT token
+    ApiBaseExceptionDetail:
+      type: object
+      properties:
+        url:
+          type: string
+        method:
+          type: string
+        httpStatusCode:
+          type: string
+        errorCode:
+          type: string
+        message:
+          type: string
+        debugMessage:
+          type: string
+        errorDetail:
+          type: string
+        localDateTime:
+          type: string
+          format: date-time
+    TaskDto:
+      required:
+        - description
+        - status
+        - title
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Task ID
+          format: int64
+        title:
+          maxLength: 180
+          minLength: 3
+          type: string
+          description: Task title
+        description:
+          maxLength: 300
+          minLength: 0
+          type: string
+          description: Task description
+        status:
+          type: string
+          description: Task status
+          enum:
+            - TODO
+            - IN_PROGRESS
+            - DONE
+    UserRegistryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User's name (minimum 3 characters)
+        userName:
+          type: string
+          description: Username (minimum 3 characters)
+        password:
+          type: string
+          description: User's password (minimum 8, maximum 16 characters, alphanumeric)
+        confirmPassword:
+          type: string
+          description: Confirm password (minimum 8, maximum 16 characters, alphanumeric, must match the password)
+        roles:
+          uniqueItems: true
+          type: array
+          description: User roles (at least one role)
+          items:
+            type: string
+            description: User roles (at least one role)
+            enum:
+              - ROLE_USER
+              - ROLE_ADMIN
+    AuthenticationRequestDto:
+      required:
+        - password
+        - userName
+      type: object
+      properties:
+        userName:
+          type: string
+          description: Username
+          example: wilbert.acosta
+        password:
+          type: string
+          description: User password
+          example: my_dummy_password
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

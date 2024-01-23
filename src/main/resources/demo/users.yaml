@@ -1,0 +1,20 @@
+demo-data:
+  enable: true
+  users:
+    - name: Wilbert
+      userName: wilbert.acosta
+      password: my_dummy_password
+      roles:
+        - ROLE_ADMIN
+
+    - name: aquiles
+      userName: aquiles.traigo
+      password: my_dummy_password
+      roles:
+        - ROLE_USER
+
+    - name: alan
+      userName: alan.brito
+      password: my_dummy_password
+      roles:
+        - ROLE_USER
