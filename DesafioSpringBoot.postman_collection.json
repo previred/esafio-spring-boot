@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "55a8a0ed-47cc-4381-b6fe-4ba29668c65d",
+		"name": "DesafioSpringBoot",
+		"description": "la carpeta auth contiene los metodos referentes a la creacion de usuario, y obtencion de token de usuario. Por defecto se creo el usuario **admin** con password **admin** para ser usado en pruebas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9546342"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login_de_usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrar_usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"joaquin\",\r\n    \"password\":\"Joaquin123\",\r\n    \"firstname\":\"joaquin\",\r\n    \"lastname\":\"huauya\",\r\n    \"country\":\"PE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "usuario creado por defecto user: admin, password: admin"
+		},
+		{
+			"name": "taskService",
+			"item": [
+				{
+					"name": "get_all_tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerTareaPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearTarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"task\": \"realizarQuery\",\r\n    \"statusId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task"
+							]
+						},
+						"description": "Los estados manejados para las tareas son 4 al crear una tarea en el campo **statusId** se debe enviar uno de estos valores 1=TO_DO, 2=IN_PROGRESS, 3=TO_VERIFY, 4=DONE"
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarTareaPorIdyBody-1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"task\": \"modelado_BD\",\r\n    \"statusId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task",
+								"1"
+							]
+						},
+						"description": "Caso 1 : cuando solo se quiere actualizar la tarea y el estado."
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarTareaPorIdyBody-2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"task\": \"modelando_BD\",\r\n    \"statusId\": 3,\r\n    \"user\":\"joaquin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task",
+								"1"
+							]
+						},
+						"description": "Caso 2 : cuando se quiere actualizar la tarea, el estado y agregar otro responsable a la tarea.\n\nnota: considerar el usuario al que se le quiere asignar debe estar previamente creado."
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarTareaPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/task/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"task",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "POST\n\nLos estados manejados para las tareas son 4 al crear una tarea en el campo **statusId** se debe enviar uno de estos valores 1=TO_DO, 2=IN_PROGRESS, 3=TO_VERIFY, 4=DONE\n\nPUT\n\nLa actualizacion maneja los mismos estados mencionados anteriormente, adicionalmente se adjunto dos casos de actualizacion, cuando solo se quiere actualizar la tarea y el estado, y cuando se quiere hacer lo anterior mencionado y agregar otro responsable a la tarea."
+		}
+	]
+}

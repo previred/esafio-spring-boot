@@ -1,72 +1,146 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+# Desafio Spring Boot
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+Servicio realizado utilizando la arquitectura de microservicios en Spring 2.7 para desafio enero 2024.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## Dependencias
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+Las dependencias y tecnologia utilizada fueron
 
-### Base de Datos:
+```bash
+* lombok
+* database h2
+* jsonwebtoken, security
+* jpa
+* open api
+* bean validation
+```
+Se dejaron habilitados los endpoints de acceso al:
+* swagger: http://localhost:8080/swagger-ui/index.html#/
+* h2-console: http://localhost:8080/h2-console/login.jsp
+## Instrucciones
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+El proyecto fue realizado en Java 17, automaticamente ejecutado el proyecto creara las tres tablas(tasks,task_status,user)
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+`El usuario agregado para pruebas fue 'admin' con password 'admin'`
 
-### JWT (JSON Web Token):
+`se agregaron cuatro estados a la tabla TASK_STATUS`
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+| ID | NAME     | STATE                       |
+| :-------- | :------- | :-------------------------------- |
+| `1`      | `TO_DO` | true |
+| `2`      | `IN_PROGRESS` | true |
+| `3`      | `TO_VERIFY` | true |
+| `4`      | `DONE` | true |
 
-### OpenAPI y Swagger:
+`solo se creo una tarea de prueba con id=1 por defecto`
 
-- Documenta la API utilizando OpenAPI y Swagger.
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+## API Reference Auth
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+#### Post register
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+- Endpoint de registro de usuario
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+```http
+  POST /auth/register
+```
+```bash
+{
+    "username":"username-test",
+    "password":"password-test",
+    "firstname":"nombre-test",
+    "lastname":"lastname-test",
+    "country":"PE"
+}
+```
+#### Post login
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+- Endpoint de obtencion de token(logueo)
+```http
+  POST /auth/login
+```
+```bash
+{
+    "username":"admin",
+    "password":"admin"
+}
+```
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+## API Reference Task
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+#### Get all tasks
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+- Obtener toda la lista de tareas creadas.
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+```http
+  GET /v1/task
+```
+#### Get task by id
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+- Busqueda de tarea  por Id
+
+```http
+  GET /v1/task/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `long` | **Required**. Id de la tarea |
+
+#### Post task
+
+- Crear tarea
+
+```http
+  POST /v1/task
+```
+```bash
+{
+    "task": "realizarQuery",
+    "statusId": 1
+}
+```
+se crea la tarea con el estado(statusId) en TO_DO, el endpoint asigna automaticamente al usuario logueado al igual que los campos de auditoria de la tabla.
+
+#### Update task
+
+- Actualizar tarea
+
+```http
+  PUT /v1/task/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `long` | **Required**. Id de la tarea |
+
+* actualizar tarea y status de la tarea.
+
+```bash
+{
+    "task": "realizarQuery",
+    "statusId": 1
+}
+```
+* actualizar tarea, status de la tarea y se le asigna a otro usuario la tarea.
+
+```bash
+{
+    "task": "modelando_BD",
+    "statusId": 3,
+    "user":"joaquin"
+}
+```
+#### Delete task by id
+
+- Eliminar tarea por Id
+
+```http
+  DELETE /v1/task/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `long` | **Required**. Id de la tarea |
+
+
