@@ -71,7 +71,14 @@ Para el uso de la consola de h2 tienes las siguientes propiedades
 
 `password` sa
 
-## Swagger 3 / OpenApi
+## Usuario precargado 
+
+`url`: http://localhost:8080/login
+
+`Usuario`: admin@test.com
+
+`Password` : Canaima23.
+
 [Swagger](http://localhost:8080/swagger-ui/index.html)
 
 JSON de postman en la carpeta api doc
