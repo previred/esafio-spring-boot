@@ -1,0 +1,32 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    driver-class-name: ${DB_DRIVER_CLASS:org.h2.Driver}
+    url: ${DB_JDBC_URL:jdbc:h2:mem:testdb}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:sa}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 15000
+      connection-init-sql: SELECT 1
+  h2:
+    console:
+      enabled: ${H2_CONSOLE_ENABLED:true}
+      path: ${H2_CONSOLE_PATH:/h2-console}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: ${DB_JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
