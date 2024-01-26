@@ -1,72 +1,88 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+
+# Previred Desafio
+
+Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+
+
+
+## Descripcion de la solicitud
 
 La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## Requisitos Previos
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+Requisitos para instalacion.
 
-### Base de Datos:
+- Java JDK 17
+- Maven
+- Docker
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+## Configuración del Proyecto
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+1. **Clona el Repositorio:**
+   ```bash
+   git clone https://github.com/enfralys/desafio-spring-boot
+   cd desafio-spring-boot
 
-### JWT (JSON Web Token):
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+2. **Compila el Proyecto:**
+   ```bash
+   mvn clean package o mvn clean install
 
-### OpenAPI y Swagger:
 
-- Documenta la API utilizando OpenAPI y Swagger.
+3. **Corre el proyecto:**
+   ```bash
+   mvn spring-boot:run
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+1. **proyecto con docker :**
+   ```bash
+   Docker build -t {previred}  .  
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+   Docker run -p 8080:8080 previred
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+## Dependencias
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+Este proyecto utiliza las siguientes dependencias:
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+- [Spring Boot Data JPA](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-jpa-and-spring-data)
+- [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
+- [jjwt](https://github.com/jwtk/jjwt) - JSON Web Tokens para autenticación
+- [springdoc-openapi-ui](https://springdoc.org/) - Para la documentación de la API con OpenAPI y Swagger
+- [Spring Boot Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)
+- [Log4j](https://logging.apache.org/log4j/2.x/)
+- [Java Validation API](https://beanvalidation.org/)
+- [Spring Boot WebFlux](https://docs.spring.io/spring-boot/docs/current/reference/html/web-reactive.html)
+- [Spring Boot Security](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-security)
+- [MapStruct](https://mapstruct.org/) - Para mapeo de objetos
+- [Project Reactor](https://projectreactor.io/) - Reactor Core para programación reactiva
+- [H2 Database](https://www.h2database.com/html/main.html) - Base de datos embebida para desarrollo y pruebas
+- [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing)
+- [Lombok](https://projectlombok.org/) - Anotaciones para reducir código boilerplate
+- [JetBrains Annotations](https://mvnrepository.com/artifact/org.jetbrains/annotations) - Anotaciones de JetBrains para herramientas de desarrollo
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+## H2 CONSOLE
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+Para el uso de la consola de h2 tienes las siguientes propiedades
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+[Consola H2](http://localhost:8080/h2-console)
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+`user` sa
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+`password` sa
+
+## Swagger 3 / OpenApi
+[Swagger](http://localhost:8080/swagger-ui/index.html)
+
+JSON de postman en la carpeta api doc
+
+
+
+## Creador
+
+Enfranly Leonardo Monzon Pineda
+
+Enfralyss@gmail.com
+
+Java Developer
+
