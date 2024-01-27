@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "f6dfc7f6-0119-4c74-a3e8-e71d889c9686",
+		"name": "Task Interview MoveApps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4626075"
+	},
+	"item": [
+		{
+			"name": "Get Task",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MDYzOTkzMTgsImlhdCI6MTcwNjM4MTMxOH0.AyWOPFcYTK6Wr2xwnSBFkYhR9ioS6acyM7vV0AKyN7v1RIIFMAkW0QX9G3NCkU3iGRJqkr78BG37uHFAohrOkQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_local}}/task",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MDYzOTkzMTgsImlhdCI6MTcwNjM4MTMxOH0.AyWOPFcYTK6Wr2xwnSBFkYhR9ioS6acyM7vV0AKyN7v1RIIFMAkW0QX9G3NCkU3iGRJqkr78BG37uHFAohrOkQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nameTask\": \"Pyhton Sr\",\r\n        \"descriptionTask\": \"realizarlo con net core\",\r\n        \"taskPriority\": \"ALTA\",\r\n        \"Responsible\": \"Fernando\",\r\n        \"StatusTask\": \"Complete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/task/save",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"javainuse\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/api/auth/authenticate",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MDYzOTkzMTgsImlhdCI6MTcwNjM4MTMxOH0.AyWOPFcYTK6Wr2xwnSBFkYhR9ioS6acyM7vV0AKyN7v1RIIFMAkW0QX9G3NCkU3iGRJqkr78BG37uHFAohrOkQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"nameTask\": \"Pyhton Sr\",\r\n        \"descriptionTask\": \"realizarlo con net core\",\r\n        \"taskPriority\": \"ALTA\",\r\n        \"Responsible\": \"Fernando\",\r\n        \"StatusTask\": \"Complete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/task/3",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MDYzOTkzMTgsImlhdCI6MTcwNjM4MTMxOH0.AyWOPFcYTK6Wr2xwnSBFkYhR9ioS6acyM7vV0AKyN7v1RIIFMAkW0QX9G3NCkU3iGRJqkr78BG37uHFAohrOkQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_local}}/task/3",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
