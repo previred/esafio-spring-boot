@@ -23,4 +23,8 @@ mvn spring-boot:run
 - Unit Test
 - Coverage Test
 - Containerized image (e.g.: Docker)
+- Logs implementation 
+  - patters 
+  - other
+- Observability and Traceability
 - Others...
