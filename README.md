@@ -1,72 +1,128 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Spring Boot API de gestión de tareas y usuarios
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+Esta es una simple API para registrar usuarios y tareas, construida con Spring Boot e incluye Swagger UI para la prueba y documentación.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## <u>Prerrequisitos</u>
+* ![Java](https://img.shields.io/badge/Java-17%2B-brightgreen)
+* ![Maven](https://img.shields.io/badge/Maven-3%2B-blue)
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## <u>Documentación</u>
+La documentación de la API se encuentra [aquí](http://localhost:9090/swagger-ui/). Para generar la documentación en formato JSON, puedes descargarla [aquí](http://localhost:9090/v3/api-docs).
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+## <u>Ejecutando la API</u>
+1. Clona el [repositorio](https://github.com/camilitwo/desafio-spring-boot_camilo-g):
+    ```shell
+    git clone https://github.com/camilitwo/desafio-spring-boot_camilo-g
+    ```
 
-### Base de Datos:
+2. Ejecuta la API usando Maven:
+    ```shell
+    mvn spring-boot:run
+    ```
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+## <u>Probando la API</u>
+Para probar la API, utiliza Swagger UI, disponible [aquí](http://localhost:9090/swagger-ui/). Desde allí, puedes ver una lista de endpoints finales disponibles y probarlos.
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
 
-### JWT (JSON Web Token):
+## Ejemplo de solicitud
+####
+Aquí hay un ejemplo de solicitud POST para obtener un token de acceso:
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+```shell
+curl --location 'http://localhost:9090/api/v1/login' \
+--header 'Content-Type: application/json' \
+--data '{
+    "password": "contraseñasegura",
+    "username": "camilo"
+}'
+```
 
-### OpenAPI y Swagger:
+## Ejemplo de respuesta
+####
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYW1pbG8iLCJleHAiOjE3MDY2MzQxNDEsImlhdCI6MTcwNjYyMzM0MX0.1W5M8xpHbCuU4kNl5h3L9SAxEZ0vULx6ZWFRFdeNCao"
+}
+```
 
-- Documenta la API utilizando OpenAPI y Swagger.
+# <u>/users</u>
+## Ejemplo de solicitud
+####
+Aquí hay un ejemplo de solicitud POST para guardar un usuario en la base de datos:
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+```shell
+curl --location 'http://localhost:9090/api/v1/users' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYW1pbG8iLCJleHAiOjE3MDY2MzQxNDEsImlhdCI6MTcwNjYyMzM0MX0.1W5M8xpHbCuU4kNl5h3L9SAxEZ0vULx6ZWFRFdeNCao' \
+--data '{
+    "email": "prueba@mail.cl",
+    "pass": "contraseñaprueba",
+    "tareas": [
+        {
+            "createdAt": "2024-01-29T20:50:59.629Z",
+            "estadoTarea": {
+                "id": 1
+            }
+        }
+    ],
+    "username": "prueba"
+}'
+```
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+## Ejemplo de respuesta
+####
+```json
+{
+  "id": 2,
+  "username": "prueba",
+  "email": "prueba@mail.cl"
+}
+```
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+# <u>/tareas</u>
+## Ejemplo de solicitud
+####
+Aquí hay un ejemplo de solicitud POST para guardar una tarea en la base de datos:
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+```shell
+curl --location 'http://localhost:9090/api/v1/tasks' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYW1pbG8iLCJleHAiOjE3MDY2MzQxNDEsImlhdCI6MTcwNjYyMzM0MX0.1W5M8xpHbCuU4kNl5h3L9SAxEZ0vULx6ZWFRFdeNCao'
+```
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+## Ejemplo de respuesta
+####
+```json
+[
+  {
+    "id": 1,
+    "estado": "En ejecución",
+    "fecha": "2024-01-30T14:04:22.070+00:00",
+    "usuario": {
+      "id": 1,
+      "username": "camiloprueba",
+      "email": "Prueba 2"
+    }
+  },
+  {
+    "id": 2,
+    "estado": "En ejecución",
+    "fecha": "2024-01-30T14:05:31.401+00:00",
+    "usuario": {
+      "id": 2,
+      "username": "prueba",
+      "email": "prueba@mail.cl"
+    }
+  }
+]
+```
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+# <u>Script de base de datos</u>
+> Los scripts de base de datos los encuentras [acá](src/main/resources/data.sql)
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+
+Proyecto realizado por [<u>__Camilo Gonzalez__</u>](https://www.linkedin.com/in/camilo-gonzalez-villalobos-2ba062a4/)
+
+[![GitHub Profile](https://img.shields.io/badge/GitHub-camilitwo-green?style=flat&logo=github)](https://github.com/camilitwo)
