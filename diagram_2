@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "e4e9b372-454b-4576-beb7-df3052d57783",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23094231"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().jwt);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/test-springboot/auth?email=gabriel_martinez@fake.com",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "gabriel_martinez@fake.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All TASK",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/test-springboot/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET TASK By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/test-springboot/task/785FF4E2-CD89-4BE5-A0D2-22F46451856A",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"task",
+						"785FF4E2-CD89-4BE5-A0D2-22F46451856A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE TASK By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/test-springboot/task/785FF4E2-CD89-4BE5-A0D2-22F46451856A",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"task",
+						"785FF4E2-CD89-4BE5-A0D2-22F46451856A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create TASK",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Install Tinder 2\",\n    \"description\": \"asd\",\n    \"priority\": \"LOW\",\n    \"user\": \"Gabriel\",\n    \"status\": \"DONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/test-springboot/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update All TASK Resource",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "username",
+						"value": "gabriel_martinez@fake.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"785FF4E2-CD89-4BE5-A0D2-22F46451856A\",\n    \"name\": \"Install CasdasdACA2\",\n    \"description\": \"description\",\n    \"priority\": \"LOW\",\n    \"user\": \"Gabriel\",\n    \"status\": \"DONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/test-springboot/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test-springboot",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
