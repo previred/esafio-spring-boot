@@ -120,6 +120,13 @@ curl --location 'http://localhost:9090/api/v1/tasks' \
 # <u>Script de base de datos</u>
 > Los scripts de base de datos los encuentras [acá](src/main/resources/data.sql)
 
+# <u>Usuarios Creados</u>
+| Username  | Email          | Password             |
+|-----------| -------------- |----------------------|
+| camilo    |camilo.igv@gmail.com| contraseñasegura     |
+| francisca |francisca.igv@gmail.com| contraseñasegurafran |
+| elena     |elena.igv@gmail.com| contraseñaseguraelena |
+
 
 
 
