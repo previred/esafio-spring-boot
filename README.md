@@ -1,72 +1,56 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# desafio-spring-boot
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+Desarrollada con:
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+- [Spring Boot 2.7.18](http://projects.spring.io/spring-boot/)
+- [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven 3](https://maven.apache.org)
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## Ejecutando la aplicación localmente
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+Hay varias formas de ejecutar una aplicación Spring Boot en su máquina local. Una forma es ejecutar el método `main` en la clase `com.desafio.spring.desafiospringboot.DesafioSpringBootApplication` desde su IDE.
 
-### Base de Datos:
+Alternativamente, puede usar el [complemento Spring Boot Maven](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) así:
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+```shell
+mvn spring-boot:run
+```
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+## Documentación de la API
 
-### JWT (JSON Web Token):
+Luego de ejecutar y levantar la API localmente, revisamos los servicios de nuestra API en la siguiente url en su navegador:
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+```shell
+http://localhost:8180/swagger-ui.html
+```
 
-### OpenAPI y Swagger:
+## Porbando nuestros servicios
 
-- Documenta la API utilizando OpenAPI y Swagger.
+Para probar nuestros servicios, debemos tener la aplicacion [Postman](https://www.postman.com/downloads/) en nuestro computador.
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+Luego, descargamos el archivo `desafio-spring.json` que esta en los recursos de nuestro proyecto `desafio-spring-boot/src/main/resources`.
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+Abrimos [Postman](https://www.postman.com/downloads/) e importamos nuestro archivo `desafio-spring.json`.
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+![Alt text](img/import.jpg?raw=true "Import")
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+Para iniciar debemos autenticarnos en el servicio Login con los siguientes datos:
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+```shell
+{
+  "userName": "admin",
+  "password": "admin"
+}
+```
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+Para todos los demas servicios, debemos ocupar el token retornado en el servicio `login` y agregarlo en la pestaña `Authorization` y presionar en `Bearer Token`
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+![Alt text](img/token.jpg?raw=true "Import") 
+
+
+Para consumir los demas servicios en [Postman](https://www.postman.com/downloads/) debe guiarse de la Documentación de la API descrita mas arriba. 
+
+## desafio-spring-boot

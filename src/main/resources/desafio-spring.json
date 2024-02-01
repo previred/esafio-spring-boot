@@ -1,0 +1,597 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Api Desafio Spring boot - Previred",
+    "description": "Aplicación construida para el desafío previred",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8180"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Autenticación de Usuario",
+        "description": "Autenticación que nos devuelve el token de autorización para consultar los demas endpoints",
+        "requestBody": {
+          "description": "Datos para la autenticación de un usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/nuevaTarea": {
+      "post": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite agregar una nueva tarea",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NuevaTareaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NuevaTareaResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/verTarea/{idTarea}": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite ver tarea por su identificador",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "name": "idTarea",
+            "in": "path",
+            "description": "Identificador de la tarea a obtener",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerTareaResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/modificarTarea": {
+      "post": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite modificar descripcion de una tarea",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModificarTareaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModificarTareaResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/terminarTarea/{idTarea}": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite poner en estado terminada una tarea por su identificador",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "name": "idTarea",
+            "in": "path",
+            "description": "Identificador de la tarea a terminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TerminarTareaResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/eliminarTarea/{idTarea}": {
+      "put": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite eliminar una tarea por su identificador",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "name": "idTarea",
+            "in": "path",
+            "description": "Identificador de la tarea a eliminar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EliminarTareaResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/obtenerTareas": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite obtener las tareas desde la BD",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ObtenerTareasResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/obtenerEstadoTareas": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Nos permite obtener los estados de las tareas desde la BD",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ObtenerEstadosResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "token": {
+        "in": "header",
+        "name": "token",
+        "description": "Token de autenticación en API.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "AuthRequest": {
+        "required": [
+          "userName",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "example": "admin"
+          },
+          "password": {
+            "type": "string",
+            "example": "admin"
+          }
+        }
+      },
+      "AuthResponse": {
+        "type": "string",
+        "example": "ASDsdasgfdggbfhsfgad"
+      },
+      "NuevaTareaRequest": {
+        "required": [
+          "nombreTarea",
+          "descripcionTarea"
+        ],
+        "type": "object",
+        "properties": {
+          "nombreTarea": {
+            "type": "string",
+            "example": "Tarea 1"
+          },
+          "descripcionTarea": {
+            "type": "string",
+            "example": "Descripcion Tarea 1"
+          }
+        }
+      },
+      "NuevaTareaResponse": {
+        "type": "string",
+        "example": "Tarea guardada correctamente!"
+      },
+      "VerTareaResponse": {
+        "required": [
+          "id_tarea",
+          "nombreTarea",
+          "descripcionTarea"
+        ],
+        "type": "object",
+        "properties": {
+          "id_tarea": {
+            "type": "number",
+            "example": 1
+          },
+          "nombreTarea": {
+            "type": "string",
+            "example": "Tarea 1"
+          },
+          "descripcionTarea": {
+            "type": "string",
+            "example": "Descripcion Tarea 1"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoTareaVista"
+          }
+        }
+      },
+      "ModificarTareaRequest": {
+        "required": [
+          "id_tarea",
+          "descripcionTarea"
+        ],
+        "type": "object",
+        "properties": {
+          "id_tarea": {
+            "type": "number",
+            "example": 1
+          },
+          "descripcionTarea": {
+            "type": "string",
+            "example": "Descripcion Tarea Modificada"
+          }
+        }
+      },
+      "ModificarTareaResponse": {
+        "type": "string",
+        "example": "Tarea Modificada correctamente!"
+      },
+      "TerminarTareaResponse": {
+        "type": "string",
+        "example": "Tarea Terminada correctamente!"
+      },
+      "EliminarTareaResponse": {
+        "type": "string",
+        "example": "Tarea Eliminada correctamente!"
+      },
+      "ObtenerTareasResponse": {
+        "type": "object",
+        "properties": {
+          "id_tarea": {
+            "type": "number",
+            "example": 1
+          },
+          "nombreTarea": {
+            "type": "string",
+            "example": "Tarea 1"
+          },
+          "descripcionTarea": {
+            "type": "string",
+            "example": "Descripcion Tarea 1"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoTareaVista"
+          }
+        }
+      },
+      "ObtenerEstadosResponse": {
+        "$ref": "#/components/schemas/EstadoTareaModificada"
+      },
+      "EstadoTareaVista": {
+        "required": [
+          "id_estado",
+          "nombre_estado"
+        ],
+        "type": "object",
+        "properties": {
+          "id_estado": {
+            "type": "number",
+            "example": 2
+          },
+          "nombre_estado": {
+            "type": "string",
+            "example": "VISTA"
+          }
+        }
+      },
+      "EstadoTareaModificada": {
+        "required": [
+          "id_estado",
+          "nombre_estado"
+        ],
+        "type": "object",
+        "properties": {
+          "id_estado": {
+            "type": "number",
+            "example": 3
+          },
+          "nombre_estado": {
+            "type": "string",
+            "example": "MODIFICADA"
+          }
+        }
+      },
+      "EstadoTareaTerminada": {
+        "required": [
+          "id_estado",
+          "nombre_estado"
+        ],
+        "type": "object",
+        "properties": {
+          "id_estado": {
+            "type": "number",
+            "example": 4
+          },
+          "nombre_estado": {
+            "type": "string",
+            "example": "TERMINADA"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Forbidden": {
+        "description": "Acceso denegado"
+      },
+      "Unauthorized": {
+        "description": "No hay autorización para llamar al servicio"
+      },
+      "NotFound": {
+        "description": "No se encontrado información"
+      },
+      "BadRequest": {
+        "description": "Los datos enviados son incorrectos o hay datos obligatorios no enviados"
+      },
+      "ServerError": {
+        "description": "Error en servidor"
+      }
+    }
+  }
+}
