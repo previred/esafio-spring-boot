@@ -1,0 +1,13 @@
+El proyecto se puede ejecutar de la siguiente forma:
+
+```
+mvn spring-boot:run
+```
+
+O bien, mediante Docker:
+
+```
+docker build -t "nuevo-spa" .
+docker run -d -it -p 8080:8080 --name=nuevo-spa nuevo-spa
+
+docker logs -f 501cbba5a6fc

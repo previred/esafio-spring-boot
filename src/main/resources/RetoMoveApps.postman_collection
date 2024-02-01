@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "b183ce80-815d-42f6-9043-2fe1922a04b8",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9264714"
+	},
+	"item": [
+		{
+			"name": "Obtener JWT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/spa/security/user?user=kevin&password=123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"spa",
+						"security",
+						"user"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "kevin"
+						},
+						{
+							"key": "password",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoia2V2aW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzA2NzQ2NjI2LCJleHAiOjE3MDY3NDcyMjZ9.kPtWIt8VSgSWYnKgMMsKldwOGmpEyTeN8fTbct6vMF-AGhnI3ES1uaYwYVsuDRkpl1uuGMcVEGxSeD3RbU72CA"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 1,\r\n        \"title\": \"CEPILLADO\",\r\n        \"detail\": \"CEPILLADO - 5PM - AGENDADO\",\r\n        \"status\": 2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/spa/task/1"
+			},
+			"response": []
+		},
+		{
+			"name": "obtener tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoia2V2aW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzA2NzQ2Nzk1LCJleHAiOjE3MDY3NDczOTV9.p6A6FU3WvA00VyPQ53I-qg7WNRD-aT_kyFDgeC1DDvo3DAJxfHsnyxZTOeuMv2IR4dzdU32pGG0vj3-luScEDg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/spa/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar tarea",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/spa/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarea",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
