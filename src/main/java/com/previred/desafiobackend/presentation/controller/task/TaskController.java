@@ -5,6 +5,7 @@ import com.previred.desafiobackend.domain.dto.error.ApiError;
 import com.previred.desafiobackend.domain.dto.task.request.CreateTask;
 import com.previred.desafiobackend.domain.dto.task.response.GetTask;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author Miguel Angel
@@ -52,8 +55,9 @@ public class TaskController {
     @GetMapping(value = "/")
     @Operation(description = "Return all the task currently on the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Tasks Found.", content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = GetTask.class))}),
+            @ApiResponse(responseCode = "200", description = "Tasks created.",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = GetTask.class)))}),
             @ApiResponse(responseCode = "500", description = "Task not found due to an service internal error.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ApiError.class),
@@ -65,7 +69,7 @@ public class TaskController {
                             examples = {@ExampleObject(value =
                                     "{\"message\": \"No tasks found.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<Void> getaLL() {
+    public ResponseEntity<List<GetTask>> getaLL() {
         //TODO: task service:create method invocation.
         return ResponseEntity.ok().build();
     }
@@ -86,7 +90,7 @@ public class TaskController {
                             examples = {@ExampleObject(value =
                                     "{\"message\": \"No task found for the received Id.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<Void> get(@PathVariable (name = "task-id") Integer taskId) {
+    public ResponseEntity<GetTask> get(@PathVariable (name = "task-id") Integer taskId) {
         //TODO: task service:create method invocation.
         return ResponseEntity.ok().build();
     }
