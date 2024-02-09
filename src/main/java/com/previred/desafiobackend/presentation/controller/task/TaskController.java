@@ -49,6 +49,27 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(value = "/")
+    @Operation(description = "Return all the task currently on the database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Tasks Found.", content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = GetTask.class))}),
+            @ApiResponse(responseCode = "500", description = "Task not found due to an service internal error.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class),
+                            examples = {@ExampleObject(value =
+                                    "{\"message\": \"Internal Server Error.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
+            @ApiResponse(responseCode = "404", description = "Zero tasks Not Found.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class),
+                            examples = {@ExampleObject(value =
+                                    "{\"message\": \"No tasks found.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
+    })
+    public ResponseEntity<Void> getaLL() {
+        //TODO: task service:create method invocation.
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping(value = "/{task-id}")
     @Operation(description = "Performs a search and return the task associated with the received Id.")
     @ApiResponses(value = {
