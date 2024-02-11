@@ -77,7 +77,8 @@ Se evaluará la solución en función de los siguientes criterios:
 
 1. **Obtener el código fuente desde Git**
 2. **Importar como proyecto Maven en Eclipse**
-3. **Ejecutar**
+3. **Actualizar Maven del Proyecto**
+4. **Ejecutar**
 
 ## Instrucciones adicionales:
 
