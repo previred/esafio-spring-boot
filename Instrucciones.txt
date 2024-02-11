@@ -1,26 +1,25 @@
-Aplicacion creada bajo las mismas herramientas solicitadas.
+Pasos para configurar y ejecutar la aplicación
 
-1. Obtener codigo fuente desde git.
-2. Importar como proyecto maven en Eclipse.
+1. Obtener el código fuente desde Git
+2. Importar como proyecto Maven en Eclipse
 3. Actualizar Maven del Proyecto
-3. Ejecutar.
+4. Ejecutar
 
-** Cuando se incie la aplicacion se ejecutaran unos script (para crear tablas e insert correspondientes) que se encuentran en la siguiente ruta del proyecto.
-src\main\resources\sql
+Instrucciones adicionales:
 
-** Para revisar base de datos H2, ingresar en http://localhost:8082/h2-console
-user: admin
-pass: admin123
-Estos datos, de igual forma estan en el archivo bd.properties
+- Cuando se inicie la aplicación, se ejecutarán unos scripts (para crear tablas e insertar datos correspondientes) que se encuentran en la siguiente ruta del proyecto: src\main\resources\sql.
 
-** Para revisar via POSTMAN, se deja una carpeta "Postman" con los json que se deben importar (Endpoints y variable de entorno).
-Con esto queda configurado para la ejecucion de cualquier endpoint. Recordar que antes de ejecutar algun endpoint relacionado con las Tareas, se debe ejecutar el endpoint "Login" para generar el token. Para su ejecucion se debe utilizar el body:
-{
-	"username": "usertest",
-	"password": "usertest123"
-}
+- Para revisar la base de datos H2, ingresa en http://localhost:8082/h2-console con las siguientes credenciales:
+	Usuario: admin
+    Contraseña: admin123
 
-Este usuario ya se encuentra guardado por los script ejecutados al iniciar la aplicacion.
+  Estos datos también se encuentran en el archivo bd.properties.
 
-** Para revisar via SWAGGER ingresar en http://localhost:8082/swagger-ui/index.html
-Al igual que con postman para cualquier ejecucion relacionado con las Tareas se debe ejecutar el endpoint "Login".
+- Para revisar utilizando Postman, se proporciona una carpeta "Postman" con los JSON que se deben importar (Endpoints y variables de entorno). Con esto, quedará configurado para la ejecución de cualquier endpoint. Recuerda que antes de ejecutar algún endpoint relacionado con las Tareas, se debe ejecutar el endpoint "Login" para generar el token. Utiliza el siguiente cuerpo para la solicitud:
+
+- { "username": "usertest", "password": "usertest123" }
+
+  Este usuario ya se encuentra guardado por los scripts ejecutados al iniciar la aplicación.
+
+- Para revisar utilizando Swagger, ingresa en http://localhost:8082/swagger-ui/index.html. Al igual que con Postman, para cualquier ejecución relacionada con las Tareas, se debe ejecutar el endpoint "Login".
+
