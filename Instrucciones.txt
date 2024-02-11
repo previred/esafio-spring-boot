@@ -1,0 +1,25 @@
+Aplicacion creada bajo las mismas herramientas solicitadas.
+
+1. Obtener codigo fuente desde git.
+2. Importar como proyecto maven en Eclipse.
+3. Ejecutar.
+
+** Cuando se incie la aplicacion se ejecutaran unos script (para crear tablas e insert correspondientes) que se encuentran en la siguiente ruta del proyecto.
+src\main\resources\sql
+
+** Para revisar base de datos H2, ingresar en http://localhost:8082/h2-console
+user: admin
+pass: admin123
+Estos datos, de igual forma estan en el archivo bd.properties
+
+** Para revisar via POSTMAN, se deja una carpeta "Postman" con los json que se deben importar (Endpoints y variable de entorno).
+Con esto queda configurado para la ejecucion de cualquier endpoint. Recordar que antes de ejecutar algun endpoint relacionado con las Tareas, se debe ejecutar el endpoint "Login" para generar el token. Para su ejecucion se debe utilizar el body:
+{
+	"username": "usertest",
+	"password": "usertest123"
+}
+
+Este usuario ya se encuentra guardado por los script ejecutados al iniciar la aplicacion.
+
+** Para revisar via SWAGGER ingresar en http://localhost:8082/swagger-ui/index.html
+Al igual que con postman para cualquier ejecucion relacionado con las Tareas se debe ejecutar el endpoint "Login".
