@@ -19,17 +19,24 @@ public abstract class EndPointGenericAdapterImpl<D,T> implements IEndPointGeneri
 	@SneakyThrows
 	public  ResponseBase  toResponseBase(Object object) {
 		try {
-				List<D> modelDTOList = new ArrayList();
+				List<Object> modelDTOList = new ArrayList();
 				if (object != null) {
-					if(object instanceof List <?>) {
+					if(object instanceof List) {
 						List<T> entityList = (List<T>) object;
 						if (entityList.size() > 0) {
 							modelDTOList = entityList.stream().map(e -> toModelDTO(e))
 							.collect(Collectors.toList());
 						}
 					}else {
-						D modelDTO = toModelDTO((T) object);
-						modelDTOList.add(modelDTO);
+						boolean idEntity = false;
+						Object modelDTO  = null;
+						try {
+							modelDTO = toModelDTO((T) object);
+							idEntity = true;
+						} catch (Exception e) {
+							e.fillInStackTrace();
+						}
+						modelDTOList.add( idEntity ?modelDTO: object);
 						
 					}
 				}
