@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Dto de Usuarios")
 public class UsuariosDto {
 	@Schema(description = "Nombre de usuario", example = "Sergio")
 	private String name;
