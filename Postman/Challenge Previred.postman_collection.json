@@ -342,7 +342,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/tasks/deleteTasks/3",
+					"raw": "http://localhost:8082/tasks/deleteTasks/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -351,7 +351,7 @@
 					"path": [
 						"tasks",
 						"deleteTasks",
-						"3"
+						"2"
 					]
 				}
 			},
