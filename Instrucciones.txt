@@ -2,6 +2,7 @@ Aplicacion creada bajo las mismas herramientas solicitadas.
 
 1. Obtener codigo fuente desde git.
 2. Importar como proyecto maven en Eclipse.
+3. Actualizar Maven del Proyecto
 3. Ejecutar.
 
 ** Cuando se incie la aplicacion se ejecutaran unos script (para crear tablas e insert correspondientes) que se encuentran en la siguiente ruta del proyecto.
