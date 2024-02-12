@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -20,10 +22,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CreateTask {
 
+    @NotNull(message = "Task description is required")
     private String description;
+
+    @NotNull(message = "Task title is required")
     private String title;
-    private LocalDateTime creationDateTime;
-    private LocalDateTime endDateTime;
-    private String asignedUserDni;
+
+    @NotNull(message = "Task's assigned user is required")
+    private String asignedUserEmail;
 
 }

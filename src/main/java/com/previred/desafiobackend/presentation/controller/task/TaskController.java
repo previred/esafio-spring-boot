@@ -4,6 +4,7 @@ import com.previred.desafiobackend.domain.dto.enums.TaskStatusEnum;
 import com.previred.desafiobackend.domain.dto.error.ApiError;
 import com.previred.desafiobackend.domain.dto.task.request.CreateTask;
 import com.previred.desafiobackend.domain.dto.task.response.GetTask;
+import com.previred.desafiobackend.domain.services.task.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,7 +12,9 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,12 +33,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/task")
+@Tag(name = "Task", description = "Controller to perform CRUD Operations on Task Entity.")
 public class TaskController {
+
+    private TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @PostMapping(value = "/")
     @Operation(description = "Creates a new task with the recieved parameters. All task are created with PENDING status")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Task created."),
+            @ApiResponse(responseCode = "204", description = "Task created."),
             @ApiResponse(responseCode = "500", description = "Task not created due to an service internal error.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ApiError.class),
@@ -48,8 +58,8 @@ public class TaskController {
                                     "{\"message\": \"The field asignedUserDni is mandatory.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
     public ResponseEntity<Void> create(@RequestBody CreateTask createTask) {
-        //TODO: task service:create method invocation.
-        return ResponseEntity.ok().build();
+        taskService.create(createTask);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/")
@@ -69,9 +79,8 @@ public class TaskController {
                             examples = {@ExampleObject(value =
                                     "{\"message\": \"No tasks found.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<List<GetTask>> getaLL() {
-        //TODO: task service:create method invocation.
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<GetTask>> getAll() {
+        return ResponseEntity.ok(taskService.getAllTasks());
     }
 
     @GetMapping(value = "/{task-id}")
@@ -90,15 +99,14 @@ public class TaskController {
                             examples = {@ExampleObject(value =
                                     "{\"message\": \"No task found for the received Id.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<GetTask> get(@PathVariable (name = "task-id") Integer taskId) {
-        //TODO: task service:create method invocation.
-        return ResponseEntity.ok().build();
+    public ResponseEntity<GetTask> get(@PathVariable (name = "task-id") Long taskId) {
+        return ResponseEntity.ok(taskService.getTask(taskId));
     }
 
     @PutMapping(value = "/{task-id}/{new-status}")
     @Operation(description = "Updates the status of the task associated with the received Id.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Status updated."),
+            @ApiResponse(responseCode = "204", description = "Status updated."),
             @ApiResponse(responseCode = "500", description = "Status not updated due to an service internal error.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ApiError.class),
@@ -110,16 +118,16 @@ public class TaskController {
                             examples = {@ExampleObject(name = "Bad Request",
                                     value = "{\"message\": \"The new status is not allowed for the current status.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<Void> update(@PathVariable (name = "task-id") Integer taskId,
+    public ResponseEntity<Void> update(@PathVariable (name = "task-id") Long taskId,
                                        @PathVariable (name = "new-status") TaskStatusEnum newStatus) {
-        //TODO: task service:create method invocation.
-        return ResponseEntity.ok().build();
+        taskService.updateTaskStatus(taskId, newStatus);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(value = "/{task-id}")
     @Operation(description = "Performs a delete for the entity associated with the received Id.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Task Deleted."),
+            @ApiResponse(responseCode = "204", description = "Task Deleted."),
             @ApiResponse(responseCode = "500", description = "Task not deleted due to an service internal error.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ApiError.class),
@@ -131,9 +139,9 @@ public class TaskController {
                             examples = {@ExampleObject(name = "Bad Request",
                                     value = "{\"message\": \"No task found for the received Id.\", \"timestamp\": \"2024-02-09T12:00:00\"}")})}),
     })
-    public ResponseEntity<Void> delete(@PathVariable (name = "task-id") Integer taskId) {
-        //TODO: task service:create method invocation.
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> delete(@PathVariable (name = "task-id") Long taskId) {
+        taskService.delete(taskId);
+        return ResponseEntity.noContent().build();
     }
 
 }
