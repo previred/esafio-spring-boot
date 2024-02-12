@@ -1,0 +1,21 @@
+spring:
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:openapi
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true
+    open-in-view: false
+    show-sql: false
+
+auth:
+  secret: 7688acb75394487f78e90bf9378608364876327cabcdef632474348dc48cd780
+  expiration: 5000

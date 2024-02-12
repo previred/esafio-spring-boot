@@ -70,3 +70,34 @@ Se evaluará la solución en función de los siguientes criterios:
 - Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
 - **Puntos extras si la generación de la API se realizo mediante API First**
+
+
+**********************************************************************************************
+
+## Comenzando 🚀
+- El siguiente desafío tiene como fin, demostrar mis habilidades tecnicas.
+
+## Implementación 🛠️
+    
+- Se realizo un código muy organizado y aplicando buenas prácticas de codificación (Código Limpio, Principios SOLID, Patrones de Diseño y Programación Funcional) para un código mantenible y testeable.
+
+- También se realizaron algunas Pruebas Unitarias para el Dominio de Task (Tareas).
+
+## Despliegue 📦
+
+* Paso 1: clonar el proyecto
+* Paso 2: Ejecutar el proyecto en un IDE
+* Paso 3: Abrir Postman y ejecutar los endpoints (Se ajunta Collección)
+
+## Tecnologías Utilizadas 📋
+- Java 17
+- Spring Boot 2.7.18
+- H2
+- Swagger
+- JUnit y Mockito
+
+
+## Información 📖
+
+Cualquier duda, comunicarse al correo: vasquezruben9412@gmail.com
+

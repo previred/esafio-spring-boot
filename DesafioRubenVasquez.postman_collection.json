@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "dbb63ff9-f6aa-4f0c-b909-a7a39933b705",
+		"name": "DesafioRubenVasquez",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32923239"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"rv@test.com\",\r\n    \"password\": \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear y Actualizar Tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiIwYmQ4NjMyNS0yNDk3LTQwYTgtOWUwYi1mNjI1OTNhNWU4MDYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MTczOCwiZXhwIjoxNzA3NzU2NzM4fQ.dB6YdcHTg9Yxsv6BU7JX7NZLua4JH9cmfBLGqB1CHzeoWVG_gVlKAtCla4X_jJfU66p8Zsun2LWBm3LkwbkT9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Lavar platos\",\r\n    \"startDate\": \"2023-02-11 12:26:30\",\r\n    \"endDate\": \"2023-02-11 12:26:30\",\r\n    \"userId\": \"9ae74800-1445-4537-b568-ce9208c11db7\",\r\n    \"taskStatusId\": \"96428604-dabd-4ded-bbd3-8c08e45ba394\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Todas las Tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiI4NWQxYjYxNC02MTg4LTRkNDctYjQyOS1mZDIwYmI3ZTAyZjYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MDE3OSwiZXhwIjoxNzA3NzU1MTc5fQ.rK0Jeu6r3OvtAP6KMlHSjkicC8aGVekebnQ0r6Rj0c2ENPYMWzCBBkm-7JV6rI2VSzVpanMRPAOCE-dFypeL4Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tarea or ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiI4NWQxYjYxNC02MTg4LTRkNDctYjQyOS1mZDIwYmI3ZTAyZjYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MDE3OSwiZXhwIjoxNzA3NzU1MTc5fQ.rK0Jeu6r3OvtAP6KMlHSjkicC8aGVekebnQ0r6Rj0c2ENPYMWzCBBkm-7JV6rI2VSzVpanMRPAOCE-dFypeL4Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/task/task-id/23f1cfb4-8416-428e-b621-69903cbb275c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"task-id",
+						"23f1cfb4-8416-428e-b621-69903cbb275c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiI4NWQxYjYxNC02MTg4LTRkNDctYjQyOS1mZDIwYmI3ZTAyZjYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MDE3OSwiZXhwIjoxNzA3NzU1MTc5fQ.rK0Jeu6r3OvtAP6KMlHSjkicC8aGVekebnQ0r6Rj0c2ENPYMWzCBBkm-7JV6rI2VSzVpanMRPAOCE-dFypeL4Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/task/delete/23f1cfb4-8416-428e-b621-69903cbb275c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"delete",
+						"23f1cfb4-8416-428e-b621-69903cbb275c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear y Actualizar Usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiI4NWQxYjYxNC02MTg4LTRkNDctYjQyOS1mZDIwYmI3ZTAyZjYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MDE3OSwiZXhwIjoxNzA3NzU1MTc5fQ.rK0Jeu6r3OvtAP6KMlHSjkicC8aGVekebnQ0r6Rj0c2ENPYMWzCBBkm-7JV6rI2VSzVpanMRPAOCE-dFypeL4Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identificationNumber\": \"120325412\",\r\n    \"name\": \"test12\",\r\n    \"phone\": \"3214501456\",\r\n    \"email\": \"rdvv@test.com\",\r\n    \"password\": \"sol123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Todos los Usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiIwYmQ4NjMyNS0yNDk3LTQwYTgtOWUwYi1mNjI1OTNhNWU4MDYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MTczOCwiZXhwIjoxNzA3NzU2NzM4fQ.dB6YdcHTg9Yxsv6BU7JX7NZLua4JH9cmfBLGqB1CHzeoWVG_gVlKAtCla4X_jJfU66p8Zsun2LWBm3LkwbkT9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Todos los Usuarios Paginados",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzZWNyZXQiOiIwYmQ4NjMyNS0yNDk3LTQwYTgtOWUwYi1mNjI1OTNhNWU4MDYiLCJzdWIiOiJydkB0ZXN0LmNvbSIsImlhdCI6MTcwNzc1MTczOCwiZXhwIjoxNzA3NzU2NzM4fQ.dB6YdcHTg9Yxsv6BU7JX7NZLua4JH9cmfBLGqB1CHzeoWVG_gVlKAtCla4X_jJfU66p8Zsun2LWBm3LkwbkT9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/paginated/2/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"paginated",
+						"2",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
