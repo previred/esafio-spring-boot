@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "cfeca6f7-fbf5-4106-a029-14f58e75b4ef",
+		"name": "MoveApps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7108523",
+		"_collection_link": "https://galactic-moon-257814.postman.co/workspace/Conseg~9e0dc1f1-5dc6-46a8-a00e-95fd11275499/collection/7108523-cfeca6f7-fbf5-4106-a029-14f58e75b4ef?action=share&source=collection_link&creator=7108523"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Gustavo\",\n    \"lastName\": \"Londa\",\n    \"username\": \"glonda\",\n    \"password\": \"qwerty25\",\n    \"phoneNumber\": \"+593992323706\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Gustavo\",\n    \"lastName\": \"Londa\",\n    \"username\": \"glonda\",\n    \"password\": \"qwerty25\",\n    \"phoneNumber\": \"+593992323706\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/management/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"userDTO\":{\"id\":\"aqui el id\"},\n\t \"statusTaskDTO\":{\"id\":\"aqui el id\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "StatusTasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/statusTasks"
+			},
+			"response": []
+		},
+		{
+			"name": "StatusTasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Init\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/management/statusTasks"
+			},
+			"response": []
+		}
+	]
+}
