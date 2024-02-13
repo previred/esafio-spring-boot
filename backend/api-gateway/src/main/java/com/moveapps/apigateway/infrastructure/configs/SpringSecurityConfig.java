@@ -10,6 +10,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 
 import com.moveapps.apigateway.infrastructure.filter.JwtAuthenticationFilter;
 
+
 @EnableWebFluxSecurity
 public class SpringSecurityConfig {
 	
@@ -19,14 +20,9 @@ public class SpringSecurityConfig {
 	@Bean
 	public SecurityWebFilterChain configure(ServerHttpSecurity http) {
 		return http.authorizeExchange()
-				.pathMatchers("/api/security/auth/**").permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/security/users",
-						"/api/items/listar",
-						"/api/usuarios/usuarios",
-						"/api/items/ver/{id}/cantidad/{cantidad}",
-						"/api/productos/ver/{id}").permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/usuarios/usuarios/{id}").hasAnyRole("ADMIN", "USER")
-				.pathMatchers("/api/productos/**", "/api/items/**", "/api/usuarios/usuarios/**").hasRole("ADMIN")
+				.pathMatchers("/api/management/auth/**").permitAll()
+				.pathMatchers("/swagger-ui/**").permitAll()
+				.pathMatchers(HttpMethod.GET, "/api/management/auth/validate").permitAll()
 				.anyExchange().authenticated()
 				.and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
 				.csrf().disable()

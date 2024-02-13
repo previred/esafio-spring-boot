@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+
+  discovery:
+    container_name: discovery
+    build:
+      context: ./
+      dockerfile: ./discovery/Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - spring
+    restart: always
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./
+      dockerfile: ./api-gateway/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - spring
+    depends_on:
+      - discovery
+    restart: always
+
+  management:
+    container_name: management
+    build:
+      context: ./
+      dockerfile: ./management/Dockerfile
+    ports:
+      - "8090:8090"
+    networks:
+      - spring
+    depends_on:
+      - discovery
+      - api-gateway
+    restart: always
+
+networks:
+  spring:
+    name: spring
