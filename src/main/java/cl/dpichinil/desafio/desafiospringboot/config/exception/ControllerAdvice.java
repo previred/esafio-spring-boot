@@ -15,7 +15,7 @@ public class ControllerAdvice {
     @ExceptionHandler({CustomException.class})
     public final ResponseEntity<ResponseDto> handleException(CustomException ex) {
         ResponseDto dto = new ResponseDto(ex.getCode());
-        dto = functionUtil.getMessage(dto);
+        dto = functionUtil.getMessage(dto, ex.getModule());
         return functionUtil.generateResponseEntity(ex.getStatus(), dto);
     }
 }

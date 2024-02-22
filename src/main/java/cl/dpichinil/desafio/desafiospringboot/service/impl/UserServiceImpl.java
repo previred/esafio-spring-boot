@@ -6,6 +6,7 @@ import cl.dpichinil.desafio.desafiospringboot.dto.UserDto;
 import cl.dpichinil.desafio.desafiospringboot.persistence.entity.User;
 import cl.dpichinil.desafio.desafiospringboot.persistence.repository.UserRepository;
 import cl.dpichinil.desafio.desafiospringboot.service.UserService;
+import cl.dpichinil.desafio.desafiospringboot.util.Constant;
 import cl.dpichinil.desafio.desafiospringboot.util.FunctionUtil;
 import cl.dpichinil.desafio.desafiospringboot.util.ParserUtil;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +29,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<ResponseDto> getByUsername(String username) {
+        String module = Constant.MODULE_GET_USER_BY_USERNAME;
         if(validateUsername(username))
-            throw new CustomException(HttpStatus.BAD_REQUEST, 1000);
+            throw new CustomException(HttpStatus.BAD_REQUEST, 1000, module);
         Optional<User> optional = userRepository.findByUsername(username);
         if(optional.isEmpty())
-            throw new CustomException(HttpStatus.BAD_REQUEST, 1001);
+            throw new CustomException(HttpStatus.BAD_REQUEST, 1001, module);
         ResponseDto dto = new ResponseDto(0);
+        dto = functionUtil.getMessage(dto, module);
         dto.setData(ParserUtil.parseUserToUserDto(optional.get()));
         return functionUtil.generateResponseEntity(HttpStatus.OK, dto);
     }
