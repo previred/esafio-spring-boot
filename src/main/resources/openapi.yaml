@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: desafio-spring-boot
+  description: prueba tecnica
+  version: 1.0.0
+
+servers:
+- url: http://localhost:8080/api/v1
+
+tags:
+- name: tareas
+  description: API que se encarga de administrar las tareas
+  
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Tarea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        nombre:
+          type: string
+          nullable: false
+        descripcion:
+          type: string
+          nullable: false
+        storyPoint:
+          type: integer
+          format: int32
+          nullable: true
+        usuario_id:
+          type: integer
+          format: int64
+          nullable: false
+        estado_tarea_id:
+          type: integer
+          format: int64
+          nullable: true
+      
+paths:
+  /tarea:
+    post:
+      tags:
+      - tareas
+      summary: Crear una nueva tarea
+      operationId: createTarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tarea'
+            example: # no va el estado_id, ya que por defecto se creara en PENDIENTE
+              nombre: "Nueva Tarea"
+              descripcion: "Descripción de la nueva tarea"
+              storyPoint: 5
+              usuario_id: 1
+      security:
+        - BearerAuth: []
+      responses:
+        '201':
+          description: Creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tarea'
+    get:
+      tags:
+      - tareas
+      summary: Obtiene una lista de tareas
+      operationId: getTareas
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Recuperadas exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tarea'
+  /tarea/{id}:
+    get:
+      tags:
+      - tareas
+      summary: Obtiene una tarea por ID
+      operationId: getTareaById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Recuperada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tarea'
+    put:
+      tags:
+      - tareas
+      summary: Actualizar una tarea por ID
+      operationId: updateTareaById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tarea'
+      responses:
+        '200':
+          description: Actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tarea'
+    patch:
+      tags:
+      - tareas
+      summary: Actualizar parcialmente una tarea por ID
+      operationId: patchTareaById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  nullable: true
+                descripcion:
+                  type: string
+                  nullable: true
+                storyPoint:
+                  type: integer
+                  format: int32
+                  nullable: true
+                usuario_id:
+                  type: integer
+                  format: int64
+                  nullable: true
+                estado_tarea_id:
+                  type: integer
+                  format: int64
+                  nullable: true
+      responses:
+        '200':
+          description: Actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tarea'
+    delete:
+      tags:
+      - tareas
+      summary: Eliminar una tarea por ID
+      operationId: deleteTareaById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Eliminada exitosamente
