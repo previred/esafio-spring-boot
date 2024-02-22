@@ -6,6 +6,7 @@ import cl.dpichinil.desafio.desafiospringboot.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
@@ -25,7 +26,6 @@ public class AuthController {
     }
 
     @GetMapping("logged")
-//    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     public ResponseEntity<ResponseDto> logged(HttpServletRequest request){
         return userService.logged(request);
     }

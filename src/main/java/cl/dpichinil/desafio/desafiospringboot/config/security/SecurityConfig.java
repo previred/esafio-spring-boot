@@ -5,6 +5,7 @@ import cl.dpichinil.desafio.desafiospringboot.persistence.repository.UserReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -33,11 +34,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests( request -> request
-                        .requestMatchers(
-                                "/api/auth/login/**",
-                                "/api/user/add/**",
-                                "/api/auth/encodePassword/**"
-                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login/**", "/api/auth/encodePassword/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
@@ -55,7 +53,7 @@ public class SecurityConfig {
 //        configuration.setAllowedHeaders(Arrays.asList("*"));
 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH ", "DELETE"));
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
