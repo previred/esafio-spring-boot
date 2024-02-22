@@ -12,12 +12,15 @@ import org.springframework.stereotype.Component;
 public class FunctionUtil {
     private final MessageProperties messageProperties;
     public <T> ResponseEntity<ResponseDto> generateResponseEntity(HttpStatus status, ResponseDto dto) {
-        return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(dto, status);
     }
 
     public ResponseDto getMessage(ResponseDto dto, String module) {
         switch (module){
             case Constant.MODULE_GET_USER_BY_USERNAME -> dto.setMessage(messageProperties.getGetUserByUsername().get(dto.getCode()));
+            case Constant.MODULE_ENCODE_PASSWORD -> dto.setMessage(messageProperties.getEncodePassword().get(dto.getCode()));
+            case Constant.MODULE_LOGIN -> dto.setMessage(messageProperties.getLogin().get(dto.getCode()));
+            case Constant.MODULE_LOGGED -> dto.setMessage(messageProperties.getLogin().get(dto.getCode()));
         }
         return dto;
     }

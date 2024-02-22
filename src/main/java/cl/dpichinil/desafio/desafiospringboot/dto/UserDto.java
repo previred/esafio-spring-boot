@@ -24,5 +24,6 @@ public class UserDto {
     private Date lastAccess;
     private boolean active;
     private boolean expired;
+    private boolean locked;
     private String authoritiesText;
 }

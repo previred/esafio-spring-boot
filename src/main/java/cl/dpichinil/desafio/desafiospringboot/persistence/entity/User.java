@@ -32,6 +32,8 @@ public class User {
     private boolean active;
     @Column(name = "expired")
     private boolean expired;
+    @Column(name = "locked")
+    private boolean locked;
     @Column(name = "authorities_text")
     private String authoritiesText;
 }

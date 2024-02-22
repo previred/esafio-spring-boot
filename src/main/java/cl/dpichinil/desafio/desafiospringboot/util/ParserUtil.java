@@ -15,6 +15,7 @@ public class ParserUtil {
                 .lastAccess(entity.getLastAccess())
                 .active(entity.isActive())
                 .expired(entity.isExpired())
+                .locked(entity.isLocked())
                 .authoritiesText(entity.getAuthoritiesText())
                 .build();
     }
@@ -28,6 +29,7 @@ public class ParserUtil {
                 .lastAccess(entity.getLastAccess())
                 .active(entity.isActive())
                 .expired(entity.isExpired())
+                .locked(entity.isLocked())
                 .authoritiesText(entity.getAuthoritiesText())
                 .build();
     }
