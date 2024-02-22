@@ -20,7 +20,7 @@ public class Tarea {
     private String descripcion;
 
     @Column(name = "activo")
-    private String activo;
+    private boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

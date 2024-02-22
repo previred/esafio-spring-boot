@@ -13,6 +13,11 @@ public class MessageProperties {
     private Map<Integer, String> encodePassword;
     private Map<Integer, String> login;
     private Map<Integer, String> logged;
+    private Map<Integer, String> tareaCreate;
+    private Map<Integer, String> tareaList;
+    private Map<Integer, String> tareaDelete;
+    private Map<Integer, String> tareaUpdate;
+    private Map<Integer, String> estadoTareaList;
 
     public Map<Integer, String> getGetUserByUsername() {
         return getUserByUsername;
@@ -44,5 +49,45 @@ public class MessageProperties {
 
     public void setLogged(Map<Integer, String> logged) {
         this.logged = logged;
+    }
+
+    public Map<Integer, String> getTareaCreate() {
+        return tareaCreate;
+    }
+
+    public void setTareaCreate(Map<Integer, String> tareaCreate) {
+        this.tareaCreate = tareaCreate;
+    }
+
+    public Map<Integer, String> getTareaList() {
+        return tareaList;
+    }
+
+    public void setTareaList(Map<Integer, String> tareaList) {
+        this.tareaList = tareaList;
+    }
+
+    public Map<Integer, String> getTareaDelete() {
+        return tareaDelete;
+    }
+
+    public void setTareaDelete(Map<Integer, String> tareaDelete) {
+        this.tareaDelete = tareaDelete;
+    }
+
+    public Map<Integer, String> getTareaUpdate() {
+        return tareaUpdate;
+    }
+
+    public void setTareaUpdate(Map<Integer, String> tareaUpdate) {
+        this.tareaUpdate = tareaUpdate;
+    }
+
+    public Map<Integer, String> getEstadoTareaList() {
+        return estadoTareaList;
+    }
+
+    public void setEstadoTareaList(Map<Integer, String> estadoTareaList) {
+        this.estadoTareaList = estadoTareaList;
     }
 }

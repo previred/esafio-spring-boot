@@ -20,5 +20,5 @@ public class EstadoTarea {
     private String descripcion;
 
     @Column(name = "activo")
-    private String activo;
+    private boolean activo;
 }

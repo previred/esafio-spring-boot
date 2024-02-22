@@ -26,6 +26,7 @@ import java.util.Arrays;
 public class SecurityConfig {
     private final JwtAuthFilter authFilter;
     private final UserRepository userRepository;
+    private final AuthenticationEntryPointConfig authenticationEntryPointConfig;
     @Bean
     public PasswordEncoder getPasswordEncode(){
         return new BCryptPasswordEncoder();
@@ -41,6 +42,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authenticationProvider(authenticationProvider())
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPointConfig))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

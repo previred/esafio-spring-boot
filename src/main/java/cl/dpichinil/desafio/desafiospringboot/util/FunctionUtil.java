@@ -20,7 +20,12 @@ public class FunctionUtil {
             case Constant.MODULE_GET_USER_BY_USERNAME -> dto.setMessage(messageProperties.getGetUserByUsername().get(dto.getCode()));
             case Constant.MODULE_ENCODE_PASSWORD -> dto.setMessage(messageProperties.getEncodePassword().get(dto.getCode()));
             case Constant.MODULE_LOGIN -> dto.setMessage(messageProperties.getLogin().get(dto.getCode()));
-            case Constant.MODULE_LOGGED -> dto.setMessage(messageProperties.getLogin().get(dto.getCode()));
+            case Constant.MODULE_LOGGED -> dto.setMessage(messageProperties.getLogged().get(dto.getCode()));
+            case Constant.MODULE_TAREA_CREATE -> dto.setMessage(messageProperties.getTareaCreate().get(dto.getCode()));
+            case Constant.MODULE_TAREA_LIST -> dto.setMessage(messageProperties.getTareaList().get(dto.getCode()));
+            case Constant.MODULE_TAREA_UPDATE -> dto.setMessage(messageProperties.getTareaUpdate().get(dto.getCode()));
+            case Constant.MODULE_TAREA_DELETE -> dto.setMessage(messageProperties.getTareaDelete().get(dto.getCode()));
+            case Constant.MODULE_ESTADO_TAREA_LIST -> dto.setMessage(messageProperties.getEstadoTareaList().get(dto.getCode()));
         }
         return dto;
     }

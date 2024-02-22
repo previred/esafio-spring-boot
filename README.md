@@ -13,62 +13,62 @@ principios SOLID y utilizando las tecnologías especificadas.
 
 ### Java:
 
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+- OK - Utiliza Java 17 para la implementación.
+- OK - Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
+- OK - Utilizar Maven como gestor de dependencias
 
 ### Spring Boot 2.7.x:
 
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+- OK - Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
 
 ### Base de Datos:
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+- OK - Utiliza una base de datos H2.
+- OK - Crea tres tablas: usuarios, tareas y estados_tarea.
+- OK - La tabla usuarios debe contener datos pre cargados.
+- OK - La tabla estados_tarea debe contener estados pre cargados.
 
 ### JPA:
 
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+- OK - Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
 
 ### JWT (JSON Web Token):
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+- OK - Implementa la autenticación utilizando JWT para validar usuarios.
 
 ### OpenAPI y Swagger:
 
-- Documenta la API utilizando OpenAPI y Swagger.
+- OK - Documenta la API utilizando OpenAPI y Swagger.
 
 ## Funcionalidades:
 
 ### Autenticación:
 
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT.
+- OK - Implementa un endpoint para la autenticación de usuarios utilizando JWT.
 
 ### CRUD de Tareas:
 
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+- OK - Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
 
 ## Consideraciones:
 
 ### Seguridad:
 
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+- OK - Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
 
 ### Documentación:
 
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo
+- OK - Utiliza OpenAPI y Swagger para documentar claramente la API.
+- NO - Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo
   Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
 
 ### Código Limpio:
 
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+- OK - Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
 
 ### Creatividad
 
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+- OK - Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
 
 ## Entregables:
 
