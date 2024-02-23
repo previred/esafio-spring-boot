@@ -29,7 +29,7 @@ public class TareaController {
         return tareaService.update(dto);
     }
     @DeleteMapping({"/{id}"})
-    public ResponseEntity<ResponseDto> update(@PathVariable int id){
+    public ResponseEntity<ResponseDto> delete(@PathVariable int id){
         return tareaService.delete(id);
     }
 }
