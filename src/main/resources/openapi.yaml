@@ -5,50 +5,125 @@ info:
   version: 1.0.0
 
 servers:
-- url: http://localhost:8080/api/v1
+  - url: http://localhost:8080/api/v1
 
 tags:
-- name: tareas
-  description: API que se encarga de administrar las tareas
-  
+  - name: auth
+    description: Endpoint para obtener JWT
+  - name: tareas
+    description: API que se encarga de administrar las tareas
+
 components:
   securitySchemes:
-    BearerAuth:
+    Bearer:
       type: http
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    Tarea:
+    MessageRsDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
+        codigo:
+          type: string
+          example: "00"
+        mensaje:
+          type: string
+          example: "jwt....."
+    AuthRqDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          example: usuarioEjemplo
+        password:
+          type: string
+          format: password
+          example: contraseñaEjemplo
+    TareaRqDTO:
+      type: object
+      properties:
         nombre:
           type: string
-          nullable: false
         descripcion:
           type: string
-          nullable: false
         storyPoint:
           type: integer
           format: int32
-          nullable: true
-        usuario_id:
+        usuarioId:
           type: integer
           format: int64
-          nullable: false
-        estado_tarea_id:
+    TareaEstRqDTO:
+      allOf:
+        - $ref: '#/components/schemas/TareaRqDTO'
+        - type: object
+          properties:
+            estadoTareaId:
+              type: integer
+              format: int64
+    TareaRsDTO:
+      type: object
+      properties:
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        storyPoint:
+          type: integer
+          format: int32
+        usuarioId:
           type: integer
           format: int64
-          nullable: true
-      
+        id:
+          type: integer
+          format: int64
+        estadoTareaId:
+          type: integer
+          format: int64
 paths:
+  /authenticate:
+    post:
+      tags:
+        - auth
+      summary: Autenticar usuario y obtener token
+      description: >-
+        Este endpoint autentica a los usuarios basándose en sus credenciales (username y password) y retorna un JWT para ser utilizado en solicitudes subsiguientes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRqDTO'
+      responses:
+        '200':
+          description: Autenticación exitosa, JWT retornado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  codigo:
+                    type: string
+                    example: "00"
+                  mensaje:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '401':
+          description: Autenticación fallida.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  codigo:
+                    type: string
+                    example: "01"
+                  mensaje:
+                    type: string
+                    example: Credenciales inválidas
   /tarea:
     post:
       tags:
-      - tareas
+        - tareas
       summary: Crear una nueva tarea
       operationId: createTarea
       requestBody:
@@ -56,28 +131,38 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tarea'
-            example: # no va el estado_id, ya que por defecto se creara en PENDIENTE
+              $ref: '#/components/schemas/TareaRqDTO'
+            example:
               nombre: "Nueva Tarea"
               descripcion: "Descripción de la nueva tarea"
               storyPoint: 5
-              usuario_id: 1
+              usuarioId: 1
       security:
-        - BearerAuth: []
+        - Bearer: []
       responses:
         '201':
           description: Creada exitosamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tarea'
+                $ref: '#/components/schemas/TareaRsDTO'
+        '400':
+          description: Error al crear Tarea
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Error al crear tarea ..."
     get:
       tags:
-      - tareas
+        - tareas
       summary: Obtiene una lista de tareas
       operationId: getTareas
       security:
-        - BearerAuth: []
+        - Bearer: []
       responses:
         '200':
           description: Recuperadas exitosamente
@@ -86,15 +171,25 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Tarea'
+                  $ref: '#/components/schemas/TareaRsDTO'
+        '400':
+          description: Error al obtener la lista de tareas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "No se pudo obtener la lista de tareas."
   /tarea/{id}:
     get:
       tags:
-      - tareas
+        - tareas
       summary: Obtiene una tarea por ID
       operationId: getTareaById
       security:
-        - BearerAuth: []
+        - Bearer: []
       parameters:
         - name: id
           in: path
@@ -108,14 +203,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tarea'
+                $ref: '#/components/schemas/TareaRsDTO'
+        '400':
+          description: Error al obtener la tarea
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "No se pudo obtener la tarea. Tarea no existe."
     put:
       tags:
-      - tareas
+        - tareas
       summary: Actualizar una tarea por ID
       operationId: updateTareaById
       security:
-        - BearerAuth: []
+        - Bearer: []
       parameters:
         - name: id
           in: path
@@ -128,67 +233,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tarea'
+              $ref: '#/components/schemas/TareaEstRqDTO'
       responses:
         '200':
           description: Actualizada exitosamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tarea'
-    patch:
-      tags:
-      - tareas
-      summary: Actualizar parcialmente una tarea por ID
-      operationId: patchTareaById
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                nombre:
-                  type: string
-                  nullable: true
-                descripcion:
-                  type: string
-                  nullable: true
-                storyPoint:
-                  type: integer
-                  format: int32
-                  nullable: true
-                usuario_id:
-                  type: integer
-                  format: int64
-                  nullable: true
-                estado_tarea_id:
-                  type: integer
-                  format: int64
-                  nullable: true
-      responses:
-        '200':
-          description: Actualizada exitosamente
+                $ref: '#/components/schemas/TareaRsDTO'
+        '400':
+          description: Error al actualizar tarea
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tarea'
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "No se pudo editar Tarea con ID: 6.Tarea no existe."
     delete:
       tags:
-      - tareas
+        - tareas
       summary: Eliminar una tarea por ID
       operationId: deleteTareaById
       security:
-        - BearerAuth: []
+        - Bearer: []
       parameters:
         - name: id
           in: path
@@ -199,3 +268,13 @@ paths:
       responses:
         '204':
           description: Eliminada exitosamente
+        '400':
+          description: Error al eliminar tarea
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "No se pudo eliminar la tarea ID: 4.Tarea no existe."
