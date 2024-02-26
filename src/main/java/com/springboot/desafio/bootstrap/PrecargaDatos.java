@@ -9,8 +9,6 @@ import com.springboot.desafio.repository.EstadoTareaRepository;
 import com.springboot.desafio.repository.TareaRepository;
 import com.springboot.desafio.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +44,7 @@ public class PrecargaDatos implements CommandLineRunner {
                 authority
         );
 
-        userRepository.save( new User( "pablo", passwordEncoder.encode("pablo123"), authorities));
+        userRepository.save( new User( "admin", passwordEncoder.encode("123"), authorities));
 
         estadoTareaRepository.save(new EstadoTarea("Pendiente"));
         estadoTareaRepository.save(new EstadoTarea("En curso"));

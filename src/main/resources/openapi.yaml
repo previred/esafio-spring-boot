@@ -107,6 +107,19 @@ paths:
                   mensaje:
                     type: string
                     example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '400':
+          description: Error en la petición
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  codigo:
+                    type: string
+                    example: "01"
+                  mensaje:
+                    type: string
+                    example: Error en la solicitud.
         '401':
           description: Autenticación fallida.
           content:
@@ -156,6 +169,16 @@ paths:
                   mensaje:
                     type: string
                     example: "Error al crear tarea ..."
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Token Inválido."
     get:
       tags:
         - tareas
@@ -182,6 +205,16 @@ paths:
                   mensaje:
                     type: string
                     example: "No se pudo obtener la lista de tareas."
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Token Inválido."
   /tarea/{id}:
     get:
       tags:
@@ -214,6 +247,16 @@ paths:
                   mensaje:
                     type: string
                     example: "No se pudo obtener la tarea. Tarea no existe."
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Token Inválido."
     put:
       tags:
         - tareas
@@ -251,6 +294,16 @@ paths:
                   mensaje:
                     type: string
                     example: "No se pudo editar Tarea con ID: 6.Tarea no existe."
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Token Inválido."
     delete:
       tags:
         - tareas
@@ -278,3 +331,13 @@ paths:
                   mensaje:
                     type: string
                     example: "No se pudo eliminar la tarea ID: 4.Tarea no existe."
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: "Token Inválido."

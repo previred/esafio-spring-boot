@@ -10,6 +10,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,8 +47,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             response.setCodigo(CODIGO_OK);
             response.setMensaje(jwt);
             return response;
-        } catch (Exception e) {
-            throw new LoginException("Error al intentar login." + e.getMessage());
+        }catch (BadCredentialsException b){
+            throw new BadCredentialsException("Credenciales inválidas");
+        }catch (Exception e) {
+            throw new LoginException("Error en la solicitud.");
         }
     }
 }

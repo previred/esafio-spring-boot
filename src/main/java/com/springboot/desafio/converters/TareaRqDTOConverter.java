@@ -2,7 +2,6 @@ package com.springboot.desafio.converters;
 
 import com.springboot.desafio.model.Tarea;
 import com.springboot.desafio.model.TareaRqDTO;
-import com.springboot.desafio.model.TareaRsDTO;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 

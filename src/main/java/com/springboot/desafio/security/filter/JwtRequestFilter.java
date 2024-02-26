@@ -1,7 +1,7 @@
 package com.springboot.desafio.security.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.desafio.constants.Constantes;
-import com.springboot.desafio.exceptions.AuthException;
 import com.springboot.desafio.services.impl.UserDetailsServiceImpl;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.springboot.desafio.constants.Constantes.*;
 
@@ -48,12 +50,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             userDetails, null, userDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
+            }else{
+                throw new Exception();
             }
             chain.doFilter(request, response);
         }catch(Exception e){
-            throw new AuthException("Token Inválido. " + e.getMessage());
+            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+            httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            httpServletResponse.setContentType("application/json");
+            Map<String, Object> body = new HashMap<>();
+            body.put("mensaje", "Token Inválido." );
+            String responseBody = new ObjectMapper().writeValueAsString(body);
+            httpServletResponse.getWriter().write(responseBody);
+            return;
         }
-
     }
 
     private String extractUsername(String token) {

@@ -1,6 +1,5 @@
 package com.springboot.desafio.services.impl;
 
-import com.springboot.desafio.model.Authority;
 import com.springboot.desafio.model.CustomUserDetails;
 import com.springboot.desafio.model.User;
 import com.springboot.desafio.repository.UserRepository;
