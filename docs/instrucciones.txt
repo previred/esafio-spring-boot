@@ -1,0 +1,7 @@
+1.- Para obtener un token JWT de autenticacion consumir endpoint localhost:8080/api/v1/authenticate
+    Usuario: admin
+    Password: 123
+2.- Si se ejecuta por Postman, copiar el token y pegar en Authorization y seleccionar Bearer Token.
+    Los token tienen una expiracion de 3 minutos que pueden ser configurables en
+    com.springboot.desafio.constants.JWT_EXPIRED en milisegundos.
+ 3.- Endpoints Disponibles con ejemplos funcionales en la coleccion JSON.
