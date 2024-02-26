@@ -44,29 +44,33 @@ public class PrecargaDatos implements CommandLineRunner {
                 authority
         );
 
-        userRepository.save( new User( "admin", passwordEncoder.encode("123"), authorities));
+        User user = new User( "admin", passwordEncoder.encode("123"), authorities);
+        userRepository.save( user );
 
-        estadoTareaRepository.save(new EstadoTarea("Pendiente"));
-        estadoTareaRepository.save(new EstadoTarea("En curso"));
-        estadoTareaRepository.save(new EstadoTarea("Listo"));
+        EstadoTarea pendiente = new EstadoTarea("Pendiente");
+        estadoTareaRepository.save(pendiente);
+        EstadoTarea enCurso = new EstadoTarea("En curso");
+        estadoTareaRepository.save(enCurso);
+        EstadoTarea listo = new EstadoTarea("Listo");
+        estadoTareaRepository.save(listo);
 
         tareaRepository.save(
                 new Tarea("Tarea Uno",
                         "Esta es la primera tarea",
-                        8, 1L,
-                        1L)
+                        8, user,
+                        pendiente)
         );
         tareaRepository.save(
                 new Tarea("Tarea Dos",
                         "Esta es la segunda tarea",
-                        13, 1L,
-                        2L)
+                        13, user,
+                        enCurso)
         );
         tareaRepository.save(
                 new Tarea("Tarea Tres",
                         "Esta es la tercera tarea",
-                        3, 1L,
-                        3L)
+                        3, user,
+                        listo)
         );
 
     }

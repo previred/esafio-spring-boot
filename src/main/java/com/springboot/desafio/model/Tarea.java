@@ -1,15 +1,11 @@
 package com.springboot.desafio.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -26,16 +22,22 @@ public class Tarea {
     private String nombre;
     private String descripcion;
     private Integer storyPoint;
-    @NotNull
-    private Long usuarioId;
-    @NotNull
-    private Long estadoTareaId;
 
-    public Tarea(String nombre, String descripcion, Integer storyPoint, Long usuarioId, Long estadoTareaId) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    @NotNull
+    @NotNull
+    private User usuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estado_tarea_id")
+    @NotNull
+    private EstadoTarea estadoTarea;
+
+    public Tarea(String nombre, String descripcion, Integer storyPoint, User usuario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.storyPoint = storyPoint;
-        this.usuarioId = usuarioId;
-        this.estadoTareaId = estadoTareaId;
+        this.usuario = usuario;
+        this.estadoTarea = estadoTarea;
     }
 }

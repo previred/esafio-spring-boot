@@ -14,7 +14,6 @@ public class TareaRqDTOConverter implements Converter<TareaRqDTO, Tarea> {
         tarea.setNombre(source.getNombre());
         tarea.setDescripcion(source.getDescripcion());
         tarea.setStoryPoint(source.getStoryPoint());
-        tarea.setUsuarioId(source.getUsuarioId());
         return tarea;
     }
 

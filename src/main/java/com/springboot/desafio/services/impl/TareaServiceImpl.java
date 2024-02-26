@@ -5,6 +5,7 @@ import com.springboot.desafio.exceptions.TareaException;
 import com.springboot.desafio.model.*;
 import com.springboot.desafio.repository.EstadoTareaRepository;
 import com.springboot.desafio.repository.TareaRepository;
+import com.springboot.desafio.repository.UserRepository;
 import com.springboot.desafio.services.TareaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class TareaServiceImpl implements TareaService {
     @Autowired
     private TareaRqDTOConverter tareaRqDTOConverter;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private final ModelMapper modelMapper;
 
     public TareaServiceImpl(ModelMapper modelMapper) {
@@ -43,7 +47,10 @@ public class TareaServiceImpl implements TareaService {
             }
 
             EstadoTarea estadoTarea = estadoTareaRepository.getEstadoTareaByNombre(ESTADO_TAREA_PENDIENTE);
-            tarea.setEstadoTareaId(estadoTarea.getId());
+            tarea.setEstadoTarea(estadoTarea);
+
+            User usuario = userRepository.getReferenceById(tareaRqDTO.getUsuarioId());
+            tarea.setUsuario(usuario);
 
             tareaRepository.save(tarea);
             return modelMapper.map(tarea, TareaRsDTO.class);
@@ -99,11 +106,11 @@ public class TareaServiceImpl implements TareaService {
             }
 
             Tarea tarea = tareaRepository.getReferenceById(id);
-            tarea.setUsuarioId(tareaRqDTO.getUsuarioId());
+            tarea.setUsuario( userRepository.getReferenceById( tareaRqDTO.getUsuarioId() ) );
             tarea.setNombre(tareaRqDTO.getNombre());
             tarea.setStoryPoint(tareaRqDTO.getStoryPoint());
             tarea.setDescripcion(tareaRqDTO.getDescripcion());
-            tarea.setEstadoTareaId(tareaRqDTO.getEstadoTareaId());
+            tarea.setEstadoTarea(estadoTareaRepository.getReferenceById(tareaRqDTO.getEstadoTareaId()));
 
             tareaRepository.save(tarea);
             return modelMapper.map(tarea, TareaRsDTO.class);
