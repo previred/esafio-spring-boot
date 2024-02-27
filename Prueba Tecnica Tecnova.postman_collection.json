@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "4d8b4396-8ace-413f-9242-065e9230ac7f",
+		"name": "Prueba Tecnica Tecnova",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32754611"
+	},
+	"item": [
+		{
+			"name": "Estados",
+			"item": [
+				{
+					"name": "readAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/estados/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"estados",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"tarea\",\r\n    \"idEstado\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/tareas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"tareas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/tareas/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"tareas",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/tareas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"tareas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"tareaaaa\",\r\n    \"idEstado\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/tareas/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"tareas",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJuZW9yaXNKV1QiLCJzdWIiOiJURVNUMSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MDg5NzA1MTcsImV4cCI6MTcwOTgzNDUxN30.iNqX6JgGHiYJx8D6afNtlJz0PwtrZ_QtLwoVWfrrwy8sSPig1ntGJnwDyLcTdRcxglmDNreIsvEYvuqzZdbRLA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/tareas/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"tareas",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"TEST1\",\r\n    \"password\": \"test1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pruebaTecnica/v1/usuarios/token/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pruebaTecnica",
+								"v1",
+								"usuarios",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

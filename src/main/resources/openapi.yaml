@@ -1,0 +1,210 @@
+openapi: 3.0.0
+info:
+  title: Prueba Técnica
+  description: Api de prueba técnica Tecnova.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/pruebaTecnica/v1
+    description: Prueba Técnica Empresa Tecnova
+
+tags:
+  - name: Estados
+    description: Operaciones relacionadas a los estados.
+  - name: Usuarios
+    description: Operaciones relacionadas a los usuarios.
+  - name: Tareas
+    description: Operaciones relacionadas a las tareas.
+
+paths:
+  /estados/:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Retorna una lista con todos los estados.
+      tags:
+        - Estados
+      responses:
+        '200':
+          description: Retorna un arreglo JSON con cada estado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type:  EstadoDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+  /usuarios/token/:
+    post:
+      summary: Retorna un JSON con el nombre de usuario y token.
+      tags:
+        - Usuarios
+      operationId: loginUser
+      requestBody:
+        description: Nombre de usuario y contraseña
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: LoginUserRequest
+      responses:
+        '200':
+          description: Retorna un JSON con el nombre de usuario y token.
+          content:
+            application/json:
+              schema:
+                $ref: TokenResponse
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+  /tareas/:
+    put:
+      security:
+        - bearerAuth: []
+      summary: Crea y retorna la nueva tarea con su ID.
+      tags:
+        - Tareas
+      operationId: createTarea
+      requestBody:
+        description: Nombre y idEstado (endpoint /estados/) de la tarea a crear.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: UpdateTareaRequest
+      responses:
+        '200':
+          description: Retorna la tarea creada con su ID.
+          content:
+            application/json:
+              schema:
+                $ref: TareaDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+    get:
+      security:
+        - bearerAuth: []
+      summary: Retorna todas las tareas.
+      tags:
+        - Tareas
+      operationId: getAllTareas
+      responses:
+        '200':
+          description: Retorna todas las tareas.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: TareaDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+  /tareas/{id}/:
+    get:
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Retorna la tarea asociada al ID.
+      tags:
+        - Tareas
+      operationId: getTarea
+      responses:
+        '200':
+          description: Retorna la tarea asociada al ID.
+          content:
+            application/json:
+              schema:
+                $ref: TareaDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+    patch:
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Actualiza la tarea asociada al ID.
+      tags:
+        - Tareas
+      operationId: updateTarea
+      requestBody:
+        description: Nuevo Nombre y/o idEstado (endpoint /estados/) de la tarea a editar.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: UpdateTareaRequest
+      responses:
+        '200':
+          description: Retorna la tarea actualizada asociada al ID.
+          content:
+            application/json:
+              schema:
+                $ref: TareaDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+    delete:
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Elimina la tarea asociada al ID.
+      tags:
+        - Tareas
+      operationId: deleteTarea
+      responses:
+        '200':
+          description: Retorna codigo 200 y un mensaje de éxito.
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Solicitud no presenta cambios en la tarea.
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+        '403':
+          description: Autenticación fallida
+          content:
+            application/json:
+              schema:
+                $ref: ErrorDTO
+
