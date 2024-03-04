@@ -1,15 +1,25 @@
 **********************************************************************************************************************************************************************************
 
 # Pasos para Configurar y Ejecutar la API
-
-1. **Obtener el código fuente desde Git**
+  ## Ejecucion en IDE ##
+1. **clonar repositorio desde Git**
 2. **Importar como proyecto Maven**
 3. **Actualizar Maven del Proyecto**
 4. **Ejecutar**
 
-## Instrucciones adicionales:
 
-Instrucciones adicionales:
+## Ejecucion en Terminal ##
+1. **Clonar repositorio desde Git  - Git Clone agregar-URL-Repo-GIT-AQUI** **En la Terminal de preferencia**
+2. **Usar Terminal con comando**  **mvn clean compile install**
+3. **Luego ejecutar con el comando**  **mvn spring-boot:run**
+4. **Abrir Postman e Importar Archivos para Consumir el Api Rest**
+5. **Seguir las instrucciones detalladas mas abajo**
+6. **ENJOY** 
+
+
+## Instrucciones Detalladas:
+
+Instrucciones Detalladas:
 
 - Cuando se inicie la aplicacion, se ejecutaron unos scripts (para crear tablas e insertar datos correspondientes) que se encuentran en la siguiente ruta del proyecto: src\main\resources\sql.
 
