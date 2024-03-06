@@ -4,7 +4,8 @@
 
 1) Clonar proyecto desde https://github.com/previred/desafio-spring-boot
 2) Correr el proyecto (Se utilizó Intelijj) 
-3) Importar en postman el archivo desafio.postman_collection
+3) Importar en postman el archivo desafio.postman_collection, 
+que viene dentro del proyecto.
 4) Ingresar a modo de prueba al request listar-usuarios, no mostrará nada, 
 pero responderá bien.
 4) Ingresar al request registrar-usuario, el body viene cargado 

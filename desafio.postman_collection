@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "56802b97-b3ab-444c-8182-f641eca0d16b",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12234589"
+	},
+	"item": [
+		{
+			"name": "listar-tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvZmxvcmVzIiwiYXV0aG9yaXRpZXMiOiJbe1wiYXV0aG9yaXR5XCI6XCJST0xfQURNSU5JU1RSQURPUlwifSx7XCJhdXRob3JpdHlcIjpcIlJPTF9VU1VBUklPXCJ9XSIsInVzZXJuYW1lIjoib2Zsb3JlcyIsImV4cCI6MTcwOTYyNjY0NSwiaWF0IjoxNzA5NjIzMDQ1fQ.e6BVl2xU1bbOXqqzZ3wtFuTWbwP1W5QSHe5KksmlCE4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tareas/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar-usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar-tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvZmxvcmVzIiwiYXV0aG9yaXRpZXMiOiJbe1wiYXV0aG9yaXR5XCI6XCJST0xfQURNSU5JU1RSQURPUlwifSx7XCJhdXRob3JpdHlcIjpcIlJPTF9VU1VBUklPXCJ9XSIsInVzZXJuYW1lIjoib2Zsb3JlcyIsImV4cCI6MTcwOTYyNjQyNiwiaWF0IjoxNzA5NjIyODI2fQ.pfUCxbawO1z7hD-YL1uG9FfPGfwnSbQBTj1bh40kPIY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tareas/eliminar/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"eliminar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear-tarea",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Tarea Prueba\",\r\n    \"usuario\":{\r\n        \"id\": 1\r\n    },\r\n    \"estadoTarea\":{\r\n        \"id\": 2\r\n    }\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tareas/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Juan\",\r\n    \"apellido_paterno\": \"Flores\",\r\n    \"apellido_materno\": \"Perez\",\r\n    \"email\": \"jflores@prueba.cl\",\r\n    \"password\": \"12345\",\r\n    \"admin\": true\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrar-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Oscar\",\r\n    \"apellido_paterno\": \"Flores\",\r\n    \"apellido_materno\": \"Perez\",\r\n    \"username\": \"oflores\",\r\n    \"password\": \"12345\",\r\n    \"admin\": true\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/registrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar-tarea",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"id\":1,\r\n    \"nombre\": \"Tarea Prueba Actualizada\",\r\n    \"usuario\":{\r\n        \"id\": 1\r\n    },\r\n    \"estadoTarea\":{\r\n        \"id\": 2\r\n    }\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tareas/actualizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"actualizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"oflores\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
