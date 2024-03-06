@@ -1,72 +1,34 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# API Tareas para Nuevo SPA
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+Este documento explicará como funciona la API de Tareas, tanto en funcionalidad como en componentes e instalación.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## Funcionamiento:
+- Hay una carga inicial de datos que carga usuarios (admin, usuario1).
+- Existe un endpoint para realizar login y que devuelve un Token JWT con el cual se permite el uso de todos los demas endpoint de la API. Es la unica ruta publica de la API.
+- Dicho token servirá para asociar el usuario a todas las funcionalidades de tareas.
+- Existen endpoint para consultar usuarios registrados en el sistema.
+- El endpoint para crear tareas (POST) crea tareas asociadas al usuario del token JWT que se esta usando.
+- El endpoint para consultar tareas (GET) busca tareas asociadas al usuario dueño del token utilizado para la petición.
+- Los endpoint para eliminar y modificar (DELETE y PUT) solo aplican la funcionalidad a tareas asociadas al usuario dueño del token utilizado al momento de la petición.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+## Como hacerlo funcionar:
+### Visual Studio Code:
+- Abrir la carpeta del proyecto con Visual Studio Code.
+- Instalar las extensiones:
+    * https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack
+    * https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack
 
-### Base de Datos:
+- Desde el "Spring Boot Dashboard" en la sección "APPS" ejecutar el boton "run" de la aplicación "nuevospa"
+- Como resultado la aplicación queda corriendo en:
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+    http://localhost:8081
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+### Usar Swagger UI:
+Se integró Swagger UI para poder ver la documentación y usar la API desde la Web.
+Una vez ejecutada la API se debe dirigir a: 
 
-### JWT (JSON Web Token):
+http://localhost:8081/swagger-ui/index.html 
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
-
-### OpenAPI y Swagger:
-
-- Documenta la API utilizando OpenAPI y Swagger.
-
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
-
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
-
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
-
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
-
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
-
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
-
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
-
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
-
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
-
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+### Postman:
+Se creó un archivo que contiene un Postman Collection que esta en la raiz del proyecto llamado "API Tareas.postman_collection.json" el cual se puede importar y contiene instrucciones.
