@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    password: 12345
+    url: jdbc:h2:mem:testdb
+    username: gq
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: 8585
+jwt:
+  secret: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk3OTIwLCJleHAiOjE3MDk2OTg4MjB9.W5YVrt3T7d3Pd-MppSYNfyX4fzEWQt01KEoN8x-gemk
+
+# Ruta personalizada del endpoint /api-docs en formato JSON
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+  pathToMatch: /auth/**
+  show-actuator: true

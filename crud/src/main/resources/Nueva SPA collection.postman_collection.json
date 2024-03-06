@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "02b42e0f-2777-4471-8fa9-fe7aed6c3211",
+		"name": "Nueva SPA collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33375025"
+	},
+	"item": [
+		{
+			"name": "LoginUser",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"username\": \"jp23112\", \r\n    \"password\": \"pass\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8585/auth/login"
+					},
+					"response": []
+				}
+			],
+			"description": "Servicio para obtener TOKEN"
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "ObtenerUsuarios",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CrearUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Gilberto Silva\",\r\n    \"mail\": \"gsilva@nuevaspa.com\",\r\n    \"username\": \"gs27133\",\r\n    \"password\": \"PasswordEncoder\",\r\n    \"role\": {\r\n        \"nombre\": \"GENERAL\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8585/auth/createuser"
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarUsuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8585/auth/deleteUser/js36823"
+					},
+					"response": []
+				}
+			],
+			"description": "Servicios para obtener información, crear y eliminar usuarios"
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "ListaTareas",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "EncontrarTareaPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk0NzkyLCJleHAiOjE3MDk2OTU2OTJ9.vWRkabQxKGcS1myNbyZSoH_-qv6XyP0swSnO0qBj8cQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/tasks/findTarea/4"
+					},
+					"response": []
+				},
+				{
+					"name": "CrearTarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk0NzkyLCJleHAiOjE3MDk2OTU2OTJ9.vWRkabQxKGcS1myNbyZSoH_-qv6XyP0swSnO0qBj8cQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreTarea\": \"Eliminar Webservice\",\r\n    \"estadosTarea\": {\r\n        \"idEstado\": 1,\r\n        \"nombreEstado\": \"SIN EMPEZAR\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/tasks/crearTarea"
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarTarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk1MTM5LCJleHAiOjE3MDk2OTYwMzl9.ZiObmqT6VlGBGjWwPXgP08RYqw5qdMtZqxyyyyLGvbk"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"5\" , \r\n    \"nombreTarea\": \"Eliminar Webservice\",\r\n    \"numeroTarea\": \"1004\",\r\n    \"estadosTarea\": {\r\n        \"idEstado\": 2,\r\n        \"nombreEstado\": \"EN EJECUCION\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/tasks/actualizarTarea"
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarTarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk2Mjc0LCJleHAiOjE3MDk2OTcxNzR9.fjQKFUuZnk6xL0f7yBVwosVbc8-30v5UHAP6BfF3YfI"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/tasks/deleteTasks/1000"
+					},
+					"response": []
+				}
+			],
+			"description": "Servicios para crear, modificar, listar y eliminar tareas"
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "ListarRoles",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estados",
+			"item": [
+				{
+					"name": "ListarEstados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5Njk4OTI2LCJleHAiOjE3MDk2OTk4MjZ9.qYtrIFdyW3SWyx2tPezAC5pEM6IF1VRyfcM_C6KpAXo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/estados"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcDIzMTEyIiwiaWF0IjoxNzA5NjkyNTQwLCJleHAiOjE3MDk2OTM0NDB9.WQapkRXuJXl24hyrOZs7gRONs0Mf0OTbEYWYNdetuDg"
+		},
+		{
+			"key": "base_url",
+			"value": "localhost:8585"
+		}
+	]
+}
