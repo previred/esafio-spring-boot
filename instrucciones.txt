@@ -1,0 +1,30 @@
+Para levantar un proyecto Spring Boot, necesitas tener instalado Java en tu sistema y preferiblemente una herramienta de construcción como Maven o Gradle, dependiendo de cuál estés utilizando en tu proyecto. A continuación, te guío a través de los pasos generales para levantar un proyecto Spring Boot desde la línea de comandos y desde un IDE popular como IntelliJ IDEA.
+
+Requisitos Previos
+Java JDK: Asegúrate de tener instalado Java Development Kit (JDK). Java 17. Puedes verificar tu versión de Java ejecutando java -version en la terminal o línea de comandos.
+
+Necesitarás Maven (3.3+) Verifica su instalación con mvn -v
+
+Levantar el Proyecto desde la Línea de Comandos
+Con Maven
+Si estás utilizando Maven como tu herramienta de construcción, navega al directorio raíz de tu proyecto (donde se encuentra el archivo pom.xml) y ejecuta:
+
+mvn spring-boot:run
+Este comando compilará tu proyecto y levantará la aplicación Spring Boot, iniciando el servidor embebido (por defecto Tomcat) en el puerto configurado (por defecto el puerto 8080).
+
+
+Levantar el Proyecto desde un IDE
+IntelliJ IDEA
+Para levantar un proyecto Spring Boot desde IntelliJ IDEA, sigue estos pasos:
+
+Importar el Proyecto: Abre IntelliJ IDEA y selecciona "Open" o "Import Project". Navega a la ubicación de tu proyecto y selecciona el archivo pom.xml (para Maven) o build.gradle (para Gradle) para importarlo.
+
+Ejecutar la Aplicación: Busca la clase principal de tu aplicación Spring Boot, la cual tiene el método main anotado con @SpringBootApplication. Haz clic derecho sobre ella y selecciona "Run" desde el menú contextual. IntelliJ IDEA compilará y levantará tu aplicación.
+
+Finalmente, para probar, utilizar la colección de Postman adjunta.
+Primero ejecutar el login. Existen dos tipos de usuarios, uno para leer y otro para leer y escribir.
+La colleción está preparada para recibir el token y setearlo como variable global para los otros request.
+
+
+
+

@@ -1,0 +1,25 @@
+El desarrollo incluyó los siguientes puntos:
+
+Modelado de Entidades y Repositorios
+Se comenzó definiendo las entidades JPA necesarias para representar los usuarios (User) y las tareas (Task) en la base de datos. Cada entidad se asoció con una tabla específica mediante anotaciones como @Entity y @Table. Para estas entidades, se crearon interfaces de repositorio extendiendo JpaRepository, lo que facilita la realización de operaciones CRUD básicas sin necesidad de implementar métodos específicos.
+
+Servicios
+Para cada conjunto de funcionalidades relacionadas con las entidades, se implementaron servicios (TaskService, TaskStatusService, UserService y JwtService) que encapsulan la lógica de negocio. Estos servicios hacen uso de los repositorios para interactuar con la base de datos. La implementación de servicios permite mantener separadas la lógica de negocio de la aplicación y las operaciones de acceso a datos, siguiendo el principio de responsabilidad única.
+
+Controladores REST
+Se crearon controladores REST (TaskController, TaskStatusController, UserController y AuthController) que exponen endpoints HTTP para realizar operaciones sobre las entidades. Los controladores utilizan los servicios para procesar las solicitudes y devolver respuestas. Se definieron operaciones para crear, obtener, actualizar y eliminar tanto tareas como estados de tareas, y se aseguró que estos endpoints siguieran las convenciones RESTful.
+
+Carga Inicial de Datos
+Para cargar datos iniciales de estados de tareas y usuarios al iniciar la aplicación, se implementó un componente que implementa CommandLineRunner. Este componente se ejecuta después de que el contexto de la aplicación se haya inicializado completamente y realiza inserciones en las tablas de usuarios y tareas si estas están vacías.
+
+Definición de la API con OpenAPI
+Se documentó la API REST utilizando la especificación OpenAPI. Esto incluyó la descripción de los endpoints disponibles, los parámetros que aceptan, los códigos de respuesta y los modelos de datos utilizados. La documentación OpenAPI ayuda a los consumidores de la API a entender cómo interactuar con ella y facilita el desarrollo frontend al proporcionar una referencia clara de las operaciones soportadas por la API.
+
+Pruebas Unitarias
+Lamentablemente no alcancé a finalizar esto correctamente, por lo que preferí no incluirlo en el repo. De todas maneras puedo explicarlo técnicamente si me lo piden ya que tengo experiencia en este tema también. 
+
+Implementación de Seguridad
+Para restringir el acceso a los endpoints, se configuró Spring Security en la aplicación. Esto incluyó la definición de reglas para especificar qué endpoints requerían autenticación y la configuración de un mecanismo para validar los tokens JWT en las solicitudes entrantes.
+
+Antes de probar, se debe ejecutar el plugin de openapi para generar los DTOs y las interfaces de los Endpoints. Se adjunta una captura de pantalla que indica como se ejecuta en IDEA.
+Se adjuntan algunas instrucciones.
