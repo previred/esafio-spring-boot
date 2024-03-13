@@ -4,8 +4,8 @@ CREATE TABLE usuarios (
                           password VARCHAR(255) NOT NULL
 );
 
-INSERT INTO usuarios (username, password) VALUES ('usuario1', 'password1');
-INSERT INTO usuarios (username, password) VALUES ('usuario2', 'password2');
+INSERT INTO usuarios (username, password) VALUES ('usuario1', '$2y$10$smyRUG4DRhYY7U/IHjReAexUnPaF3CcUIE6LqADOi01PaOBIuzdEW');
+INSERT INTO usuarios (username, password) VALUES ('usuario2', '$2y$10$1RGmAIXTErodMLPNkowyt.RZPhwC1t5o2xciu7AW8Mi.7q9CPBw/C');
 
 CREATE TABLE estados_tarea (
                                id INT AUTO_INCREMENT PRIMARY KEY,
