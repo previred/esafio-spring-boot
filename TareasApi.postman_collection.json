@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "697a9104-8a15-4ae3-9093-f1a57d9aaeae",
+		"name": "TareasApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6682987"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login Ok",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mail\": \"usuario1@example.com\",\n  \"pass\": \"pass1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Fail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mail\": \"usuario1@example.com\",\n  \"pass\": \"pass12314\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "Crear Tarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlhdCI6MTcxMDI3ODI2NCwiZXhwIjoxNzEwMjgxODY0fQ.8ALv-pHnQ5pO-sLcPWFbX3SH3ypIyJlJRjuiIWgfahM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tituloTarea\": \"Ir de Comqpras\",\n  \"descripcionTarea\": \"Realizar la compra semanal\",\n  \"username\": \"usuario1@example.com\",\n  \"estado\": \"INI\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tareas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas Tareas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlhdCI6MTcxMDI3NjUzMCwiZXhwIjoxNzEwMjgwMTMwfQ.LkNB9kEGqy_YUqqRPai2FTAgKsS6YcP3kJTn0ypkykw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tareas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar tarea por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlhdCI6MTcxMDI3NjUzMCwiZXhwIjoxNzEwMjgwMTMwfQ.LkNB9kEGqy_YUqqRPai2FTAgKsS6YcP3kJTn0ypkykw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tareas/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar tarea por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlhdCI6MTcxMDI3NjUzMCwiZXhwIjoxNzEwMjgwMTMwfQ.LkNB9kEGqy_YUqqRPai2FTAgKsS6YcP3kJTn0ypkykw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tareas/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvMUBleGFtcGxlLmNvbSIsImlhdCI6MTcxMDI3NjUzMCwiZXhwIjoxNzEwMjgwMTMwfQ.LkNB9kEGqy_YUqqRPai2FTAgKsS6YcP3kJTn0ypkykw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tituloTarea\": \"Ir de Compras 3333\",\n  \"descripcionTarea\": \"Realizar la compra semanal\",\n  \"username\": \"usuario1@example.com1\",\n  \"estado\": \"INI\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tareas/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

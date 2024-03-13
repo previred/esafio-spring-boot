@@ -1,0 +1,245 @@
+openapi: 3.0.3
+info:
+  title: GestionTareas
+  version: '1.0'
+  description: >
+    API RESTful con Spring Boot 2.7.x que gestiona usuarios y tareas, aplicando
+    buenas prácticas, principios SOLID y utilizando las tecnologías
+    especificadas.
+  x-logo:
+    url: ''
+servers:
+  - url: http://localhost:8080
+    description: Desarrollo local
+paths:
+  /login:
+    post:
+      requestBody:
+        description: Credenciales de acceso del usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginCredentials'
+        required: true
+      tags:
+        - Auth
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginSuccessResponse'
+          description: Autenticación exitosa
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Credenciales inválidas
+      operationId: loginUser
+      summary: Inicio de sesión para usuarios
+  /tareas:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TareaDto'
+          description: Lista de tareas
+      summary: Obtiene una lista de todas las tareas.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaReqDto'
+        required: true
+      responses:
+        '201':
+          description: Tarea creada
+      summary: Crea una nueva tarea
+  /tareas/{idTarea}:
+    get:
+      parameters:
+        - name: idTarea
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDto'
+          description: Detalles de la tarea
+      summary: Obtiene una tarea específica por su ID
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaReqDto'
+        required: true
+      parameters:
+        - name: idTarea
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Tarea actualizada
+      summary: Actualiza una tarea existente
+    delete:
+      parameters:
+        - name: idTarea
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          description: Tarea eliminada
+      summary: Elimina una tarea
+components:
+  schemas:
+    LoginCredentials:
+      required:
+        - mail
+        - pass
+      type: object
+      properties:
+        mail:
+          format: email
+          type: string
+        pass:
+          format: password
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    LoginSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        token:
+          format: jwt
+          type: string
+        message:
+          type: string
+    Tarea:
+      required:
+        - idTarea
+        - tituloTarea
+        - descripcionTarea
+        - usuarioTarea
+        - fechaIngreso
+        - estadoTarea
+      type: object
+      properties:
+        idTarea:
+          type: string
+        tituloTarea:
+          type: string
+        descripcionTarea:
+          type: string
+        usuarioTarea:
+          type: string
+        fechaIngreso:
+          format: date
+          type: string
+        fechaFin:
+          format: date
+          type: string
+        estadoTarea:
+          type: string
+    TareaReqDto:
+      required:
+        - tituloTarea
+        - descripcionTarea
+        - usuarioTarea
+        - estadoTarea
+      type: object
+      properties:
+        tituloTarea:
+          type: string
+        descripcionTarea:
+          type: string
+        usuarioTarea:
+          type: string
+        estadoTarea:
+          type: string
+    TareaDto:
+      type: object
+      properties:
+        idTarea:
+          type: string
+        tituloTarea:
+          type: string
+        descripcionTarea:
+          type: string
+        usuarioTarea:
+          type: string
+        fechaUltimaMod:
+          format: date
+          type: string
+        fechaIngreso:
+          format: date
+          type: string
+        fechaFin:
+          format: date
+          type: string
+        estadoTarea:
+          type: string
+    EstadosTarea:
+      required:
+        - estadoTarea
+        - descripcionEstado
+      type: object
+      properties:
+        estadoTarea:
+          type: string
+        descripcionEstado:
+          type: string
+    Usuarios:
+      required:
+        - nombreCompleto
+        - email
+        - password
+        - fechaCreacion
+      type: object
+      properties:
+        nombreCompleto:
+          type: string
+        email:
+          format: email
+          type: string
+        password:
+          format: password
+          type: string
+        fechaCreacion:
+          format: date
+          type: string
+  securitySchemes:
+    JWTAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: |-
+        Example: 
+        > Authorization: Bearer <token>
+      x-last-modified: 1710179824315
+  headers: {}
+  responses: {}
+  parameters: {}
+tags: []
+security: []

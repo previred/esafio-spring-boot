@@ -1,72 +1,74 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Gestión de Tareas con Spring Boot y Java 🚀
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+## 📜 Descripción del Proyecto
+Este proyecto aborda el desafío técnico propuesto por NUEVO SPA, destinado a desarrollar una **plataforma de gestión de tareas** para optimizar la productividad de los equipos. Implementado con **Spring Boot** y **Java 17**, este sistema no solo permite a los usuarios manejar tareas (crear, actualizar, listar, eliminar) de manera eficiente sino que también asegura la autenticación mediante **JWT**. Además, toda la API está documentada utilizando **OpenAPI** y **Swagger**, facilitando su comprensión y uso.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## ✨ Características
+- **Autenticación JWT:** Para un acceso seguro.
+- **CRUD de Tareas:** Permite la gestión completa de tareas.
+- **Documentación con Swagger:** Facilita la prueba y entendimiento de la API.
+- **H2 Database:** Base de datos en memoria para un desarrollo ágil.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## 🛠️ Tecnologías Utilizadas
+- **Java 17:**
+- **Spring Boot 2.7.18:** 
+- **Base de Datos H2:** 
+- **JPA:** 
+- **JWT:** 
+- **OpenAPI y Swagger:** 
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+## 📦 Descarga e Instalación
+Para obtener el proyecto, clona el repositorio de GitHub:
+```shell
+https://github.com/BAguileraSilva/desafio-spring-boot.git
+```
 
-### Base de Datos:
+## 🚀 Compilación y Ejecución
+Asegúrate de tener [Maven](https://maven.apache.org/) instalado. Desde el directorio raíz del proyecto, ejecuta:
+```shell
+mvn clean install
+mvn spring-boot:run
+```
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+## 🧪 Pruebas
+Encontrarás un archivo JSON con la coleccion para cargan en [Postman](https://www.postman.com/) . **Pasos esenciales:**
+1. **Loguearse** para obtener un token JWT (Login ok).
+2. **Usar el token Bearer** en las peticiones de la colección de Tareas.
+3. **CRUD Tareas** Crear una tarea (en el header de respuesta se adjunta el id generado), a partir de eso experimentar con el resto del CRUD.
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+### 🗃️ Acceso a la Base de Datos H2
+Visita http://localhost:8080/h2-console/ con estos datos:
+- **Driver Class:** `org.h2.Driver`
+- **JDBC URL:** `jdbc:h2:mem:testdb`
+- **User Name:** `admin`
+- **Password:** `Ac9732`
 
-### JWT (JSON Web Token):
+### 📝 Datos Precargados
+Para facilitar las pruebas, la base de datos se inicializa con **usuarios** y **estados de tarea** predefinidos. Utiliza estos para probar las funcionalidades CRUD y de autenticación.
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+Tabla Usuarios
 
-### OpenAPI y Swagger:
+| ID_USER    | NOMBRE_COMPLETO  | email                | PASSWORD | FECHA_CREACION |
+|------------|------------------|----------------------|----------|----------------|
+| 12345678-1 | Nombre Usuario 1 | usuario1@example.com | pass1234 | 2024-01-01     |
+| 98765432-2 | Nombre Usuario 2 | usuario2@example.com | pass4567 | 2024-01-02     |
+| 45367812-3 | Nombre Usuario 3 | usuario3@example.com | pass7890 | 2024-01-03     |
 
-- Documenta la API utilizando OpenAPI y Swagger.
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+Tabla Estados
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+| ESTADO_TAREA | DESCRIPCION_ESTADO                  |
+|--------------|-------------------------------------|
+| INI          | Tarea nueva                         |
+| PRO          | Tarea actualmente en progreso       |
+| SUS          | Tarea momentaneamente suspendida    |
+| FIN          | Tarea completada satisfactoriamente |
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+### 📘 Documentación Swagger
+Accede a la documentación y pruebas de la API en http://localhost:8080/swagger-ui.html después de iniciar el proyecto.
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+## 🌟 API First
+Desarrollado bajo la metodología API First, utilizando [apibldr](https://www.apibldr.com/) y [SwaggerEditor](https://editor-next.swagger.io/). El archivo `OpenApi.yaml` se encuentra en `resources/static`, y el código se genero automaticamente al compilar y posteriormente se comento la linea de generacion automatica para evitar errores.
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
-
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
-
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
-
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
