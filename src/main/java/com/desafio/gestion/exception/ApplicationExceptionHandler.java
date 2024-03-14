@@ -10,9 +10,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
@@ -34,31 +34,53 @@ public class ApplicationExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ErrorMessage.builder()
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .timestamp(new Date())
+                        .message(e.getMessage())
+                        .description(request.getDescription(false)).build());
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<?> handleINoSuchElementException(NoSuchElementException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    public ResponseEntity<?> handleINoSuchElementException(NoSuchElementException e, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ErrorMessage.builder()
+                        .statusCode(HttpStatus.NOT_FOUND.value())
+                        .timestamp(new Date())
+                        .message(e.getMessage())
+                        .description(request.getDescription(false)).build());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    public ResponseEntity<ErrorMessage> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, WebRequest request) {
+        String errorMessage = e.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ErrorMessage.builder()
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .timestamp(new Date())
+                        .message(errorMessage)
+                        .description(request.getDescription(false)).build());
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<?> handleBadCredentialsException(BadCredentialsException e) {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", e.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    public ResponseEntity<?> handleBadCredentialsException(BadCredentialsException e, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorMessage.builder()
+                        .statusCode(HttpStatus.UNAUTHORIZED.value())
+                        .timestamp(new Date())
+                        .message(e.getMessage())
+                        .description(request.getDescription(false)).build());
     }
 
     @ExceptionHandler(LockedException.class)
-    public ResponseEntity<?> handleLockedException(LockedException e) {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", e.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    public ResponseEntity<ErrorMessage> handleLockedException(LockedException e, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorMessage.builder()
+                        .statusCode(HttpStatus.UNAUTHORIZED.value())
+                        .timestamp(new Date())
+                        .message(e.getMessage())
+                        .description(request.getDescription(false)).build());
     }
 }
