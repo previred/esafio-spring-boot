@@ -124,10 +124,13 @@
 					"raw": "{\n  \"title\": \"Esta es una tarea\",\n  \"description\": \"En esta tarea estamos creando una api\",\n  \"dueDate\": \"2024-03-15\",\n  \"userId\": 1,\n  \"status\": {{status_pendiente}}\n}"
 				},
 				"url": {
-					"raw": "/gestion/tasks{{url}}",
+					"raw": "{{url}}/gestion/tasks",
+					"host": [
+						"{{url}}"
+					],
 					"path": [
 						"gestion",
-						"tasks{{url}}"
+						"tasks"
 					]
 				}
 			},

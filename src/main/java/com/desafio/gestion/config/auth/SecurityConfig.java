@@ -37,11 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/gestion/authenticate", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
+                .authorizeRequests()
+                    .antMatchers("/gestion/authenticate", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/h2-console/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().headers().frameOptions().disable();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 }
