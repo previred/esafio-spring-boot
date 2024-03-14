@@ -58,4 +58,5 @@ al endpoint `/gestion/authenticate` y autorizando con token en la siguiente imag
 
 ![img.png](src/main/resources/img.png)
 
-Es importante señalar que antes de utilizar cualquier endpoint primero se debe autenticar.
+Es importante señalar que antes de utilizar cualquier endpoint primero se debe autenticar y reemplazar el token en el archivo importado environmet de postman,
+cualquier valor que se desee cambiar también se debe actualizar en las variables del ambiente.
