@@ -62,9 +62,9 @@ public class AuthController {
 
             return ResponseEntity.ok(response);
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Invalid username or password");
+            throw new BadCredentialsException("Usuario o contraseña inválida");
         } catch (LockedException e) {
-            throw new LockedException("User account is locked");
+            throw new LockedException("Cuenta de usuario bloqueada");
         }
     }
 

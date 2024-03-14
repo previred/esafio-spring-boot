@@ -20,12 +20,12 @@ public class ApplicationExceptionHandler {
 
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<?> handleExpiredJwtException(ExpiredJwtException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token expired");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token expirado");
     }
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<?> handleAuthenticationException(AuthenticationException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Autenticación fallida");
     }
 
     @ExceptionHandler(InsufficientAuthenticationException.class)

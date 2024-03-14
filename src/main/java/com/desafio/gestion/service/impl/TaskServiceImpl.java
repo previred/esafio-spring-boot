@@ -41,7 +41,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDTO findById(Long taskId) {
-        return taskMapper.toDto(taskRepository.findById(taskId).orElseThrow(() -> new NoSuchElementException("Task not found with ID: " + taskId)));
+        return taskMapper.toDto(taskRepository.findById(taskId).orElseThrow(() -> new NoSuchElementException("Tarea no encontrada con ID: " + taskId)));
     }
 
     @Override
@@ -53,10 +53,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO createTask(TaskPayload taskPayload) {
         User user = userRepository.findById(taskPayload.getUserId())
-                .orElseThrow(() -> new NoSuchElementException("User not found with ID: " + taskPayload.getUserId()));
+                .orElseThrow(() -> new NoSuchElementException("Usuario no encontrado con ID: " + taskPayload.getUserId()));
 
         TaskStatus status = taskStatusRepository.findByName(taskPayload.getStatus())
-                .orElseThrow(() -> new NoSuchElementException("TaskStatus not found with name: " + taskPayload.getStatus()));
+                .orElseThrow(() -> new NoSuchElementException("Status no encontrado con nombre: " + taskPayload.getStatus()));
 
         Task task = Task.builder()
                 .title(taskPayload.getTitle())
@@ -72,17 +72,17 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO updateTask(Long taskId, TaskDTO taskDto) {
         Task existingTask = taskRepository.findById(taskId)
-                .orElseThrow(() -> new NoSuchElementException("Task not found with ID: " + taskId));
+                .orElseThrow(() -> new NoSuchElementException("Tarea no encontrada con ID: " + taskId));
 
         if (!taskId.equals(taskDto.getId())) {
-            throw new IllegalArgumentException("Task ID in path must match task ID in request body");
+            throw new IllegalArgumentException("Tarea ID en la ruta debe hacer match con ID en request body");
         }
 
         User user = userRepository.findById(taskDto.getUser().getId())
-                .orElseThrow(() -> new NoSuchElementException("User not found with ID: " + taskDto.getUser().getId()));
+                .orElseThrow(() -> new NoSuchElementException("Usuario no encontrado con ID: " + taskDto.getUser().getId()));
 
         TaskStatus status = taskStatusRepository.findByName(taskDto.getStatus())
-                .orElseThrow(() -> new NoSuchElementException("TaskStatus not found with name: " + taskDto.getStatus()));
+                .orElseThrow(() -> new NoSuchElementException("Status no encontrado con nombre: " + taskDto.getStatus()));
 
         existingTask.setTitle(taskDto.getTitle());
         existingTask.setDescription(taskDto.getDescription());
@@ -96,7 +96,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTaskById(Long taskId) {
         if (!taskRepository.existsById(taskId)) {
-            throw new NoSuchElementException("Task not found with ID: " + taskId);
+            throw new NoSuchElementException("Tarea no encontrada con ID: " + taskId);
         }
         taskRepository.deleteById(taskId);
     }
