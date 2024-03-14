@@ -1,13 +1,12 @@
 package com.desafio.gestion.service;
 
-import com.desafio.gestion.domain.User;
+import com.desafio.gestion.dto.UserDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
-    Optional<User> findByUsername(String username);
+    UserDTO findByUsername(String username);
 
-    List<User> findAll();
+    List<UserDTO> findAll();
 }

@@ -3,7 +3,12 @@ package com.desafio.gestion.controller;
 import com.desafio.gestion.config.auth.JwtUtil;
 import com.desafio.gestion.dto.AuthRequest;
 import com.desafio.gestion.service.JwtUserDetailsService;
-import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+@Tag(name = "Auth", description = "Administración API Autenticación")
 @RestController
 public class AuthController {
 
@@ -31,7 +37,16 @@ public class AuthController {
         this.userDetailsService = userDetailsService;
     }
 
-    @PostMapping("/api/authenticate")
+    @PostMapping("/gestion/authenticate")
+    @Operation(
+            summary = "Autenticar usuario",
+            description = "Autenticar un usuario y generar un token JWT"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Autenticación exitosa", content = { @Content(schema = @Schema(implementation = Map.class)) }),
+            @ApiResponse(responseCode = "401", description = "Credenciales inválidas", content = { @Content(schema = @Schema(implementation = Map.class)) }),
+            @ApiResponse(responseCode = "403", description = "Cuenta de usuario bloqueada", content = { @Content(schema = @Schema(implementation = Map.class)) })
+    })
     public ResponseEntity<Map<String, String>> createAuthenticationToken(@RequestBody AuthRequest authRequest) {
         try {
 
@@ -47,13 +62,9 @@ public class AuthController {
 
             return ResponseEntity.ok(response);
         } catch (BadCredentialsException e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("error", "Invalid username or password");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            throw new BadCredentialsException("Invalid username or password");
         } catch (LockedException e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("error", "User account is locked");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            throw new LockedException("User account is locked");
         }
     }
 

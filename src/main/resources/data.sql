@@ -12,9 +12,9 @@ CREATE TABLE estados_tarea (
                                nombre VARCHAR(255) NOT NULL
 );
 
-INSERT INTO estados_tarea (nombre) VALUES ('Pendiente');
-INSERT INTO estados_tarea (nombre) VALUES ('En Progreso');
-INSERT INTO estados_tarea (nombre) VALUES ('Completada');
+INSERT INTO estados_tarea (nombre) VALUES ('PENDIENTE');
+INSERT INTO estados_tarea (nombre) VALUES ('EN_PROGRESO');
+INSERT INTO estados_tarea (nombre) VALUES ('COMPLETADA');
 
 CREATE TABLE tareas (
                         id INT AUTO_INCREMENT PRIMARY KEY,
