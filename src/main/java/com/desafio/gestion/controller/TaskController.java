@@ -106,6 +106,6 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Tarea no encontrada")})
     public ResponseEntity<Void> deleteTask(@Parameter(description = "Tarea id") @PathVariable Long taskId) {
         taskService.deleteTaskById(taskId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }
