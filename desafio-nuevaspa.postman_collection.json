@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "b2b1073d-1ed5-487b-860e-f31a21c77071",
+		"name": "desafio-nuevaspa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8367489",
+		"_collection_link": "https://planetary-space-783492.postman.co/workspace/Backend-NWS~0774cab2-2e30-485c-90fc-0396df0f725b/collection/8367489-b2b1073d-1ed5-487b-860e-f31a21c77071?action=share&source=collection_link&creator=8367489"
+	},
+	"item": [
+		{
+			"name": "login for requests",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDU1MDE0NiwiZXhwIjoxNzEwNTUwMjA2fQ.xrcpkqqq-stjJiUr5UKFBWH-1bylmMAINiwHax6brxPhgO4w5ZPRWI-RQ0jqu5UZ3CxltIYIc6FZgmOSA3Xetg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Crear microservicio para tareas\",\r\n  \"description\": \"Se necesita un ms en java 17 para administrar tareas para NuevoSPA\",\r\n  \"status\": {\r\n    \"codigo\": 1001\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/task/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDU1MDAzOCwiZXhwIjoxNzEwNTUwMDk4fQ.9rssVWA7ZLECJAYINc5hzeCTb2nVBu8Ct52nfjkTeQ04SbBjlR8AWxI0eIUiUWbeZYn-j6jOqcr0gBNQIko45Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"Crear microservicio\",\r\n  \"description\": \"Se necesita un ms en java 8 para administrar tareas para NuevoSPA\",\r\n  \"status\": {\r\n    \"codigo\": 1001\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/task/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDU1MDE0NiwiZXhwIjoxNzEwNTUwMjA2fQ.xrcpkqqq-stjJiUr5UKFBWH-1bylmMAINiwHax6brxPhgO4w5ZPRWI-RQ0jqu5UZ3CxltIYIc6FZgmOSA3Xetg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/task/delete/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDU1MDE0NiwiZXhwIjoxNzEwNTUwMjA2fQ.xrcpkqqq-stjJiUr5UKFBWH-1bylmMAINiwHax6brxPhgO4w5ZPRWI-RQ0jqu5UZ3CxltIYIc6FZgmOSA3Xetg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/task/get/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"get",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDU1MDAzOCwiZXhwIjoxNzEwNTUwMDk4fQ.9rssVWA7ZLECJAYINc5hzeCTb2nVBu8Ct52nfjkTeQ04SbBjlR8AWxI0eIUiUWbeZYn-j6jOqcr0gBNQIko45Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/task/get-all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"get-all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
