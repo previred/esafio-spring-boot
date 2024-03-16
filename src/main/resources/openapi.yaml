@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  description: Task management
+  title: Task
+  version: "1.0"
+servers:
+- description: Local server
+  url: http://localhost:8080/api/v1
+security:
+- bearerAuth: []
+paths:
+  /api/v1/login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_api_v1_login_post_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_api_v1_login_post_200_response'
+          description: Login valid
+      x-content-type: application/json
+      x-accepts: application/json
+  /task/create:
+    post:
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: Created
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized request
+        "500":
+          description: Internal Server Error. Can be explained in error body response
+      security:
+      - bearerAuth: []
+      summary: Create Task
+      tags:
+      - task
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: task
+  /task/get/{id}:
+    get:
+      description: Return a task if exist
+      operationId: getTask
+      parameters:
+      - description: ID of task to get
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: json with task info
+        "400":
+          description: Bad Request (for get task)
+        "401":
+          description: Unauthorized request
+        "500":
+          description: Internal Server Error. Can be explained in error body response
+      summary: Return task
+      x-accepts: application/json
+  /task/get-all:
+    get:
+      description: Return all tasks that exists
+      operationId: getTasks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Task'
+                type: array
+          description: json with tasks info
+        "400":
+          description: Bad Request (for get tasks)
+        "401":
+          description: Unauthorized request
+        "500":
+          description: Internal Server Error. Can be explained in error body response
+      summary: Return all tasks
+      x-accepts: application/json
+  /task/update/{id}:
+    put:
+      description: Update a task if exist
+      operationId: updateTask
+      parameters:
+      - description: ID of task to update
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: Task updated
+        "400":
+          description: Bad Request (for update task)
+        "401":
+          description: Unauthorized request
+        "500":
+          description: Internal Server Error. Can be explained in error body response
+      security:
+      - bearerAuth: []
+      summary: Update task
+      x-content-type: application/json
+      x-accepts: application/json
+  /task/delete/{id}:
+    delete:
+      description: Delete a task if exist
+      operationId: deleteTask
+      parameters:
+      - description: ID of task to delete
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Task deleted
+        "400":
+          description: Bad Request (for delete task)
+        "401":
+          description: Unauthorized request
+        "500":
+          description: Internal Server Error. Can be explained in error body response
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      type: object
+    Task:
+      example:
+        description: Se necesita un ms en java 17 para administrar tareas para NuevoSPA
+        title: Crear microservicio para tareas
+      properties:
+        id:
+          example: 1
+          readOnly: true
+          type: integer
+        title:
+          example: Crear microservicio para tareas
+          type: string
+        description:
+          example: Se necesita un ms en java 17 para administrar tareas para NuevoSPA
+          type: string
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+      - description
+      - status
+      - title
+      type: object
+    Status:
+      properties:
+        codigo:
+          example: 1001
+          type: integer
+      type: object
+    _api_v1_login_post_request:
+      properties:
+        username:
+          type: string
+        password:
+          type: hidden
+      type: object
+    _api_v1_login_post_200_response:
+      example:
+        status: 0
+        token: token
+      properties:
+        status:
+          type: integer
+        token:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
