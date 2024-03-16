@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T17:58:12.455469200-03:00[America/Santiago]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T21:04:48.928065400-03:00[America/Santiago]")
 @Validated
 @Tag(name = "task", description = "the task API")
 @RequestMapping("${openapi.task.base-path:/api/v1}")

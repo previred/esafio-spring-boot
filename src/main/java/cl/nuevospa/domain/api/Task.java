@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * Task
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T17:58:12.455469200-03:00[America/Santiago]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T21:04:48.928065400-03:00[America/Santiago]")
 public class Task implements Serializable {
 
   private static final long serialVersionUID = 1L;

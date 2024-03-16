@@ -9,6 +9,22 @@ servers:
 security:
 - bearerAuth: []
 paths:
+  /api/v1/login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_api_v1_login_post_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_api_v1_login_post_200_response'
+          description: Login valid
+      x-content-type: application/json
+      x-accepts: application/json
   /task/create:
     post:
       operationId: createTask
@@ -186,6 +202,23 @@ components:
         codigo:
           example: 1001
           type: integer
+      type: object
+    _api_v1_login_post_request:
+      properties:
+        username:
+          type: string
+        password:
+          type: hidden
+      type: object
+    _api_v1_login_post_200_response:
+      example:
+        status: 0
+        token: token
+      properties:
+        status:
+          type: integer
+        token:
+          type: string
       type: object
   securitySchemes:
     bearerAuth:
