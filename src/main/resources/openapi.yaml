@@ -1,0 +1,347 @@
+openapi: 3.0.3
+info:
+  title: API Gestor de Tareas - Nuevo SpA
+  version: "1.0.0"
+  description: >-
+    API para la gestión de tareas y así mejorar la productividad de los equipos
+    de trabajo de la empresa **Nuevo SpA**. El sistema permite a los usuarios
+    crear, actualizar, eliminar y listar tareas.
+  contact:
+    email: juan.pardo@gmail.com
+    name: Juan Andrés Pardo Rebolledo
+servers:
+  - url: 'http://localhost:8080'
+    description: Servidor de desarrollo local
+tags:
+  - name: Tareas
+    description: Acceso a funcionalidades de tareas.
+  - name: Usuarios
+    description: Funcionalidades de administración de usuarios.
+  - name: Auth
+    description: Funcionalidades de autenticación.
+paths:
+  /auth:
+    post:
+      tags:
+        - Auth
+      summary: Autentica a un usuario y devuelve un JWT
+      operationId: authPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Autenticación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Autenticación fallida
+  /tareas:
+    get:
+      tags:
+        - Tareas
+      summary: Lista todas las tareas
+      operationId: listAllTareas
+      responses:
+        '200':
+          description: Operación exitosa - Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tareas'
+      security:
+        - bearerAuth:
+          - read
+    post:
+      tags:
+        - Tareas
+      summary: Crea una nueva tarea
+      operationId: addTarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tareas'
+      responses:
+        '201':
+          description: Tarea creada
+      security:
+        - bearerAuth:
+          - read
+          - write
+  /tareas/{id}:
+    get:
+      tags:
+        - Tareas
+      summary: Obtiene una tarea
+      operationId: getTarea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tareas'
+      security:
+        - bearerAuth:
+          - read
+    put:
+      tags:
+        - Tareas
+      summary: Actualiza una tarea existente
+      operationId: updateTarea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tareas'
+      responses:
+        '200':
+          description: Tarea actualizada
+      security:
+        - bearerAuth:
+          - read
+          - write
+    delete:
+      tags:
+        - Tareas
+      summary: Elimina una tarea
+      operationId: deleteTarea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Tarea eliminada
+      security:
+        - bearerAuth:
+          - read
+          - write
+  /tareas/estado/{idEstado}:
+    get:
+      tags:
+        - Tareas
+      summary: Lista todas las tareas que correspondan con un estado
+      operationId: findTareasByEstado
+      parameters:
+        - name: idEstado
+          in: path
+          required: true
+          explode: true
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Operación exitosa - Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tareas'
+      security:
+        - bearerAuth:
+          - read
+  /usuarios:
+    get:
+      tags:
+        - Usuarios
+      summary: Lista todos los usuarios
+      operationId: getAllUsuarios
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuarios'
+    post:
+      tags:
+        - Usuarios
+      summary: Crea un nuevo usuario
+      operationId: addUsuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuarios'
+      responses:
+        '201':
+          description: Usuario creado
+  /usuarios/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtiene los detalles de un usuario específico
+      operationId: getUsuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuarios'
+    put:
+      tags:
+        - Usuarios
+      summary: Actualiza un usuario existente
+      operationId: updateUsuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuarios'
+      responses:
+        '200':
+          description: Usuario actualizado
+    delete:
+      tags:
+        - Usuarios
+      summary: Elimina un usuario
+      operationId: deleteUsuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Usuario eliminado
+components:
+  schemas:
+    Tareas:
+      type: object
+      x-class-extra-annotation: "@javax.persistence.Entity"
+      properties:
+        id:
+          type: integer
+          example: 1
+          readOnly: true
+          x-field-extra-annotation: "@javax.persistence.Id\n
+          @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)"
+        titulo:
+          type: string
+          example: 'Implementar base de datos'
+        descripcion:
+          type: string
+          example: 'Realizar la implementación de la nueva base de datos'
+        estado:
+          type: object
+          x-class-extra-annotation: "@javax.persistence.Entity"
+          properties:
+            id:
+              type: integer
+              example: 1
+              x-field-extra-annotation: "@javax.persistence.Id"
+              readOnly: true
+            nombre:
+              type: string
+              example: Análisis
+              readOnly: true
+          x-field-extra-annotation: "@javax.persistence.ManyToOne\n
+          @javax.persistence.JoinColumn(name = \"estado\", referencedColumnName = \"id\")"
+        usuarioAsignado:
+          type: integer
+          example: 1
+          x-field-extra-annotation: "
+          @javax.persistence.JoinColumn(name = \"usuarioAsignado\", referencedColumnName = \"Usuarios.id\")"
+        fechaCreacion:
+          type: string
+          format: date-time
+          example: '2024-03-15T12:30:00Z'
+        fechaActualizacion:
+          type: string
+          format: date-time
+          example: '2024-03-15T12:30:00Z'
+    Usuarios:
+      type: object
+      x-class-extra-annotation: "@javax.persistence.Entity"
+      properties:
+        id:
+          type: integer
+          example: 15
+          readOnly: true
+          x-field-extra-annotation: "@javax.persistence.Id\n
+          @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)"
+        username:
+          type: string
+          example: marcelo15
+          readOnly: true
+        password:
+          type: string
+          example: 12345
+        nombre:
+          type: string
+          example: Marcelo
+        apellido:
+          type: string
+          example: Cortinez
+        correo:
+          type: string
+          example: marcelo@marcelo.com
+        fechaCreacion:
+          type: string
+          format: date-time
+          example: '2024-03-15T12:30:00Z'
+        fechaActualizacion:
+          type: string
+          format: date-time
+          example: '2024-03-15T12:30:00Z'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
