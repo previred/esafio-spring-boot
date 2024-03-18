@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "e49726db-67e7-49b6-98c0-f60192b17461",
+		"name": "TaskManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6318227"
+	},
+	"item": [
+		{
+			"name": "Listar Tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJqeWFuZXpKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MTA3OTYxODksImV4cCI6MTcxMTY2MDE4OX0.5Yn5eGTQLyX7m2TH7tzYCVuUBvoW7LBFQn16UJLyJ0AqxSVm-9roSZwaPktq9dLnFHSuzM0dllMj86Ahrb4-Gw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tareas/getAllTasks",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"getAllTasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Token Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/login?user=admin&pass=admin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "admin"
+						},
+						{
+							"key": "pass",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJqeWFuZXpKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MTA1NDA5MTQsImV4cCI6MTcxMTQwNDkxNH0.czL9AFAWoypzQSPNIMIUellHPeiskjRLOujejomq2rIRQDPtRISBlQrUyJHoGeEkWOYVjgPJmoID6LNEntq6iQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tareas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tareas/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Tareas por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tareas/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Tarea",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"descripcion\": \"string\",\n  \"id\": 0,\n  \"statusId\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tareas/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
