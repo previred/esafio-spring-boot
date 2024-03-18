@@ -1,4 +1,4 @@
 package cl.nuevospa.gestortareas.service;
 
-public interface TareasEstadosService {
+public interface TareasEstadoService {
 }
