@@ -86,10 +86,29 @@ Se dejo una colección de Postman para poder consumir los servicios, se detalla 
 
 - Se utilizaron diversas capas para la solución, así como también se aplico API FIRST, con lo cual los serrvicios parten a partir de la generación de clases desde el openapi.yaml.
 - Se utilizó Spring Security para crear al JWT y tener la autorización por medio de un token, los servicios se encuentran securizados.
+
+## Pre-requisitos 📋
+
+* Las versiones son las siguientes: Java 17 y mvn 3.6.3 (pueden usar la versión embebida de IntelliJ)
+
+_Para levantar localmente el servicio se puede realizar de 2 maneras:_
+
 ## Levantar Proyecto:
 
 - Primero realizar un realizar un **mvn clean install**.
 - Arrancar la aplicación desde el Starter de RetoTecnicoApplication.
+
+#### Con Docker 🔧
+
+* Realizar un git clone al repositorio.
+* Abrir el proyecto con el explorador de archivos y abrir la terminal.
+* Realizar la siguiente secuencia de comandos:
+
+```
+    mvn clean install
+    docker build -t moveapps .
+    docker run -d -p 8089:8089 -t moveapps:latest moveapps
+```
 
 ## Explicación de Postman:
 
