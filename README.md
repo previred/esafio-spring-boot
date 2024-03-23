@@ -70,3 +70,76 @@ Se evaluará la solución en función de los siguientes criterios:
 - Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
 - **Puntos extras si la generación de la API se realizo mediante API First**
+
+
+# SOLUCIÓN:
+Se utilizó las tecnologías indicadas previamente.
+Se dejo una colección de Postman para poder consumir los servicios, se detalla acontinuación la ruta en donde se encuentra la colección y se explica los endpoints que se tienen mapeados.
+
+- Ruta de Postman: **/docs/Moveapps.postman_collection.json**
+- Ruta de openapi: **/src/main/resources/openapi.yaml**
+- Ruta de Sql initializer: **/src/main/resources/data.sql**
+- Puerto por defecto: 9797
+
+- Se utilizaron diversas capas para la solución, así como también se aplico API FIRST, con lo cual los serrvicios parten a partir de la generación de clases desde el openapi.yaml.
+- Se utilizó Spring Security para crear al JWT y tener la autorización por medio de un token, los servicios se encuentran securizados.
+
+## Explicación de Postman:
+
+- **Authentication(POST): http://localhost:9797/auth/login
+  - Se utiliza para la autenticación del usuario registrado en la BD h2:**
+```
+    REQUEST:
+{
+    "username": "wpalomino",
+    "password": "Elmaestro1$"
+}
+```
+- **Create Task(POST): http://localhost:9797/tasks
+    - Permite crear una tarea para el usuario que está logeado:**
+```
+    REQUEST:
+{
+    "title": "La caperucita",
+    "description": "Historia de una niña en un bosque..."
+}
+```
+- **Get All Task(GET): http://localhost:9797/tasks
+    - Permite obtener toda la lista de tareas en el Sistema de Tareas:**
+
+
+- **Get Task By Id(GET): http://localhost:9797/tasks/{taskId}
+    - Permite obtener la tarea por el id:**
+```
+    Param:
+        "taskId": "2"
+    Example:
+        http://localhost:9797/tasks/3
+```
+- **Update Task(PUT): http://localhost:9797/tasks/{taskId}
+    - Permite actualizar solo la tarea:**
+```
+    Param:
+        "taskId": "2"
+    REQUEST:
+    {
+        "title": "Gook es pto",
+        "description": "es la historia de una vaca"
+    }
+    Example:
+        http://localhost:9797/tasks/2
+```
+- **Tasks of User(GET): http://localhost:9797/taskStatus
+    - Permite obtener las Tareas que tiene asignado un Usuario con su respectivo Historial de Estados:**
+```
+    Obtiene el username del token enviado por el Header Authorization y obtiene las tareas.
+```
+- **Update Task Status(PUT): http://localhost:9797/taskStatus
+    - Permite actualizar y modificar la tarea e estado:**
+```
+    REQUEST:
+   {
+        "idTask": 3,
+        "status": "EN PROGRESO"
+    }
+```
