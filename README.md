@@ -3,6 +3,7 @@
 La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
 <details>
 <summary>Solución del desafío tecnico</summary>
+  
 # SOLUCIÓN:
 Se utilizó las tecnologías indicadas previamente.
 Se dejo una colección de Postman para poder consumir los servicios, se detalla acontinuación la ruta en donde se encuentra la colección y se explica los endpoints que se tienen mapeados.
