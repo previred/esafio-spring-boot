@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  title: Sistema de Gestión de Tareas - API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  "/auth/login":
+    post:
+      summary: Iniciar sesión
+      operationId: AuthLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '200':
+          description: Token de autenticación JWT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+  "/taskStatus":
+    get:
+      summary: Obtener todas las tareas con estados de un usuario
+      operationId: GetAllTaskStatus
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: El token de autenticación JWT.
+          schema:
+            type: string
+            format: JWT
+      description: >
+        Permite listar todas las tareas.
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskResponse'
+    put:
+      summary: modificar el estado de una tarea de un usuario
+      operationId: UpdateTaskStatus
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: El token de autenticación JWT.
+          schema:
+            type: string
+            format: JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskStatusRequest'
+      responses:
+        '200':
+          description: Tarea creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+  "/tasks":
+    get:
+      summary: Obtener todas las tareas
+      operationId: GetAllTask
+      description: >
+        Permite listar todas las tareas.
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskResponse'
+    post:
+      summary: Crear una nueva tarea
+      operationId: CreateTask
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: El token de autenticación JWT.
+          schema:
+            type: string
+            format: JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: Tarea creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+  "/tasks/{taskId}":
+    parameters:
+      - in: path
+        name: taskId
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID de la tarea
+    get:
+      summary: Obtener detalles de una tarea
+      operationId: GetTaskById
+      responses:
+        '200':
+          description: Detalles de la tarea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+    put:
+      summary: Actualizar una tarea existente
+      operationId: UpdateTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: Tarea actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+components:
+  schemas:
+    UserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          pattern: '^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[0-9]).{1,14}$'
+          type: string
+      required:
+        - username
+        - password
+    UserResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        username:
+          type: string
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+          format: int64
+        token_type:
+          type: string
+    TaskStatusResponse:
+      type: object
+      properties:
+        taskStatusId:
+          type: integer
+        status:
+          type: string
+        lastModified:
+          type: string
+      required:
+        - title
+        - description
+    TaskRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+        - description
+    TaskStatusRequest:
+      type: object
+      properties:
+        idTask:
+          type: string
+        status:
+          type: string
+    TaskResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        lstTaskStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskStatusResponse'
+      required:
+        - title
+  securitySchemes:
+    jwt_auth:
+      type: http
+      scheme: bearer
+security:
+  - jwt_auth: []
+
