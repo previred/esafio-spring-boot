@@ -83,6 +83,10 @@ Se dejo una colección de Postman para poder consumir los servicios, se detalla 
 
 - Se utilizaron diversas capas para la solución, así como también se aplico API FIRST, con lo cual los serrvicios parten a partir de la generación de clases desde el openapi.yaml.
 - Se utilizó Spring Security para crear al JWT y tener la autorización por medio de un token, los servicios se encuentran securizados.
+## Levantar Proyecto:
+
+- Primero realizar un realizar un **mvn clean install**.
+- Arrancar la aplicación desde el Starter de RetoTecnicoApplication.
 
 ## Explicación de Postman:
 
