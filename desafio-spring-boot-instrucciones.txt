@@ -1,0 +1,114 @@
+
+Procedimientos implementados en colleción de Postman
+
+******* LOGIN *******
+
+(POST)
+http://localhost:8080/desafio-spring-boot/api/login
+
+REQUEST
+{
+    "username" : "admin",
+    "password" : "admin"
+}
+
+RESPONSE
+{
+    "result": true,
+    "message": null,
+    "token": {token}
+}
+
+El {token} obtenido es el que se debe utilizar en el resto de endpoints
+
+
+******* OBTENER TAREAS *******
+
+(GET)
+http://localhost:8080/desafio-spring-boot/api/task
+
+HEADER
+Authorization : Bearer {token}
+
+RESPONSE
+[
+    {
+        "id": 2,
+        "status": "COMPLETED",
+        "name": "Tarea 02",
+        "description": "Actualizacion de la tarea"
+    },
+    {
+        "id": 3,
+        "status": "IN_PROCESS",
+        "name": "Tarea 03",
+        "description": "Descripcion de la tarea"
+    }
+]
+
+
+******* CREAR TAREA *******
+
+(POST)
+http://localhost:8080/desafio-spring-boot/api/task
+
+HEADER
+Authorization : Bearer {token}
+
+REQUEST
+{
+    "id" : 4,
+    "status" : "IN_PROCESS",
+    "name" : "Tarea 04",
+    "description" : "Descripcion de la tarea"
+}
+
+RESPONSE
+{
+    "result": true,
+    "message": null
+}
+
+Si la respuesta del procedecimiento no es exitosa, se describirá en el apartado "message"
+
+
+******* ACTUALIZAR TAREA *******
+
+(PUT)
+http://localhost:8080/desafio-spring-boot/api/task
+
+HEADER
+Authorization : Bearer {token}
+
+REQUEST
+{
+    "id" : 2,
+    "status" : "COMPLETED",
+    "name" : "Tarea 02",
+    "description" : "Actualizacion de la tarea"
+}
+
+RESPONSE
+{
+    "result": true,
+    "message": null
+}
+
+Si la respuesta del procedecimiento no es exitosa, se describirá en el apartado "message"
+
+
+******* ELIMINAR TAREA *******
+
+(DELETE)
+http://localhost:8080/desafio-spring-boot/api/task/{Id_de_tarea}
+
+HEADER
+Authorization : Bearer {token}
+
+RESPONSE
+{
+    "result": true,
+    "message": null
+}
+
+Si la respuesta del procedecimiento no es exitosa, se describirá en el apartado "message"

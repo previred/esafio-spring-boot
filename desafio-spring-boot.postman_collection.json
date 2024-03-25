@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "419b6833-5990-4783-9f1c-3e77de97e72d",
+		"name": "desafio-spring-boot",
+		"description": "A postman collection for desafio-spring-boot project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12729018"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"root\",\r\n    \"password\" : \"root\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/desafio-spring-boot/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tareas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNzExMzY2NDc2LCJ1c2VyIjoicm9vdCJ9.gD-h4FFkytC2ihoqKDntf0ybCBiinDGJixjF6FjXJNo"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/desafio-spring-boot/api/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNzExMzY2NDc2LCJ1c2VyIjoicm9vdCJ9.gD-h4FFkytC2ihoqKDntf0ybCBiinDGJixjF6FjXJNo"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 4,\r\n    \"status\" : \"IN_PROCESS\",\r\n    \"name\" : \"Tarea 04\",\r\n    \"description\" : \"Descripcion de la tarea\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/desafio-spring-boot/api/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNzExMzY2NDc2LCJ1c2VyIjoicm9vdCJ9.gD-h4FFkytC2ihoqKDntf0ybCBiinDGJixjF6FjXJNo"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 2,\r\n    \"status\" : \"COMPLETED\",\r\n    \"name\" : \"Tarea 02\",\r\n    \"description\" : \"Actualizacion de la tarea\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/desafio-spring-boot/api/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNzExMzY2NDc2LCJ1c2VyIjoicm9vdCJ9.gD-h4FFkytC2ihoqKDntf0ybCBiinDGJixjF6FjXJNo"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/desafio-spring-boot/api/task/1"
+			},
+			"response": []
+		}
+	]
+}
