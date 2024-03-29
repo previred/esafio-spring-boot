@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.nuevospa.gestiontareas.service.impl.UsuariosServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in com.nuevospa.gestiontareas.service.impl.UsuariosServiceImplTest

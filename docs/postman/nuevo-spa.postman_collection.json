@@ -1,0 +1,926 @@
+{
+	"info": {
+		"_postman_id": "f4fea96e-b909-4796-8c2c-67d8da90bce2",
+		"name": "nuevo-spa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4286289"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"accessToken\", jsonData.accessToken);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"luis.alvarez@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"luis.alvarez@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 03:58:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tokenType\": \"Bearer\",\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWlzLmFsdmFyZXpAZXhhbXBsZS5jb20iLCJpYXQiOjE3MTE2ODQ3MTQsImV4cCI6MTcxMTY4ODM3NH0.ba6ThnDjBj-Ea9D5w1637iIoqdv6OCPLAYjqfxjT1axpyfUG39_ZZ01IXAhwJ-wZDriAqO1P5qswZBoZGASOFQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MANTENEDORES - Listar todos los estados",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/estados_tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"estados_tareas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/estados_tareas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estados_tareas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:07:22 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 2,\n        \"nombre\": \"En Progreso\"\n    },\n    {\n        \"id\": 3,\n        \"nombre\": \"Completada\"\n    },\n    {\n        \"id\": 4,\n        \"nombre\": \"En Espera\"\n    },\n    {\n        \"id\": 5,\n        \"nombre\": \"Cancelada\"\n    },\n    {\n        \"id\": 1,\n        \"nombre\": \"Pendiente\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "USUARIOS - Listar todos los usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:08:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 5,\n        \"email\": \"carlos.hernandez@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Carlos Hernandez\",\n        \"tareas\": []\n    },\n    {\n        \"id\": 2,\n        \"email\": \"maria.garcia@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Maria Garcia\",\n        \"tareas\": []\n    },\n    {\n        \"id\": 3,\n        \"email\": \"juan.martinez@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Juan Martinez\",\n        \"tareas\": []\n    },\n    {\n        \"id\": 1,\n        \"email\": \"luis.alvarez@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Luis Alvarez\",\n        \"tareas\": []\n    },\n    {\n        \"id\": 4,\n        \"email\": \"ana.lopez@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Ana Lopez\",\n        \"tareas\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "USUARIOS - Obtener usuario por email",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/usuarios/luis.alvarez@example.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"usuarios",
+						"luis.alvarez@example.com"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/luis.alvarez@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"luis.alvarez@example.com"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Disposition",
+							"value": "inline;filename=f.txt"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:11:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"email\": \"luis.alvarez@example.com\",\n    \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n    \"nombre\": \"Luis Alvarez\",\n    \"tareas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "TAREAS - Listar todas las tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAREAS - Crear tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"primera tarea\",\r\n    \"usuario\": {\r\n        \"id\": 5,\r\n        \"email\": \"carlos.hernandez@example.com\",\r\n        \"nombre\": \"Carlos Hernandez\"\r\n    },\r\n    \"estadoTarea\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"En Progreso\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tareas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"primera tarea\",\r\n    \"usuario\": {\r\n        \"id\": 5,\r\n        \"email\": \"carlos.hernandez@example.com\",\r\n        \"nombre\": \"Carlos Hernandez\"\r\n    },\r\n    \"estadoTarea\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"En Progreso\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tareas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:17:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"descripcion\": \"primera tarea\",\n    \"usuario\": {\n        \"id\": 5,\n        \"email\": \"carlos.hernandez@example.com\",\n        \"password\": \"\",\n        \"nombre\": \"Carlos Hernandez\",\n        \"tareas\": []\n    },\n    \"estadoTarea\": {\n        \"id\": 2,\n        \"nombre\": \"En Progreso\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "TAREAS - Obtener una tarea por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tareas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tareas",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tareas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:23:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": null,\n    \"details\": \"uri=/api/v1/tareas/1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "TAREAS - Actualizar una tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"tarea n8\",\r\n    \"usuario\": {\r\n        \"id\": 5,\r\n        \"email\": \"carlos.hernandez@example.com\",\r\n        \"nombre\": \"Carlos Hernandez\"\r\n    },\r\n    \"estadoTarea\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"En Progreso\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tareas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tareas",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"tarea n8\",\r\n    \"usuario\": {\r\n        \"id\": 5,\r\n        \"email\": \"carlos.hernandez@example.com\",\r\n        \"nombre\": \"Carlos Hernandez\"\r\n    },\r\n    \"estadoTarea\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"En Progreso\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tareas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 05:37:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"descripcion\": \"tarea n8\",\n    \"usuario\": {\n        \"id\": 5,\n        \"email\": \"carlos.hernandez@example.com\",\n        \"password\": \"$2a$10$wgtjxkgTUeDPS6vAPTYfq.Z8U53b8qRvwFP1iJQnlKdvxeR61mJ02\",\n        \"nombre\": \"Carlos Hernandez\"\n    },\n    \"estadoTarea\": {\n        \"id\": 2,\n        \"nombre\": \"En Progreso\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "TAREAS - Eliminar un registro de tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tareas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tareas",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tareas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 29 Mar 2024 04:47:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

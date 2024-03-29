@@ -1,0 +1,16 @@
+com\nuevospa\gestiontareas\service\impl\TareasCRUDServiceImplTest.class
+com\nuevospa\gestiontareas\mapper\EstadoTareaMapperTest.class
+com\nuevospa\gestiontareas\data\TareaRepositoryTest.class
+com\nuevospa\gestiontareas\rest\UsuariosControllerTest.class
+com\nuevospa\gestiontareas\mapper\UsuarioMapperTest.class
+com\nuevospa\gestiontareas\rest\GlobalExceptionHandlerTest.class
+com\nuevospa\gestiontareas\rest\TareasCRUDControllerTest.class
+com\nuevospa\gestiontareas\service\impl\MantenedoresServiceImplTest.class
+com\nuevospa\gestiontareas\rest\security\AuthControllerTest.class
+com\nuevospa\gestiontareas\data\EstadosTareasRepositoryTest.class
+com\nuevospa\gestiontareas\mapper\TareaMapperTest.class
+com\nuevospa\gestiontareas\rest\MantenedoresControllerTest.class
+com\nuevospa\gestiontareas\GestionTareasApplicationTests.class
+com\nuevospa\gestiontareas\util\SecurityUtilsTest.class
+com\nuevospa\gestiontareas\data\UsuariosRepositoryTest.class
+com\nuevospa\gestiontareas\service\impl\UsuariosServiceImplTest.class

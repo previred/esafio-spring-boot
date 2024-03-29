@@ -1,72 +1,96 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Proyecto NUEVO SPA
+Este proyecto consiste en un microservicio, escrito en lenguaje Java v17 y utiliza el framework Spring Boot v2.x.
 
 La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## Postuante
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+| Nombre | Marcelo Rojas H.          |
+|---|---------------------------|
+| Correo | marcelo.rojas@outlook.com |
+| Cargo | Developer Backend         |
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
 
-### Base de Datos:
+## Descripción Técnica del Proyecto
+### Datos
+La base de datos utilizada es H2. Esta base de datos se levanta junto con el proyecto y se destruye una vez terminada la ejecución del microservicio. Por lo tanto, los datos se pierden, ya que no está aconfigurada para persistir en disco.
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+La configuración de la base de datos está escrita en el archivo application.properties en /src/main/java/resources/application.properties.
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+El modelo de datos se encuentra en la ruta /src/main/java/resources/prod-schema.sql.
 
-### JWT (JSON Web Token):
+La base de datos se levanta con datos en la tabla ESTADOS_TAREAS y  USUARIOS. Estos datos están en el archivo /src/main/java/resources/prod-data.sql.
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+### Código del Microservicio
+El código fuente se encuentra en el directorio /src/main/java, y se agrupa en packages, de acuerdo a su funcionalidad.
 
-### OpenAPI y Swagger:
+La jerarquía de los packages es la siguiente:
 
-- Documenta la API utilizando OpenAPI y Swagger.
+![img.png](docs/img.png)
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+### Casos de Prueba
+Los casos de prueba se encuentran en la ruta /src/main/test. En esta carpeta existe un directorio resoureces, en donde también se encuentra la configuración para testing de la base de datos H2.
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+Los casos de prueba están agrupados por package, y son correspondientes a las claes del código fuente al que cubren.
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+## Ejecución del Microservicio
+### Prerequisitos
+Es necesario contar con el siguiente software instalado:
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+| NOMBRE | OBS |
+|---|---|
+| Apache Maven | Para compilar y generar el ejecutable de Java |
+| Java JDK 17 | Lenguaje Java |
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+### Variables de Entorno
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+Para ejecutar el microservicio se deben establecer las siguientes variables de entorno:
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+| NOMBRE | CONTENIDO | OBS                              |
+|---|---|----------------------------------| 
+| JWT_SEED | 1234567890 | Necesaria para encriptar los JWT |
+| JWT_EXPIRATION_MS | 3660000 | Una hora                         | 
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+Para seteear estas variables en Windows:
+```
+set JWT_SEED=1234567890
+set JWT_EXPIRATION_MS=3660000
+```
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+Para seteear estas variables en Linux/Unix:
+```
+export JWT_SEED=1234567890
+export JWT_EXPIRATION_MS=3660000
+```
+
+### Build del microservicio
+Para compliar y generar el archivo ejecutable de Java, se debe ejecutar el siguiente comando
+```
+mvn clean package
+```
+
+### Ejecución
+En la raíz del proyecto ejecutar:
+En Unix/Linux
+```
+java -jar target/gestion-tareas-0.0.1.jar
+```
+En Windows
+```
+java -jar target\gestion-tareas-0.0.1.jar
+```
+
+### Pruebas con POSTMAN
+En el directorio /docs/postman de este mismo proyecto se encuentra un archivo json en formato de exportación/iimportación de POSTMAN. Este archivo puede ser subido a cualquier instancia de POSTMAN apareciendo la siguiente colección de casos de prueba:
+
+![img.png](docs/img-postman-collection.png)
+
+***Se debe ejecutar primero LOGIN, ya que esta opción carga un token como variable de ambiente postman, lo que permite poder trabajar con las demás opciones de la colección.***
+
+Las opciones están todas con sus ejemplos de ejecución guardados con sus correspondientes códigos de resultados http.
+
+En la opción de login se puede cambiar el usuario/password para conectarse con uno diferente, para ello se puede consultar el archivo /src/main/java/resources/prod-data.sql, que contiene la lista de las cuentas de usuario precargados en la base de datos H2.
+
+
+
