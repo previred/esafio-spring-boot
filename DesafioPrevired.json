@@ -1,0 +1,195 @@
+{
+  "name": "DesafioPrevired",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "addTask",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8085/api/task/add",
+        "method": "POST",
+        "headers": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"name\": \"Ordenar documentos\",\n  \"description\": \"Ordenar documentos de acuerdo a año y persona.\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Pedro\",\n    \"email\": \"pedro@gmail.com\"\n  },\n  \"state\": {\n    \"id\": 1,\n    \"state\": \"Pendiente\"\n  }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "bearer",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZWRyb0BnbWFpbC5jb20iLCJleHAiOjE3MTE5MzY4Mzd9.MGzL7r3kY5TJ3rcgK-U9C6YqWzSVqEa-qFm_uzhACS5wu_hyNbVCYhM0nh-YbkvArmWfgYh1Ud12OJ72aWyIew"
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    },
+    {
+      "type": "json",
+      "name": "bruno",
+      "seq": 1
+    },
+    {
+      "type": "http",
+      "name": "getAllTask",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8085/api/task",
+        "method": "GET",
+        "headers": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "bearer",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    },
+    {
+      "type": "http",
+      "name": "getTaskById",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8085/api/task/1",
+        "method": "GET",
+        "headers": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    },
+    {
+      "type": "http",
+      "name": "updateTask",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8085/api/task/update",
+        "method": "PUT",
+        "headers": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"id\":1,\n  \"name\": \"Botar documentos no usados\",\n  \"description\": \"Ordenar documentos de acuerdo a año y persona.\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Pedro\",\n    \"email\": \"pedro@gmail.com\"\n  },\n  \"state\": {\n    \"id\": 1,\n    \"state\": \"Pendiente\"\n  }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    },
+    {
+      "type": "http",
+      "name": "deleteTask",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8085/api/task/delete/1",
+        "method": "DELETE",
+        "headers": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    },
+    {
+      "type": "http",
+      "name": "login",
+      "seq": 7,
+      "request": {
+        "url": "http://localhost:8085/login",
+        "method": "POST",
+        "headers": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"username\": \"pedro@gmail.com\",\n  \"password\": \"1234a56\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
+          }
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
+    }
+  ],
+  "environments": []
+}
