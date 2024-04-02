@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ms-core-spa
+  jackson:
+    serialization:
+      indent-output: true
+      order-map-entries-by-keys: true
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
