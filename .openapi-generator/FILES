@@ -1,0 +1,9 @@
+README.md
+pom.xml
+src/main/java/com/previred/nspa/desafio/api/ApiUtil.java
+src/main/java/com/previred/nspa/desafio/api/AuthApi.java
+src/main/java/com/previred/nspa/desafio/api/TareasApi.java
+src/main/java/com/previred/nspa/desafio/model/AuthPost200ResponseDTO.java
+src/main/java/com/previred/nspa/desafio/model/EstadosTareaDTO.java
+src/main/java/com/previred/nspa/desafio/model/TareasDTO.java
+src/main/java/com/previred/nspa/desafio/model/UsuariosDTO.java

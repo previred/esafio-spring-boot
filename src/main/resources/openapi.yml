@@ -1,0 +1,135 @@
+openapi: "3.0.0"
+info:
+    title: API de Tareas
+    version: "1.0.0"
+servers:
+    - url: 'http://localhost:8080'
+tags:
+  - name: apiPrevired
+    description: test desafío
+paths:
+    /auth:
+        post:
+            summary: Autenticación de usuarios
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Usuarios'
+            responses:
+                '200':
+                    description: Autenticación exitosa
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+    /tareas:
+        get:
+            summary: Obtener todas las tareas
+            responses:
+                '200':
+                    description: Operación exitosa
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Tareas'
+        post:
+            summary: Crear una nueva tarea
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Tareas'
+            responses:
+                '201':
+                    description: Tarea creada exitosamente
+    /tareas/{id}:
+        get:
+            summary: Obtener una tarea por su ID
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                '200':
+                    description: Operación exitosa
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Tareas'
+        put:
+            summary: Actualizar una tarea por su ID
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Tareas'
+            responses:
+                '200':
+                    description: Tarea actualizada exitosamente
+        delete:
+            summary: Eliminar una tarea por su ID
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                '204':
+                    description: Tarea eliminada exitosamente
+components:
+    schemas:
+        Usuarios:
+            type: object
+            properties:
+                idUsuario:
+                    type: integer
+                nombreUsuario:
+                    type: string
+                correoElectronico:
+                    type: string
+                contrasenaHash:
+                    type: string
+        EstadosTarea:
+            type: object
+            properties:
+                idEstado:
+                    type: integer
+                nombreEstado:
+                    type: string
+        Tareas:
+            type: object
+            properties:
+                idTarea:
+                    type: integer
+                usuario:
+                    $ref: '#/components/schemas/Usuarios'
+                titulo:
+                    type: string
+                descripcion:
+                    type: string
+                fechaCreacion:
+                    type: string
+                    format: date-time
+                fechaLimite:
+                    type: string
+                    format: date-time
+                estadoTarea:
+                    $ref: '#/components/schemas/EstadosTarea'

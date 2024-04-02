@@ -1,0 +1,14 @@
+{
+  "inputSpec": "${project.basedir}/src/main/resources/openapi.yml",
+  "generatorName": "spring",
+  "configOptions": {
+    "interfaceOnly": "true"
+  },
+  "packageName": "com.previred.nspa.desafio",
+  "apiPackage": "com.previred.nspa.desafio.api",
+  "modelPackage": "com.previred.nspa.desafio.model",
+  "modelNameSuffix": "DTO",
+  "output": "${project.basedir}",
+  "sourceFolder": "src/main/java",
+  "generatePom": "false"
+}
