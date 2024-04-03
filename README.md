@@ -1,72 +1,94 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Gestión de Tareas con Spring Boot 2.7.x y Java 17
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+Este proyecto es una API RESTful desarrollada con Spring Boot 2.7.x y Java 17 para la gestión de tareas, incluyendo
+autenticación JWT, documentación de API con OpenAPI y Swagger, y persistencia en una base de datos H2.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## Requisitos Previos
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+Asegúrate de tener los siguientes requisitos previos instalados en tu sistema:
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+- **Java 17 JDK:** Es necesario tener instalado Java 17 JDK en tu sistema para ejecutar la aplicación.
+- **Maven:** Se requiere Maven instalado en tu sistema para compilar y construir el proyecto.
+- **Git (opcional):** Si deseas clonar el repositorio, necesitarás tener Git instalado en tu sistema.
 
-### Base de Datos:
+## Ejecución del Proyecto
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+### Compilación y Ejecución
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+1. Clona el repositorio
 
-### JWT (JSON Web Token):
+2. Navega al directorio del proyecto:
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+   ```bash
+   cd nombre_del_repositorio
+   ```
 
-### OpenAPI y Swagger:
+3. Compila el proyecto:
 
-- Documenta la API utilizando OpenAPI y Swagger.
+   ```bash
+   mvn clean package
+   ```
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+4. Ejecuta las pruebas unitarias antes de ejecutar la aplicación:
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+   ```bash
+   mvn test
+   ```
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+5. Ejecuta la aplicación:
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+   ```bash
+   java -jar target/app-0.0.1-SNAPSHOT.jar
+   ```
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+## Pruebas de la API
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+### Acceso a la Documentación de la API
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+Una vez que la aplicación esté en funcionamiento, puedes acceder a la documentación de la API a través de Swagger en la
+siguiente URL:
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+### Pruebas con Postman
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+Para realizar pruebas manuales de la API, se proporciona un archivo de prueba Postman con ejemplos de solicitudes.
+Puedes descargar el archivo e importalo a Postman desde el siguiente enlace:
+
+[Desafío Técnico- Gestión de Tareas con Spring Boot y Java 🚀.postman_collection.json](Desafío%20Técnico-%20Gestión%20de%20Tareas%20con%20Spring%20Boot%20y%20Java%20🚀.postman_collection.json)
+
+## Pruebas Unitarias de Integración
+
+El proyecto también incluye pruebas unitarias de integración para garantizar la funcionalidad adecuada de los diferentes
+endpoints y casos de uso. Algunas de las pruebas de integración incluidas son:
+
+- Prueba unitaria de integración `signInSuccessIntegrationTest`: Prueba de integración para iniciar sesión con éxito.
+- Prueba unitaria de integración `signInWithBlankPasswordAndEmailIntegrationTest`: Prueba de integración para iniciar
+  sesión con contraseña y correo electrónico en blanco.
+- Prueba unitaria de integración `signInWithBlankPasswordIntegrationTest`: Prueba de integración para iniciar sesión con
+  contraseña en blanco.
+- Prueba unitaria de integración `signInWithBlankEmailIntegrationTest`: Prueba de integración para iniciar sesión con
+  correo electrónico en blanco.
+- Prueba unitaria de integración `signInWithInvalidEmailIntegrationTest`: Prueba de integración para iniciar sesión con
+  correo electrónico inválido.
+- Prueba unitaria de integración `signInUnauthorizedIntegrationTest`: Prueba de integración para iniciar sesión con
+  credencial inválido.
+- Prueba unitaria de integración `deleteTaskIntegrationTest`: Prueba de integración para eliminar una tarea.
+- Prueba unitaria de integración `updateTaskInvalidStatusIntegrationTest`: Prueba de integración para actualizar una
+  tarea con un estado inválido.
+- Prueba unitaria de integración `updateTaskIntegrationTest`: Prueba de integración para actualizar una tarea.
+- Prueba unitaria de integración `createTaskInvalidStatusIntegrationTest`: Prueba de integración para crear una tarea
+  con un estado inválido.
+- Prueba unitaria de integración `deleteNonExistingTaskIntegrationTest`: Prueba de integración para eliminar una tarea
+  que no existe.
+- Prueba unitaria de integración `updateNonExistingTaskIntegrationTest`: Prueba de integración para actualizar una tarea
+  que no existe.
+- Prueba unitaria de integración `getTaskNonExistingIntegrationTest`: Prueba de integración para obtener una tarea que
+  no existe.
+- Prueba unitaria de integración `getTaskIntegrationTest`: Prueba de integración para obtener una tarea.
+- Prueba unitaria de integración `getTasksIntegrationTest`: Prueba de integración para obtener todas las tareas.
+- Prueba unitaria de integración `createTaskWithEmptyTitleIntegrationTest`: Prueba de integración para crear una tarea
+  con campo requerido en blanco.
+- Prueba unitaria de integración `createTaskIntegrationTest`: Prueba de integración para crear una tarea.
+
+

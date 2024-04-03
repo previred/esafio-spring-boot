@@ -1,0 +1,716 @@
+{
+  "info": {
+    "_postman_id": "06426299-c453-41d3-8dbf-09f5bc3a4e0b",
+    "name": "Desafío Técnico: Gestión de Tareas con Spring Boot y Java 🚀",
+    "description": "Autor: Vicente Muñoz Oliva\n\n# 👋 **Introducción**\n\nEste API proporciona funcionalidades para la gestión de tareas, incluyendo la creación, actualización, eliminación y obtención de tareas.\n\n# Base URL\n\nLa base URL para acceder a los endpoints de esta API es:\n\n**(Incluida en variable de enterno)**  \n\n``` bash\nhttp://localhost:8080\n\n ```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33809906"
+  },
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "Iniciar sesión",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/sign-in",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "sign-in"
+              ]
+            },
+            "description": "Este endpoint se utiliza para iniciar sesión y obtener un token de acceso JWT. Se deben proporcionar las credenciales de inicio de sesión en el cuerpo de la solicitud."
+          },
+          "response": [
+            {
+              "name": "Iniciar sesión ejemplo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"sudo@vicente-munoz.cl\",\r\n    \"password\":\"demo123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/sign-in",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "sign-in"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:15:14 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTQxMTQsImV4cCI6MTcxMzQxMDExNH0.8hkh5Tog_O0EuTGA5m5QdCsK8CllSKXGo8IZj-JwCTzS8e0M2TaxDRu1SLOT9QtTXFzdkkh-5sWhkoR6hZ12iw\",\n    \"expirationDate\": \"17/04/2024 23:15:14\",\n    \"tokenType\": \"Bearer\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "La API requiere autenticación utilizando JWT (JSON Web Token). Debes incluir un encabezado de autorización con el token JWT generado para acceder a los endpoints protegidos.\n\n**(Se deja el TOKEN por defecto con una duración de 2 semanas por temas de pruebas)**"
+    },
+    {
+      "name": "Tareas",
+      "item": [
+        {
+          "name": "Guardar Tareas",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTI4NzMsImV4cCI6MTcxMzE5Mjg3M30.38TbtJbiREzo9eznTbeI1Tc_MLa10qcWTbvXPG1aXtwlIjGQ4UoFZefmhy34NGGj3X9pKJEMnnwHdcldY-skFg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tasks"
+              ]
+            },
+            "description": "Crea una nueva tarea con los datos proporcionados en el cuerpo de la solicitud. Para acceder a este endpoint.\n\n### Parámetros de la solicitud\n\n- `title` (obligatorio): El título de la tarea (cadena).\n- `detail` (opcional): Los detalles de la tarea (cadena).\n- `status` (opcional): El estado de la tarea ('Pending', 'In progress', 'Completed') (cadena)."
+          },
+          "response": [
+            {
+              "name": "Guardar Tareas Ejemplo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\":\"Task N° 1\",\r\n    \"detail\":\"Create API\",\r\n    \"status\":\"Pending\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:17:06 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"title\": \"Task N° 1\",\n    \"detail\": \"Create API\",\n    \"createAt\": \"2024-04-03T00:17:06.7076853\",\n    \"deleteAt\": null,\n    \"taskStatus\": {\n        \"id\": 1,\n        \"name\": \"Pending\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar Tareas",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTI4NzMsImV4cCI6MTcxMzE5Mjg3M30.38TbtJbiREzo9eznTbeI1Tc_MLa10qcWTbvXPG1aXtwlIjGQ4UoFZefmhy34NGGj3X9pKJEMnnwHdcldY-skFg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tasks"
+              ]
+            },
+            "description": "Recupera todas las tareas disponibles."
+          },
+          "response": [
+            {
+              "name": "Listar Tareas Ejemplo",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:11:29 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Task N° 1\",\n        \"detail\": \"Create API\",\n        \"createAt\": \"2024-04-03T00:08:10.014393\",\n        \"deleteAt\": null,\n        \"taskStatus\": {\n            \"id\": 1,\n            \"name\": \"Pending\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Listar Tarea por ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTI4NzMsImV4cCI6MTcxMzE5Mjg3M30.38TbtJbiREzo9eznTbeI1Tc_MLa10qcWTbvXPG1aXtwlIjGQ4UoFZefmhy34NGGj3X9pKJEMnnwHdcldY-skFg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tasks/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Recupera una tarea indicando su ID por parametro."
+          },
+          "response": [
+            {
+              "name": "Listar Tarea por ID Ejemplo",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:14:17 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"title\": \"Task N° 1\",\n    \"detail\": \"Create API\",\n    \"createAt\": \"2024-04-03T00:08:10.014393\",\n    \"deleteAt\": null,\n    \"taskStatus\": {\n        \"id\": 1,\n        \"name\": \"Pending\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Editar Tarea",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTI4NzMsImV4cCI6MTcxMzE5Mjg3M30.38TbtJbiREzo9eznTbeI1Tc_MLa10qcWTbvXPG1aXtwlIjGQ4UoFZefmhy34NGGj3X9pKJEMnnwHdcldY-skFg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tasks/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Edita una tarea indicando el ID de la tarea que desees editar en parametro URL.\n\n### Parámetros de la solicitud\n\n- `title` (obligatorio): El título de la tarea (cadena).\n- `detail` (opcional): Los detalles de la tarea (cadena).\n- `status` (opcional): El estado de la tarea ('Pending', 'In progress', 'Completed') (cadena)."
+          },
+          "response": [
+            {
+              "name": "Editar Tarea Ejemplo",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\":\"Task N° 1.1\",\r\n    \"detail\":\"Edit API\",\r\n    \"status\":\"Completed\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:14:36 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"title\": \"Task N° 1.1\",\n    \"detail\": \"Edit API\",\n    \"createAt\": \"2024-04-03T00:08:10.014393\",\n    \"deleteAt\": null,\n    \"taskStatus\": {\n        \"id\": 3,\n        \"name\": \"Completed\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar Tarea",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWRvQHZpY2VudGUtbXVub3ouY2wiLCJpYXQiOjE3MTIxMTI4NzMsImV4cCI6MTcxMzE5Mjg3M30.38TbtJbiREzo9eznTbeI1Tc_MLa10qcWTbvXPG1aXtwlIjGQ4UoFZefmhy34NGGj3X9pKJEMnnwHdcldY-skFg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tasks/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Elimina una tarea ingresado el ID de la tarea por parametro URL.\n\nEn la respuesta obtendras la fecha y hora de la eliminación."
+          },
+          "response": [
+            {
+              "name": "Eliminar Tarea Ejemplo",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 03 Apr 2024 03:14:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"title\": \"Task N° 1.1\",\n    \"detail\": \"Edit API\",\n    \"createAt\": \"2024-04-03T00:08:10.014393\",\n    \"deleteAt\": \"2024-04-03T00:14:49.5099075\",\n    \"taskStatus\": {\n        \"id\": 3,\n        \"name\": \"Completed\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Para acceder a estos endpoints, se requiere autenticación mediante un token JWT válido. El token JWT debe ser incluido en el encabezado de autorización utilizando el esquema \"Bearer\" con el token."
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
