@@ -7,24 +7,6 @@ servers:
     description: Generated server url
 
 paths:
-  /auth/register:
-    post:
-      tags:
-        - auth-controller
-      operationId: register
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegisterRequest'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
   /auth/login:
     post:
       tags:
@@ -43,29 +25,11 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-  /api/usuarios:
-    post:
-      tags:
-        - usuario-controller
-      operationId: crearTarea
-      requestBody:
-        content:
-          application/json;charset=utf-8:
-            schema:
-              $ref: '#/components/schemas/Usuario'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json;charset=utf-8:
-              schema:
-                $ref: '#/components/schemas/Usuario'
-  /api/tareas:
+  /api/tareas/update:
     post:
       tags:
         - tarea-controller
-      operationId: crearTarea_1
+      operationId: update
       requestBody:
         content:
           application/json;charset=utf-8:
@@ -79,16 +43,16 @@ paths:
             application/json;charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Tarea'
-  /api/estado-tareas:
+  /api/tareas/save:
     post:
       tags:
-        - estado-tarea-controller
-      operationId: crearEstadoTarea
+        - tarea-controller
+      operationId: save
       requestBody:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/EstadoTarea'
+              $ref: '#/components/schemas/Tarea'
         required: true
       responses:
         '200':
@@ -96,11 +60,11 @@ paths:
           content:
             application/json;charset=utf-8:
               schema:
-                $ref: '#/components/schemas/EstadoTarea'
-  /api/usuarios/{id}:
+                $ref: '#/components/schemas/Tarea'
+  /api/tareas/{id}:
     get:
       tags:
-        - usuario-controller
+        - tarea-controller
       operationId: findById
       parameters:
         - name: id
@@ -115,10 +79,10 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: '#/components/schemas/Tarea'
     delete:
       tags:
-        - usuario-controller
+        - tarea-controller
       operationId: deteleById
       parameters:
         - name: id
@@ -130,85 +94,11 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Usuario'
-  /api/tareas/{id}:
+  /api/tareas/list:
     get:
       tags:
         - tarea-controller
-      operationId: findById_1
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Tarea'
-    delete:
-      tags:
-        - tarea-controller
-      operationId: deteleById_1
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-  /api/estado-tareas/{id}:
-    get:
-      tags:
-        - estado-tarea-controller
-      operationId: findById_2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/EstadoTarea'
-    delete:
-      tags:
-        - estado-tarea-controller
-      operationId: deteleById_2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/EstadoTarea'
-  /api/estado-tareas/listar:
-    get:
-      tags:
-        - estado-tarea-controller
-      operationId: listar
+      operationId: listTareas
       responses:
         '200':
           description: OK
@@ -217,23 +107,30 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EstadoTarea'
+                  $ref: '#/components/schemas/Tarea'
+  /api/tareas/list-tarea-by-id/{idUsuario}:
+    get:
+      tags:
+        - tarea-controller
+      operationId: listTareasByUuarioId
+      parameters:
+        - name: idUsuario
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tarea'
 components:
   schemas:
-    RegisterRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-        email:
-          type: string
-    AuthResponse:
-      type: object
-      properties:
-        token:
-          type: string
     LoginRequest:
       type: object
       properties:
@@ -241,11 +138,36 @@ components:
           type: string
         password:
           type: string
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    EstadoTarea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        descripcion:
+          type: string
     GrantedAuthority:
       type: object
       properties:
         authority:
           type: string
+    Tarea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        descripcion:
+          type: string
+        estadoTarea:
+          $ref: '#/components/schemas/EstadoTarea'
+        usuario:
+          $ref: '#/components/schemas/Usuario'
     Usuario:
       type: object
       properties:
@@ -275,23 +197,3 @@ components:
           type: boolean
         accountNonExpired:
           type: boolean
-    EstadoTarea:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        descripcion:
-          type: string
-    Tarea:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        descripcion:
-          type: string
-        estadoTarea:
-          $ref: '#/components/schemas/EstadoTarea'
-        usuario:
-          $ref: '#/components/schemas/Usuario'
