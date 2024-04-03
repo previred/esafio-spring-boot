@@ -7,7 +7,7 @@
     "password": "admin"
 }
 
-# Con el token obtenido ir a pestaña de autorizacion y seleccionar el tipo Bearer token.
+# Con el token obtenido ir a pestaña de autorizacion y seleccionar el tipo Bearer token. se adunta imagen ![img.png](img.png)
 
 * Crear tarea y asignar a un usuario.
 
