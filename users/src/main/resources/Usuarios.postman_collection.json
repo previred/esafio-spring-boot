@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "702814a1-0962-466f-a0b6-e035275c7625",
+		"name": "Usuarios",
+		"description": "Documentación para la API Usuarios\n\nEste es el postman para la ejecución de la api de usuarios.\n\nSu funcionamiento en el siguiente:\n\npara el endpoint signup se necesita el objecto usuario, con todos los campos diligenciados.\n\nPara el endpoint login:  \nSolo se necesita email y contraseña.  \nuna vez ejecutado el endpoint, este retornará el token y la expiración del mismo.\n\nEse token sera usado en cada una de las peticiones como auth bearer, para cada endpoint del servicio TASK.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31846477"
+	},
+	"item": [
+		{
+			"name": "auth/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"example@example.com\",\n  \"password\": \"password\",\n  \"name\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": \"123 Main St\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"example@example.com\",\n  \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleGFtcGxlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzEyMjUzNjk0LCJleHAiOjE3MTIyNTcyOTR9.Kt_P78VyD_IWlxVWZcKDJEjlWynN3TP1k1UXEDNOJVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleGFtcGxlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzEyMjUzNjk0LCJleHAiOjE3MTIyNTcyOTR9.Kt_P78VyD_IWlxVWZcKDJEjlWynN3TP1k1UXEDNOJVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
