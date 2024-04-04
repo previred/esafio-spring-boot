@@ -1,0 +1,194 @@
+openapi: 3.0.1
+info:
+  title: Documentación API Tareas
+  description: Documentación API Tareas
+  contact:
+    name: Sebastian Mendez
+  version: "1.0"
+servers:
+- url: http://localhost:8083
+  description: Generated server url
+security:
+- Bearer Authentication: []
+paths:
+  /task/update:
+    put:
+      tags:
+      - task-controller
+      summary: Actualizar una tarea existente
+      operationId: updateTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        "500":
+          description: Error interno del servidor
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Task'
+        "200":
+          description: Tarea actualizada exitosamente
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Task'
+        "400":
+          description: Petición inválida
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Task'
+  /task/save:
+    post:
+      tags:
+      - task-controller
+      summary: Guardar una nueva tarea
+      operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        "401":
+          description: Error al crear tarea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "201":
+          description: Tarea creada exitosamente
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Task'
+  /task/{id}:
+    get:
+      tags:
+      - task-controller
+      summary: Obtener una tarea por su ID
+      operationId: getTaskById
+      parameters:
+      - name: id
+        in: path
+        description: ID de la tarea
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Tarea encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        "404":
+          description: Tarea no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /task/all:
+    get:
+      tags:
+      - task-controller
+      summary: Obtener todas las tareas almacenadas
+      operationId: getAllTask
+      responses:
+        "404":
+          description: No se encontraron tareas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "200":
+          description: Lista de tareas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /task/delete/{id}:
+    delete:
+      tags:
+      - task-controller
+      summary: Eliminar una tarea por su ID
+      operationId: deleteTask
+      parameters:
+      - name: id
+        in: path
+        description: ID de la tarea
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: Tarea eliminada exitosamente
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Tarea no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        dueDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - TODO
+          - IN_PROGRESS
+          - IN_REVIEW
+          - COMPLETED
+          - BLOCKED
+          - ON_HOLD
+          - CANCELLED
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
