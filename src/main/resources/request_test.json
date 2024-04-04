@@ -1,0 +1,86 @@
+# JSON TEST
+
+* Registrar usuario 
+-Endpoint Metodo POST:localhost:8080/api/v1/auth/signup
+{
+  "firstName":"spring",
+  "lastName":"security",
+  "email":"wcabrera@gmail.com",
+  "password":"12345"
+}
+
+* Login
+- Endpoint Metodo POST :  localhost:8080/api/v1/auth/signin
+{
+  "email":"wcabrera@gmail.com",
+  "password":"12345"
+}
+
+# La api anterior retornará un token, en donde se utilizará para la seguridad en las siguientes Apis( Se debe agregar el token en el beare token )
+
+* Crear tarea 
+
+- Endpoint Metodo POST : localhost:8080/api/v1/task
+
+{
+  "description":" Implementar interfaz de tarea 1",
+  "status":1
+}
+# Con el token obtenido (Anteriormente) ir a pestaña de autorizacion y seleccionar el tipo Bearer token.
+
+*Crear estado de tarea
+- Endpoint Método Post : localhost:8080/api/v1/taskState
+{
+  "description":"CREATED"
+}
+
+OTROS EJEMPLOS DE REQUEST:
+{
+  "description":"PENDING"
+}
+OTROS EJEMPLOS DE REQUEST:
+{
+  "description":"IN_PROCESS"
+}
+
+
+# Con el token obtenido (Anteriormente) en donde se utilizará para la seguridad en las siguientes Apis( Se debe agregar el token en el beare token )
+
+* Modificar tarea.
+
+- Endpoint metodo POST : localhost:8080/api/v1/task?id=1
+
+{
+  "id": 1,
+  "description": " Implementar interfaz de usuario",
+  "status": 1,
+  "taskState": {
+      "id": 3,
+      "description": "IN_PROCESS"
+  },
+  "user": {
+      "id": 1,
+      "name": "William",
+      "email": "wcabrera@gmail.com",
+      "password": "$2a$10$grht1iEFzAgPG87sWwG.7OfmRYKyThWizvAbSX0hy033d4KPMRXjm",
+      "role": "USER"
+  }
+}
+
+# Con el token obtenido (Anteriormente) en donde se utilizará para la seguridad en las siguientes Apis( Se debe agregar el token en el beare token )
+
+* Listar todas las tareas .
+- Endpoint metodo GET : localhost:8080/api/v1/task
+
+
+# Con el token obtenido (Anteriormente)en donde se utilizará para la seguridad en las siguientes Apis( Se debe agregar el token en el beare token )
+
+ 
+* Obtener una tarea por id .
+- Endpoint metodo GET : localhost:8080/api/v1/task/1
+
+
+# Con el token obtenido (Anteriormente) en donde se utilizará para la seguridad en las siguientes Apis( Se debe agregar el token en el beare token )
+
+* Eliminar una tarea por id .
+- Endpoint metodo DELETE : localhost:8080/api/v1/task?id=1

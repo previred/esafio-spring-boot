@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Mi API
+  version: 1.0.0
+paths:
+  /usuarios:
+    post:
+      summary: Crear un usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '200':
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        nombre:
+          type: string
+        correo:
+          type: string
+        contraseña:
+          type: string
+        teléfonos:
+          type: array
+          items:
+            type: object
+            properties:
+              number:
+                type: string
+              citycode:
+                type: string
+              countrycode:
+                type: string
