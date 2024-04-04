@@ -21,10 +21,11 @@ CREATE TABLE IF NOT EXISTS `auth`.`user`
 -- changeset andresduran0205:create_table_auth_user.0.1 context: dev
 CREATE TABLE IF NOT EXISTS `auth`.`auth_user`
 (
-    id       UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
-    user_id  UUID         NOT NULL,
-    email    VARCHAR(255) NOT NULL,
-    password TEXT         NOT NULL,
+    id              UUID                  DEFAULT RANDOM_UUID() PRIMARY KEY,
+    user_id         UUID         NOT NULL,
+    email           VARCHAR(255) NOT NULL,
+    password        TEXT         NOT NULL,
+    last_token_date TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT auth_user_pkey PRIMARY KEY (id),
     CONSTRAINT user_fkey FOREIGN KEY (user_id) REFERENCES `auth`.`user` (id),
     CONSTRAINT unique_email UNIQUE (email)

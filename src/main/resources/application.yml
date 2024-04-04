@@ -8,3 +8,8 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
     default-property-inclusion: non_null
+
+auth:
+  access:
+    secret: '#Secret#2024*@#Access#Develop'
+    expiration-minutes: 5

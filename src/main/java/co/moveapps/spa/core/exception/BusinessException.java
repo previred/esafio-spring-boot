@@ -1,6 +1,6 @@
 package co.moveapps.spa.core.exception;
 
-import co.moveapps.spa.core.controller.technical.BaseResponse;
+import co.moveapps.spa.core.controller.dto.BaseResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,9 +8,9 @@ import lombok.EqualsAndHashCode;
 @Data
 public class BusinessException extends Exception {
 
-    private BaseResponse<?> response;
+    private BaseResponse response;
 
-    public BusinessException(BaseResponse<?> exception) {
+    public BusinessException(BaseResponse exception) {
         super(exception.getMessage());
         this.response = exception;
     }
