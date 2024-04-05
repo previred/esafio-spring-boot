@@ -122,7 +122,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--            Enable only when is required generate source code with specification open api-->
+<!--                        Enable only when is required generate source code with specification open api-->
 <!--            <plugin>-->
 <!--                <groupId>org.openapitools</groupId>-->
 <!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->

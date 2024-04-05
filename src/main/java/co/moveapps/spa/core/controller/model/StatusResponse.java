@@ -20,6 +20,9 @@ public class StatusResponse {
 
   private Boolean enable;
 
+  public StatusResponse() {
+  }
+
   public StatusResponse(StatusTaskEntity entity) {
     this.id = Long.valueOf(entity.getId());
     this.name = entity.getName();

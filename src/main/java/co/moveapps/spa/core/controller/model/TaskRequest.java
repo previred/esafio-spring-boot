@@ -6,15 +6,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * TaskRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T10:52:58.953075-05:00[America/Bogota]")
 public class TaskRequest {
 
-  private Long userId;
+  private UUID user;
 
   private StatusResponse status;
 
@@ -22,24 +23,24 @@ public class TaskRequest {
 
   private String description;
 
-  public TaskRequest userId(Long userId) {
-    this.userId = userId;
+  public TaskRequest user(UUID user) {
+    this.user = user;
     return this;
   }
 
   /**
-   * Get userId
-   * @return userId
-  */
-  
-  @Schema(name = "user_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("user_id")
-  public Long getUserId() {
-    return userId;
+   * Get user
+   * @return user
+   */
+
+  @Schema(name = "user", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("user")
+  public UUID getUser() {
+    return user;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUser(UUID user) {
+    this.user = user;
   }
 
   public TaskRequest status(StatusResponse status) {
@@ -50,8 +51,8 @@ public class TaskRequest {
   /**
    * Get status
    * @return status
-  */
-  @Valid 
+   */
+  @Valid
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
   public StatusResponse getStatus() {
@@ -70,8 +71,8 @@ public class TaskRequest {
   /**
    * Get title
    * @return title
-  */
-  
+   */
+
   @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("title")
   public String getTitle() {
@@ -90,8 +91,8 @@ public class TaskRequest {
   /**
    * Get description
    * @return description
-  */
-  
+   */
+
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
   public String getDescription() {
@@ -111,22 +112,22 @@ public class TaskRequest {
       return false;
     }
     TaskRequest taskRequest = (TaskRequest) o;
-    return Objects.equals(this.userId, taskRequest.userId) &&
-        Objects.equals(this.status, taskRequest.status) &&
-        Objects.equals(this.title, taskRequest.title) &&
-        Objects.equals(this.description, taskRequest.description);
+    return Objects.equals(this.user, taskRequest.user) &&
+            Objects.equals(this.status, taskRequest.status) &&
+            Objects.equals(this.title, taskRequest.title) &&
+            Objects.equals(this.description, taskRequest.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, status, title, description);
+    return Objects.hash(user, status, title, description);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskRequest {\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -145,4 +146,3 @@ public class TaskRequest {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

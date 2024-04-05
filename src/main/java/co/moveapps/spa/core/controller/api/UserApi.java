@@ -76,7 +76,7 @@ public interface UserApi {
 
     default ResponseEntity<UserResponse> createUser(
             @Parameter(name = "UserRequest", description = "", required = true) @Valid @RequestBody UserRequest userRequest
-    ) {
+    ) throws BusinessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -264,7 +264,7 @@ public interface UserApi {
     default ResponseEntity<UserResponse> updateUser(
             @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") UUID id,
             @Parameter(name = "UserRequest", description = "") @Valid @RequestBody(required = false) UserRequest userRequest
-    ) {
+    ) throws BusinessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

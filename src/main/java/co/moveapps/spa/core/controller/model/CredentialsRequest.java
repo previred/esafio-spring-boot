@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.annotation.Generated;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -39,7 +40,8 @@ public class CredentialsRequest {
    * Get email
    * @return email
   */
-  @NotNull 
+  @NotNull
+  @Email
   @Schema(name = "email", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
   public String getEmail() {

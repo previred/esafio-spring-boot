@@ -1,6 +1,7 @@
 package co.moveapps.spa.core.controller.api;
 
 
+import co.moveapps.spa.core.controller.model.TaskRequest;
 import co.moveapps.spa.core.controller.model.TaskResponse;
 import co.moveapps.spa.core.exception.BusinessException;
 import co.moveapps.spa.core.service.task.TaskServiceImpl;
@@ -49,4 +50,13 @@ public class TaskApiController implements TaskApi {
         return ResponseEntity.ok(taskService.delete(id));
     }
 
+    @Override
+    public ResponseEntity<TaskResponse> createTask(TaskRequest taskRequest) throws BusinessException {
+        return ResponseEntity.ok(taskService.create(taskRequest));
+    }
+
+    @Override
+    public ResponseEntity<TaskResponse> updateTask(UUID id, TaskRequest taskRequest) throws BusinessException {
+        return ResponseEntity.ok(taskService.update(id, taskRequest));
+    }
 }

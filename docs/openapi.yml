@@ -448,7 +448,7 @@ components:
     TaskRequest:
       type: object
       properties:
-        user_id:
+        user:
           type: integer
           format: int64
         status:

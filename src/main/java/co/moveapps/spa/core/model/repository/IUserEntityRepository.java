@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface IUserEntityRepository extends JpaRepository<UserEntity, UUID> {
 
+    boolean existsAllByAuthenticationUsername(final String username);
 }

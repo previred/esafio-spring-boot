@@ -39,7 +39,7 @@ public class UserEntity implements Serializable {
     private UUID id;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private AuthUserEntity authentication;
 
     @Column(name = "firstname")

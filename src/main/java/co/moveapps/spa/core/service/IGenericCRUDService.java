@@ -3,14 +3,15 @@ package co.moveapps.spa.core.service;
 
 import co.moveapps.spa.core.exception.BusinessException;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 public interface IGenericCRUDService<IN, OUT, K> {
 
-    OUT create(IN object);
+    @Transactional
+    OUT create(IN request) throws BusinessException;
 
-    OUT update(IN object);
+    OUT update(K id, IN request) throws BusinessException;
 
     Boolean delete(K id) throws BusinessException;
 

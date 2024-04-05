@@ -1,6 +1,7 @@
 package co.moveapps.spa.core.controller.api;
 
 
+import co.moveapps.spa.core.controller.model.UserRequest;
 import co.moveapps.spa.core.controller.model.UserResponse;
 import co.moveapps.spa.core.exception.BusinessException;
 import co.moveapps.spa.core.service.user.UserServiceImpl;
@@ -47,5 +48,15 @@ public class UserApiController implements UserApi {
     @Override
     public ResponseEntity<Boolean> deleteUser(UUID id) throws BusinessException {
         return ResponseEntity.ok(userService.delete(id));
+    }
+
+    @Override
+    public ResponseEntity<UserResponse> createUser(UserRequest userRequest) throws BusinessException {
+        return ResponseEntity.ok(userService.create(userRequest));
+    }
+
+    @Override
+    public ResponseEntity<UserResponse> updateUser(UUID id, UserRequest userRequest) throws BusinessException {
+        return ResponseEntity.ok(userService.update(id, userRequest));
     }
 }

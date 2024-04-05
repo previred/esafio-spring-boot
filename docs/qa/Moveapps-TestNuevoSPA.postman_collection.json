@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "16abb86b-5d88-4013-9a25-0b0c1e4ac7a4",
+		"name": "MOVEAPPS - APIs Nuevo SPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11959395"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Generate Authentication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"fermolina@yopmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMxNTk0LCJleHAiOjE3MTIzMzI0OTR9.EuqNx0dakgKorL6fd5-I6_2dQQMAgE5MXntsOYCG1Xo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMxMTA4LCJleHAiOjE3MTIzMzE0MDh9.W9fl35RPbI1KKOLFo6Sh-89820sT2gqiI2YIRTA8IJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "018eac36-6063-7f52-9f1c-75ad0881fb30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzExMjEwLCJleHAiOjE3MTIzMTE1MTB9.iwkSuTRH1GZj3nnbgRd-70_zEj8gDoGA8XhIf4aKcfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "018eac36-6063-725f-9d1d-2562a2516940"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMxNTk0LCJleHAiOjE3MTIzMzI0OTR9.EuqNx0dakgKorL6fd5-I6_2dQQMAgE5MXntsOYCG1Xo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"credentials\": {\n        \"email\": \"qa12@yopmail.com\",\n        \"password\": \"123\"\n    },\n    \"firstName\": \"Pepe\",\n    \"lastName\": \"Mora\",\n    \"phone\": \"3059994455\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMxNTk0LCJleHAiOjE3MTIzMzI0OTR9.EuqNx0dakgKorL6fd5-I6_2dQQMAgE5MXntsOYCG1Xo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"PepeeeeeEeEeE\",\n    \"lastName\": \"MoraaaAaAaA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a9e5e14b-4b1c-41ba-bf01-b22bb3476654"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "status",
+					"item": [
+						{
+							"name": "Get all status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzExOTQxLCJleHAiOjE3MTIzMTIyNDF9.SLr3AFIxXFBfau0A_7J_x-4PTT6Psh6cpNXMfcDB9o8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/status/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"status",
+										"task"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMyMDE2LCJleHAiOjE3MTIzMzI5MTZ9.djqwiaDexH5CcIVCMM2DOUyD_pLpV4--4DZybSk-pho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/task",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get task by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzE0MDI2LCJleHAiOjE3MTIzMTQzMjZ9.ur0OAgnkIpZuYcJXWiRr1ZVl_d10ZTRCcduTzyZA3CY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/task/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2740c075-ec42-417c-b657-591aae79d937"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete task by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzE0MDI2LCJleHAiOjE3MTIzMTQzMjZ9.ur0OAgnkIpZuYcJXWiRr1ZVl_d10ZTRCcduTzyZA3CY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/task/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2740c075-ec42-417c-b657-591aae79d937"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMyMDE2LCJleHAiOjE3MTIzMzI5MTZ9.djqwiaDexH5CcIVCMM2DOUyD_pLpV4--4DZybSk-pho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"018eac36-6063-7f52-9f1c-75ad0881fb30\",\n    \"status\": {\n        \"id\": 1\n    },\n    \"title\": \"Testing task 02\",\n    \"description\": \"Task review 002\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update taks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ4LW51ZXZvLXNwYSIsIm1ldGFkYXRhLWlkIjoiWlhsS2VscFlUbnBoVnpsMVUxZFJhVTlwU21wWlYwWnNUMFJyTTAxVE1EUlBWR1J0VEZSU2JFMVhXWFJaVjA1b1RrTXdNbHBxUVhwYWFsRXdXVmRGZDA1VWEybG1VVDA5IiwiaWF0IjoxNzEyMzMyMDE2LCJleHAiOjE3MTIzMzI5MTZ9.djqwiaDexH5CcIVCMM2DOUyD_pLpV4--4DZybSk-pho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": {\n        \"id\": 2\n    },\n    \"description\": \" READY \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a4fa07a7-a20b-4d37-add4-21865be5016e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

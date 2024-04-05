@@ -76,7 +76,7 @@ public interface TaskApi {
 
     default ResponseEntity<TaskResponse> createTask(
             @Parameter(name = "TaskRequest", description = "", required = true) @Valid @RequestBody TaskRequest taskRequest
-    ) {
+    ) throws BusinessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -264,7 +264,7 @@ public interface TaskApi {
     default ResponseEntity<TaskResponse> updateTask(
             @Parameter(name = "id", description = "Unique identifier of task", required = true, in = ParameterIn.PATH) @PathVariable("id") UUID id,
             @Parameter(name = "TaskRequest", description = "") @Valid @RequestBody(required = false) TaskRequest taskRequest
-    ) {
+    ) throws BusinessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
