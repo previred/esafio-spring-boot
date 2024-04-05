@@ -21,7 +21,7 @@ import java.util.UUID;
  * @author andresduran0205@gmail.com
  */
 @Entity
-@Table(schema = "auth", name = "auth_user")
+@Table(name = "auth_user", schema = "auth")
 @Data
 @Builder
 @NoArgsConstructor
@@ -38,7 +38,7 @@ public class AuthUserEntity implements Serializable {
     private UserEntity user;
 
     @Column(name = "username", nullable = false)
-    private String email;
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;

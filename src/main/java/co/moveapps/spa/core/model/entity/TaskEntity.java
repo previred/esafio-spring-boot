@@ -25,34 +25,32 @@ import java.util.UUID;
  * @author andresduran0205@gmail.com
  */
 @Entity
-@Table(name = "user_", schema = "auth")
+@Table(name = "task", schema = "core")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class UserEntity implements Serializable {
+public class TaskEntity implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "user")
-    private AuthUserEntity authentication;
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    private StatusTaskEntity state;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private UserEntity user;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "phone", unique = true)
-    private BigInteger phone;
-
-    @Column(name = "enable")
-    private Boolean enable;
+    @Column(name = "description")
+    private String description;
 
     @CreatedDate
     @Column(name = "created_at")

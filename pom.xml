@@ -26,6 +26,10 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
@@ -63,14 +67,10 @@
 
         <!-- Enable openapi-plugin -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.1</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.openapitools</groupId>-->
-        <!--            <artifactId>jackson-databind-nullable</artifactId>-->
-        <!--            <version>0.2.1</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -104,6 +104,7 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -121,7 +122,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!-- Enable only when is required generate source code with specification open api -->
+            <!--            Enable only when is required generate source code with specification open api-->
 <!--            <plugin>-->
 <!--                <groupId>org.openapitools</groupId>-->
 <!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
@@ -132,7 +133,7 @@
 <!--                            <goal>generate</goal>-->
 <!--                        </goals>-->
 <!--                        <configuration>-->
-<!--                            <inputSpec>${project.basedir}/docs/swagger_specifications.yml</inputSpec>-->
+<!--                            <inputSpec>${project.basedir}/docs/openapi.yml</inputSpec>-->
 <!--                            <generatorName>spring</generatorName>-->
 <!--                            <apiPackage>co.moveapps.spa.core.controller.api</apiPackage>-->
 <!--                            <modelPackage>co.moveapps.spa.core.controller.model</modelPackage>-->

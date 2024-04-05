@@ -8,6 +8,7 @@ package co.moveapps.spa.core.controller.api;
 import co.moveapps.spa.core.controller.model.CredentialsRequest;
 import co.moveapps.spa.core.controller.model.CredentialsResponse;
 import co.moveapps.spa.core.controller.model.ModelApiResponse;
+import co.moveapps.spa.core.exception.BusinessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,18 +19,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.util.Optional;
+import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T03:56:38.469360-05:00[America/Bogota]")
 @Validated
 @Controller
 @Tag(name = "access", description = "Operations about authentication")
@@ -48,36 +47,36 @@ public interface AuthApi {
      *         or unexpected error (status code 200)
      */
     @Operation(
-        operationId = "login",
-        summary = "Validate credentials and generate JWT",
-        description = "Generate JWT to access for use all apis for Nuevo SPA.",
-        tags = { "access" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = CredentialsResponse.class))
-            }),
-            @ApiResponse(responseCode = "default", description = "unexpected error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
+            operationId = "login",
+            summary = "Validate credentials and generate JWT",
+            description = "Generate JWT to access for use all apis for Nuevo SPA.",
+            tags = { "access" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = CredentialsResponse.class))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
     )
     @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/auth",
-        produces = { "application/json" },
-        consumes = { "application/json" }
+            method = RequestMethod.POST,
+            value = "/auth",
+            produces = { "application/json" },
+            consumes = { "application/json" }
     )
-    
+
     default ResponseEntity<CredentialsResponse> login(
-        @Parameter(name = "CredentialsRequest", description = "", required = true) @Valid @RequestBody CredentialsRequest credentialsRequest
-    ) {
+            @Parameter(name = "CredentialsRequest", description = "", required = true) @Valid @RequestBody CredentialsRequest credentialsRequest
+    ) throws BusinessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"access_token\" : \"access_token\", \"expiration_time\" : 0, \"email\" : \"email\" }";
+                    String exampleString = "{ \"access_token\" : \"access_token\", \"expiration_time\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

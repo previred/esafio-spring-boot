@@ -10,33 +10,16 @@ import java.util.Objects;
  * CredentialsResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
 public class CredentialsResponse {
-
-  private String email;
 
   private String accessToken;
 
   private Integer expirationTime;
 
-  public CredentialsResponse email(String email) {
-    this.email = email;
-    return this;
-  }
-
-  /**
-   * Get email
-   * @return email
-  */
-  
-  @Schema(name = "email", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("email")
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  public CredentialsResponse(String token, int expiration) {
+    this.accessToken = token;
+    this.expirationTime = expiration;
   }
 
   public CredentialsResponse accessToken(String accessToken) {
@@ -88,21 +71,19 @@ public class CredentialsResponse {
       return false;
     }
     CredentialsResponse credentialsResponse = (CredentialsResponse) o;
-    return Objects.equals(this.email, credentialsResponse.email) &&
-        Objects.equals(this.accessToken, credentialsResponse.accessToken) &&
+    return Objects.equals(this.accessToken, credentialsResponse.accessToken) &&
         Objects.equals(this.expirationTime, credentialsResponse.expirationTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, accessToken, expirationTime);
+    return Objects.hash(accessToken, expirationTime);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CredentialsResponse {\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("    expirationTime: ").append(toIndentedString(expirationTime)).append("\n");
     sb.append("}");

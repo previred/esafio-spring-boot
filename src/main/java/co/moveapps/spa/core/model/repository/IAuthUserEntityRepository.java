@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface IAuthUserEntityRepository extends JpaRepository<AuthUserEntity, UUID> {
 
-    Optional<AuthUserEntity> findByEmailAndPassword(final String username, final String password);
+    Optional<AuthUserEntity> findByUsernameAndPassword(final String username, final String password);
 }

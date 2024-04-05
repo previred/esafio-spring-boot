@@ -1,5 +1,6 @@
 package co.moveapps.spa.core.controller.model;
 
+import co.moveapps.spa.core.model.entity.TaskEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,18 +8,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * TaskResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
 public class TaskResponse {
 
-  private Long id;
+  private UUID id;
 
-  private StatusTask status;
+  private StatusResponse status;
 
   private UserResponse user;
 
@@ -32,9 +35,19 @@ public class TaskResponse {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime updatedAt;
 
-  public TaskResponse id(Long id) {
+  public TaskResponse id(UUID id) {
     this.id = id;
     return this;
+  }
+
+  public TaskResponse(TaskEntity entity) {
+    this.id = entity.getId();
+    this.status = new StatusResponse(entity.getState());
+    this.user = new UserResponse(entity.getUser());
+    this.title = entity.getTitle();
+    this.description = entity.getDescription();
+    this.createdAt = entity.getCreatedAt().atZone(ZoneOffset.UTC).toOffsetDateTime();
+    this.updatedAt = entity.getUpdatedAt().atZone(ZoneOffset.UTC).toOffsetDateTime();
   }
 
   /**
@@ -44,15 +57,15 @@ public class TaskResponse {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
-  public TaskResponse status(StatusTask status) {
+  public TaskResponse status(StatusResponse status) {
     this.status = status;
     return this;
   }
@@ -64,11 +77,11 @@ public class TaskResponse {
   @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public StatusTask getStatus() {
+  public StatusResponse getStatus() {
     return status;
   }
 
-  public void setStatus(StatusTask status) {
+  public void setStatus(StatusResponse status) {
     this.status = status;
   }
 

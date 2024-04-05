@@ -3,11 +3,11 @@ package co.moveapps.spa.core.utility;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.owasp.encoder.Encode;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.security.Key;
+import java.security.*;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -29,32 +29,46 @@ public class SecurityCommonUtility {
     }
 
     public String encode(String text) {
-        return this.encodeWithBcryptHashing(text);
+        return this.encodeWithMD5(text);
     }
 
-    private String encodeWithBcryptHashing(String text) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.encode(text);
+    public String encodeWithMD5(String text) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(text.getBytes());
+
+            byte[] hashedBytes = md.digest();
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes)
+                sb.append(String.format("%02x", b));
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
     }
 
     public String generateJWT(Map<String, Object> claims, String secret, Long expirationTimeMinutes) {
-        final Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
         return Jwts.builder()
                 .setAudience(JWT_AUDIENCE_ID)
                 .addClaims(Optional.ofNullable(claims).orElse(new HashMap<>()))
                 .setIssuedAt(Calendar.getInstance().getTime())
                 .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(expirationTimeMinutes).toInstant()))
-                .signWith(key, SignatureAlgorithm.ES256)
+                .signWith(this.getSignInKey(secret), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public Claims verifyJWT(String token, String secret) {
-        final Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
         return Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(this.getSignInKey(secret))
                 .requireAudience(JWT_AUDIENCE_ID)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    private Key getSignInKey(String secret) {
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 }

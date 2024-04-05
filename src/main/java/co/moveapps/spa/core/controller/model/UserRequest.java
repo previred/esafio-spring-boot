@@ -11,7 +11,7 @@ import java.util.Objects;
  * UserRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
 public class UserRequest {
 
   private CredentialsRequest credentials;

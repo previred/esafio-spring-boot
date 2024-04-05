@@ -1,5 +1,6 @@
 package co.moveapps.spa.core.controller.model;
 
+import co.moveapps.spa.core.model.entity.UserEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,16 +8,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * UserResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
 public class UserResponse {
 
-  private Long id;
+  private UUID id;
 
   private String firstName;
 
@@ -34,9 +37,20 @@ public class UserResponse {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime updatedAt;
 
-  public UserResponse id(Long id) {
+  public UserResponse id(UUID id) {
     this.id = id;
     return this;
+  }
+
+  public UserResponse(UserEntity entity) {
+    this.id = entity.getId();
+    this.firstName = entity.getFirstname();
+    this.lastName = entity.getLastname();
+    this.email = entity.getAuthentication().getUsername();
+    this.phone = entity.getPhone().toString();
+    this.enable = entity.getEnable();
+    this.createdAt = entity.getCreatedAt().atZone(ZoneOffset.UTC).toOffsetDateTime();
+    this.updatedAt = entity.getUpdatedAt().atZone(ZoneOffset.UTC).toOffsetDateTime();
   }
 
   /**
@@ -46,11 +60,11 @@ public class UserResponse {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 

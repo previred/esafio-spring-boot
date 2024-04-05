@@ -8,7 +8,7 @@ info:
     email: andresduran0205@gmail.com
   version: 0.0.1
 servers:
-  - url: http://localhost:8080/api/v3
+  - url: http://localhost:8080/api
 tags:
   - name: access
     description: Operations about authentication
@@ -83,7 +83,7 @@ paths:
           schema:
             type: integer
             format: int32
-            default: 1
+            default: 0
         - name: limit
           in: query
           description: Maximum number of results to return
@@ -160,6 +160,33 @@ paths:
           content:
             application/json:
               schema:
+                type: boolean
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    get:
+      description: Search users by id for SPA
+      tags:
+        - user
+      summary: Search user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of user
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
                 $ref: '#/components/schemas/UserResponse'
         default:
           description: unexpected error
@@ -207,7 +234,7 @@ paths:
           schema:
             type: integer
             format: int32
-            default: 1
+            default: 0
         - name: limit
           in: query
           description: Maximum number of results to return
@@ -222,7 +249,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskResponse'
         default:
           description: unexpected error
           content:
@@ -284,6 +313,33 @@ paths:
           content:
             application/json:
               schema:
+                type: boolean
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    get:
+      description: Search task by id for SPA
+      tags:
+        - task
+      summary: Search task by id
+      operationId: getTaskById
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of task
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
                 $ref: '#/components/schemas/TaskResponse'
         default:
           description: unexpected error
@@ -291,6 +347,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+  /status/task:
+    get:
+      description: Search all status of task
+      tags:
+        - task
+      summary: Search all status of tasks
+      operationId: getAllStatusTasks
+      parameters:
+        - name: page
+          in: query
+          description: Number of page to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
     CredentialsRequest:
@@ -307,8 +404,6 @@ components:
     CredentialsResponse:
       type: object
       properties:
-        email:
-          type: string
         access_token:
           type: string
         expiration_time:
@@ -350,16 +445,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    StatusTask:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        enable:
-          type: boolean
     TaskRequest:
       type: object
       properties:
@@ -367,7 +452,7 @@ components:
           type: integer
           format: int64
         status:
-          $ref: '#/components/schemas/StatusTask'
+          $ref: '#/components/schemas/StatusResponse'
         title:
           type: string
         description:
@@ -379,7 +464,7 @@ components:
           type: integer
           format: int64
         status:
-          $ref: '#/components/schemas/StatusTask'
+          $ref: '#/components/schemas/StatusResponse'
         user:
           $ref: '#/components/schemas/UserResponse'
         title:
@@ -392,6 +477,16 @@ components:
         updated_at:
           type: string
           format: date-time
+    StatusResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        enable:
+          type: boolean
     ApiResponse:
       type: object
       properties:

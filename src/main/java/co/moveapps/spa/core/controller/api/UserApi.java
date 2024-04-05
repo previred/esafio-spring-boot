@@ -8,29 +8,31 @@ package co.moveapps.spa.core.controller.api;
 import co.moveapps.spa.core.controller.model.ModelApiResponse;
 import co.moveapps.spa.core.controller.model.UserRequest;
 import co.moveapps.spa.core.controller.model.UserResponse;
+import co.moveapps.spa.core.exception.BusinessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T03:56:38.469360-05:00[America/Bogota]")
 @Validated
 @Controller
 @Tag(name = "user", description = "Operations about user")
@@ -49,31 +51,31 @@ public interface UserApi {
      *         or unexpected error (status code 200)
      */
     @Operation(
-        operationId = "createUser",
-        summary = "Create a user in a system.",
-        description = "Register a new client for SPA",
-        tags = { "user" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
-            }),
-            @ApiResponse(responseCode = "default", description = "unexpected error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
+            operationId = "createUser",
+            summary = "Create a user in a system.",
+            description = "Register a new client for SPA",
+            tags = { "user" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
     )
     @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/user",
-        produces = { "application/json" },
-        consumes = { "application/json" }
+            method = RequestMethod.POST,
+            value = "/user",
+            produces = { "application/json" },
+            consumes = { "application/json" }
     )
-    
+
     default ResponseEntity<UserResponse> createUser(
-        @Parameter(name = "UserRequest", description = "", required = true) @Valid @RequestBody UserRequest userRequest
+            @Parameter(name = "UserRequest", description = "", required = true) @Valid @RequestBody UserRequest userRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -98,40 +100,31 @@ public interface UserApi {
      *         or unexpected error (status code 200)
      */
     @Operation(
-        operationId = "deleteUser",
-        summary = "Remove a user of the system.",
-        description = "Delete a existent client for SPA",
-        tags = { "user" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
-            }),
-            @ApiResponse(responseCode = "default", description = "unexpected error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
+            operationId = "deleteUser",
+            summary = "Remove a user of the system.",
+            description = "Delete a existent client for SPA",
+            tags = { "user" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = Boolean.class))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
     )
     @RequestMapping(
-        method = RequestMethod.DELETE,
-        value = "/user/{id}",
-        produces = { "application/json" }
+            method = RequestMethod.DELETE,
+            value = "/user/{id}",
+            produces = { "application/json" }
     )
-    
-    default ResponseEntity<UserResponse> deleteUser(
-        @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") Long id
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"firstName\", \"lastName\" : \"lastName\", \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\", \"phone\" : \"phone\", \"enable\" : true, \"created_at\" : \"2000-01-23T04:56:07.000+00:00\", \"id\" : 0, \"email\" : \"email\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+
+    default ResponseEntity<Boolean> deleteUser(
+            @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") UUID id
+    ) throws BusinessException {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -147,36 +140,84 @@ public interface UserApi {
      *         or unexpected error (status code 200)
      */
     @Operation(
-        operationId = "getAllUsers",
-        summary = "Search users in a system with parameters",
-        description = "Search users for SPA with parameters",
-        tags = { "user" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserResponse.class)))
-            }),
-            @ApiResponse(responseCode = "default", description = "unexpected error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
+            operationId = "getAllUsers",
+            summary = "Search users in a system with parameters",
+            description = "Search users for SPA with parameters",
+            tags = { "user" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserResponse.class)))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
     )
     @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/user",
-        produces = { "application/json" }
+            method = RequestMethod.GET,
+            value = "/user",
+            produces = { "application/json" }
     )
-    
+
     default ResponseEntity<List<UserResponse>> getAllUsers(
-        @Parameter(name = "page", description = "Number of page to return", in = ParameterIn.QUERY) @Valid @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-        @Parameter(name = "limit", description = "Maximum number of results to return", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "100") Integer limit
+            @Parameter(name = "page", description = "Number of page to return", in = ParameterIn.QUERY) @Valid @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+            @Parameter(name = "limit", description = "Maximum number of results to return", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "100") Integer limit
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "[ { \"firstName\" : \"firstName\", \"lastName\" : \"lastName\", \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\", \"phone\" : \"phone\", \"enable\" : true, \"created_at\" : \"2000-01-23T04:56:07.000+00:00\", \"id\" : 0, \"email\" : \"email\" }, { \"firstName\" : \"firstName\", \"lastName\" : \"lastName\", \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\", \"phone\" : \"phone\", \"enable\" : true, \"created_at\" : \"2000-01-23T04:56:07.000+00:00\", \"id\" : 0, \"email\" : \"email\" } ]";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /user/{id} : Search user by id
+     * Search users by id for SPA
+     *
+     * @param id Unique identifier of user (required)
+     * @return success (status code 200)
+     *         or unexpected error (status code 200)
+     */
+    @Operation(
+            operationId = "getUserById",
+            summary = "Search user by id",
+            description = "Search users by id for SPA",
+            tags = { "user" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/user/{id}",
+            produces = { "application/json" }
+    )
+
+    default ResponseEntity<UserResponse> getUserById(
+            @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") UUID id
+    ) throws BusinessException {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"firstName\" : \"firstName\", \"lastName\" : \"lastName\", \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\", \"phone\" : \"phone\", \"enable\" : true, \"created_at\" : \"2000-01-23T04:56:07.000+00:00\", \"id\" : 0, \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -197,32 +238,32 @@ public interface UserApi {
      *         or unexpected error (status code 200)
      */
     @Operation(
-        operationId = "updateUser",
-        summary = "Update a user in a system.",
-        description = "Modify fields for a existent client for SPA",
-        tags = { "user" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
-            }),
-            @ApiResponse(responseCode = "default", description = "unexpected error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
+            operationId = "updateUser",
+            summary = "Update a user in a system.",
+            description = "Modify fields for a existent client for SPA",
+            tags = { "user" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "success", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))
+                    }),
+                    @ApiResponse(responseCode = "default", description = "unexpected error", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ModelApiResponse.class))
+                    })
+            },
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
     )
     @RequestMapping(
-        method = RequestMethod.PUT,
-        value = "/user/{id}",
-        produces = { "application/json" },
-        consumes = { "application/json" }
+            method = RequestMethod.PUT,
+            value = "/user/{id}",
+            produces = { "application/json" },
+            consumes = { "application/json" }
     )
-    
+
     default ResponseEntity<UserResponse> updateUser(
-        @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") Long id,
-        @Parameter(name = "UserRequest", description = "") @Valid @RequestBody(required = false) UserRequest userRequest
+            @Parameter(name = "id", description = "Unique identifier of user", required = true, in = ParameterIn.PATH) @PathVariable("id") UUID id,
+            @Parameter(name = "UserRequest", description = "") @Valid @RequestBody(required = false) UserRequest userRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

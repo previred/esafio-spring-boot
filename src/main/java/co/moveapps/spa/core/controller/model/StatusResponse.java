@@ -1,5 +1,6 @@
 package co.moveapps.spa.core.controller.model;
 
+import co.moveapps.spa.core.model.entity.StatusTaskEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -7,11 +8,11 @@ import javax.annotation.Generated;
 import java.util.Objects;
 
 /**
- * StatusTask
+ * StatusResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
-public class StatusTask {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
+public class StatusResponse {
 
   private Long id;
 
@@ -19,7 +20,13 @@ public class StatusTask {
 
   private Boolean enable;
 
-  public StatusTask id(Long id) {
+  public StatusResponse(StatusTaskEntity entity) {
+    this.id = Long.valueOf(entity.getId());
+    this.name = entity.getName();
+    this.enable = entity.getEnable();
+  }
+
+  public StatusResponse id(Long id) {
     this.id = id;
     return this;
   }
@@ -39,7 +46,7 @@ public class StatusTask {
     this.id = id;
   }
 
-  public StatusTask name(String name) {
+  public StatusResponse name(String name) {
     this.name = name;
     return this;
   }
@@ -59,7 +66,7 @@ public class StatusTask {
     this.name = name;
   }
 
-  public StatusTask enable(Boolean enable) {
+  public StatusResponse enable(Boolean enable) {
     this.enable = enable;
     return this;
   }
@@ -87,10 +94,10 @@ public class StatusTask {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StatusTask statusTask = (StatusTask) o;
-    return Objects.equals(this.id, statusTask.id) &&
-        Objects.equals(this.name, statusTask.name) &&
-        Objects.equals(this.enable, statusTask.enable);
+    StatusResponse statusResponse = (StatusResponse) o;
+    return Objects.equals(this.id, statusResponse.id) &&
+        Objects.equals(this.name, statusResponse.name) &&
+        Objects.equals(this.enable, statusResponse.enable);
   }
 
   @Override
@@ -101,7 +108,7 @@ public class StatusTask {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StatusTask {\n");
+    sb.append("class StatusResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    enable: ").append(toIndentedString(enable)).append("\n");

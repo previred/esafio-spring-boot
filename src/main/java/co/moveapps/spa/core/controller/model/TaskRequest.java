@@ -11,12 +11,12 @@ import java.util.Objects;
  * TaskRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-04T07:43:43.981178-05:00[America/Bogota]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-05T04:39:24.553212-05:00[America/Bogota]")
 public class TaskRequest {
 
   private Long userId;
 
-  private StatusTask status;
+  private StatusResponse status;
 
   private String title;
 
@@ -42,7 +42,7 @@ public class TaskRequest {
     this.userId = userId;
   }
 
-  public TaskRequest status(StatusTask status) {
+  public TaskRequest status(StatusResponse status) {
     this.status = status;
     return this;
   }
@@ -54,11 +54,11 @@ public class TaskRequest {
   @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public StatusTask getStatus() {
+  public StatusResponse getStatus() {
     return status;
   }
 
-  public void setStatus(StatusTask status) {
+  public void setStatus(StatusResponse status) {
     this.status = status;
   }
 

@@ -13,5 +13,4 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CurrentUserPrincipal {
     private UUID sessionId;
-    private String username;
 }

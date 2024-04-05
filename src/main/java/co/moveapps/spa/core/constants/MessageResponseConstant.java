@@ -13,9 +13,7 @@ public class MessageResponseConstant {
 
     public static final BaseResponse EXCEPTION_AUTHENTICATION_USER_FAILED = message(HttpStatus.UNAUTHORIZED, "The credentials entered do not exist or do not match, please try again.");
 
-
-    public static final BaseResponse ACCOUNT_NOT_EXIST = message(HttpStatus.BAD_REQUEST, "The number account not exist.");
-    public static final BaseResponse ACCOUNT_INSUFFICIENT_BALANCE = message(HttpStatus.BAD_REQUEST, "The account not have sufficient balance.");
+    public static final BaseResponse EXCEPTION_NOT_DATA_FOUND = message(HttpStatus.NOT_FOUND, "The resource not exist, please try again with another value.");
 
 
     private static BaseResponse message(HttpStatus status, String message) {
