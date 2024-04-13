@@ -1,72 +1,63 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# New Spa
+Aplicativo para tener un listado de tareas, segurizado para que cada usuario pueda ver y 
+administrar sus propias tareas. 
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+- Java 17
+- Spring Boot 2.7
+- H2
+- Spring Security con JWT
+- Open API 3.1
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+<!-- TOC -->
+# Contenido
+* [New Spa](#new-spa)
+    * [Compilado](#compilado)
+    * [Ejecucion](#ejecucion)
+    * [Prueba](#prueba)
+<!-- TOC -->
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## Compilado
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+El proyecto utiliza Maven con Java 17, para el compilado. Por ende se debe tomar en cuenta que se debe generar las clases,
+que corresponden al [OpenApi (Ir al archivo)](src%2Fmain%2Fresources%2Fopenapi3_1.yaml).
 
-### Base de Datos:
+Para generar las clases de la OpenApi se debe ejecutar el siguiente comando:
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+`mvn clean compile`
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+## Ejecucion
 
-### JWT (JSON Web Token):
+Como el aplicativo usa una base de datos H2, se configuro para que se pueda utilizar por medio de un archivo que se generara,
+al momento de ejecucion. Ademas que se utiliza Spring boot, es por ello que se puede ejecutar el aplicacion.
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+Para ejecutar, se debe utilizar el siguiente comando:
 
-### OpenAPI y Swagger:
+`mvn spring-boot:run`
 
-- Documenta la API utilizando OpenAPI y Swagger.
+## Prueba
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+Para las pruebas, se recomienda la utilizacion del Postman y se debera exportar la [collection (Ir al archivo)](postman%2Fnew_spa_server.postman_collection.json)
+que se encuentra dentro del proyecto.
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+Ya dentro del postman y exportado correctamente la collection.
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+Se encontrar 2 carpetas para agrupar los endpoint que son del usuario y para las tareas(tasks)
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+![Bildschirmfoto 2024-04-13 um 03.29.39.png](docs%2FBildschirmfoto%202024-04-13%20um%2003.29.39.png)
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
-
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
-
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
-
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
-
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
-
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+1. Los endpoint que tienen usuarios son publicos y no tienen ninguna seguridad.
+2. Los endpoint que tienen las tareas si requieren un token (JWT) por ende no son publicos y debe proceder a logearse.
+3. Dentro del postman, ya se encuentra configurado que al ejecutarse el endpoint de Login, proceda a logearse con un usuario creado posterior a la ejecutcion del proyecto.
+4. En caso que necesita ejecutarlo a mano, debera ejecutar el siguiente curl.
+```
+curl --location 'localhost:8080/api/public/v1/user/login' \
+--header 'Content-Type: application/json' \
+--data '{
+"username": "test",
+"password": "test"
+}'
+```
+5. Ya con el token seteado dentro del postman, puede proceder a ejecutar los endpoint correspondiente a las tareas.
+![Bildschirmfoto 2024-04-13 um 03.30.32.png](docs%2FBildschirmfoto%202024-04-13%20um%2003.30.32.png)
+6. Por ejemplo, la creacion de una tarea.
+![Bildschirmfoto 2024-04-13 um 03.31.03.png](docs%2FBildschirmfoto%202024-04-13%20um%2003.31.03.png)
