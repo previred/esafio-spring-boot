@@ -21,6 +21,8 @@ administrar sus propias tareas.
 El proyecto utiliza Maven con Java 17, para el compilado. Por ende se debe tomar en cuenta que se debe generar las clases,
 que corresponden al [OpenApi (Ir al archivo)](src%2Fmain%2Fresources%2Fopenapi3_1.yaml).
 
+Tambien esta una imagen de docker en caso que tengan algun inconveniente. [Docker](https://hub.docker.com/r/josue270193/new_spa_server/tags).
+
 Para generar las clases de la OpenApi se debe ejecutar el siguiente comando:
 
 `mvn clean compile`
