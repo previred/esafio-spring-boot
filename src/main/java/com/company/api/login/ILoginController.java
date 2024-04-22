@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface ILoginController {
 
     @ApiOperation(value = "Servicio que permite autenticar al usuario ",
-            notes = "El servicio retorna un  token con el cual puede acceder al restod e recursos",
+            notes = "El servicio retorna un  token con el cual puede acceder a la aplicacion",
             nickname = "login",
             response = Void.class)
     @PostMapping("/login")

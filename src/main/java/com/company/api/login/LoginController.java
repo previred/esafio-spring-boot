@@ -16,11 +16,6 @@ public class LoginController implements  ILoginController{
 
     private final UserService userService;
 
-
-    @ApiOperation(value = "Servicio que permite autenticar al usuario ",
-            notes = "El servicio retorna un  token con el cual puede acceder al restod e recursos",
-            nickname = "login",
-            response = Void.class)
     @Override
     public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest login) {
         return ResponseEntity.ok(userService.loginUser(login));
