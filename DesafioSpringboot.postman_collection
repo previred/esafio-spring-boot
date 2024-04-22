@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "77d3dd26-6962-40e2-afdd-f52dfe1f4aef",
+		"name": "task-app Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9006/task-app/task",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tarea por Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9006/task-app/task/find/0966e6be-8c90-44bf-bb2f-a1e592a4bf10",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"task",
+						"find",
+						"0966e6be-8c90-44bf-bb2f-a1e592a4bf10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Tarea Nueva",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\":\"Ajuste en aplicacion de carteras\",\r\n    \"startDate\":\"2024-04-25\",\r\n    \"endDate\":\"2024-04-30\",\r\n    \"userId\":\"57c19db9-0492-4289-9a68-373bf9398d95\",\r\n    \"taskStatusId\":\"6462db0e-9bb0-4f04-9569-e64aaf8a1158\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9006/task-app/task/create",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"task",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\":\"cb4239f8-ce3a-4ac0-89d8-31d1373326fe\",\r\n    \"description\":\"Ajuste en aplicacion de carteras2222\",\r\n    \"startDate\":\"2024-04-30\",\r\n    \"endDate\":\"2024-05-30\",\r\n    \"userId\":\"57c19db9-0492-4289-9a68-373bf9398d95\",\r\n    \"taskStatusId\":\"8ccc246d-4f77-47c8-a9a0-ebab041da4a1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9006/task-app/task/update",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"task",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9006/task-app/task/delete/cb4239f8-ce3a-4ac0-89d8-31d1373326fe",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"task",
+						"delete",
+						"cb4239f8-ce3a-4ac0-89d8-31d1373326fe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ym98@hotmail.com\",\r\n    \"password\": \"33334444\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9006/task-app/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9006",
+					"path": [
+						"task-app",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

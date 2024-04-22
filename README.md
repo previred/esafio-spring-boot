@@ -70,3 +70,47 @@ Se evaluará la solución en función de los siguientes criterios:
 - Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
 - **Puntos extras si la generación de la API se realizo mediante API First**
+
+
+**********************************************************************************************
+
+## Implementación
+    
+Se realizo la implementacion del código aplicando las buenas practicas de desarrollo.
+
+- Programacion Funcional
+- Codigo Limpio
+- Principios SOLID
+- Pruebas unitarias
+
+## Tecnologias
+
+-  Spring Boot 2.7.17
+-  H2 
+-  Swagger
+-  JPA
+-  Lombok
+-  Spring Security
+-  JWT
+-  Java 17
+-  JUnit
+-  Mockito
+
+
+## Despliegue APP
+
+- 1. Clonar el repositorio 
+- 2. Compilar el proyecto en un IDE
+- 3. Ejecutar el proyecto 
+- 4. Ejecutar los enpoint en postman, se adjunta coleccion(Archivo DesafioSpringboot.postman_collection.json)
+
+
+## Consideraciones
+
+-  Obtener el token en el servicio /login y adicionar este en el resto de peticiones configuradas
+-  Revisar el archivo resources/data.sql para ver los datos pre-cargados en la aplicacion, tanto el usuario como 
+   los estados de las tareas
+-  Revisar el archivo DiagramaBd.png para ver el diagrama de la Bd local
+
+
+ Quedo atento a retroalimentacion, comunicarse al correo yesidmurillosegura@hotmail.com ante cualquier duda
