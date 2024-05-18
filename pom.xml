@@ -1,35 +1,23 @@
-# API Task Microservice
-
-## Overview
-
-Esta api permite la consulta, creacion, actualizacion y eliminacion de **tareas**, las peticiones se deben autenticar con JTW.
-
-## Pre-requirements
-
-- JAVA 17
-- Maven
-
-## Implemented Libraries
-
-- Spring Boot
-- Spring Security
-- JWT
-- Lombok
-- Mapstruct
-
-## Content
-
-* [Dependencias](#dependencies)
-* [Unit Test](#test)
-* [Solution Diagram Data Base](#diagramDB)
-* [Solution Diagram Architecture](#diagramA)
-* [API Documentation](#swagger)
-* [How to run component locally](#run)
-* [Additional notes](#notes)
-
-
-## <a name="dependencies"></a>Dependencies POM
-
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+        <relativePath/>
+    </parent>
+    <groupId>co.com.task.api</groupId>
+    <artifactId>desafio-spring-boot</artifactId>
+    <version>1.0.0</version>
+    <name>Microservice Task</name>
+    <description>Spring Boot App</description>
+    <properties>
+        <java.version>17</java.version>
+        <jsonwebtoken.version>0.11.5</jsonwebtoken.version>
+        <springfox.version>3.0.0</springfox.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,6 +69,11 @@ Esta api permite la consulta, creacion, actualizacion y eliminacion de **tareas*
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox.version}</version>
         </dependency>
@@ -90,92 +83,12 @@ Esta api permite la consulta, creacion, actualizacion y eliminacion de **tareas*
             <version>${springfox.version}</version>
         </dependency>
     </dependencies>
-
-## <a name="test"></a>Unit Tests
-
-- Junit
-- MockMvc
-
-**Test:**
-
-![test](./docs/img/test2.PNG)
-
-**Coverage:**
-
-![coverage](./docs/img/test1.PNG)
-
-## <a name="diagramDB"></a>Solution Diagram Data Base
-
-![DiagramaBD](./docs/img/diagramaBD.PNG)
-
-
-## <a name="diagramA"></a>Solution Diagram Architecture
-
-![Diagrama](./docs/img/diagrama.jpg)
-
-## <a name="swagger"></a>swaggwer-ui
-
-![swagger](./docs/img/swagger-ui.PNG)
-
-## <a name="run"></a>How to run component locally
-
-**Microservice settings:**
-
-- Setup Spring application using [YML file](src/main/resources), i.e. server port.
-
-**Run:**
-- `co.com.task.api.MicroserviceApplication` main method.
-
-**Login:**
-
-![Login](./docs/img/login.PNG)
-
-**Config Token:**
-
-![Token](./docs/img/token.PNG)
-
-**GetAll Task:**
-
-![getAllTask](./docs/img/getAllTask.PNG)
-
-**getById Task:**
-
-![getById Task](./docs/img/getByIdUser.PNG)
-
-**save Task:**
-
-![save Task](./docs/img/saveTask.PNG)
-
-**update Task:**
-
-![update Task](./docs/img/updateTask.PNG)
-
-**delete Task:**
-
-![delete Task](./docs/img/deleteTask.PNG)
-
-**GetAll User:**
-
-![getAllUser](./docs/img/getAllUser.PNG)
-
-**getById User:**
-
-![getById User](./docs/img/getByIdUser.PNG)
-
-**save Task:**
-
-![save User](./docs/img/saveUser.PNG)
-
-**update Task:**
-
-![update User](./docs/img/updateUser.PNG)
-
-**delete Task:**
-
-![delete User](./docs/img/deleteUser.PNG)
-
-
-
-## <a name="note"></a>Additional notes
-
-Desarrollado por Edwin Gonzalez  edwinhalo2y3@hotmail.com
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

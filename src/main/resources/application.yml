@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:taskapi
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: false
+    open-in-view: false
+springfox:
+  documentation:
+    swagger:
+      v2:
+        use-model-v3: false    
+security:
+  origin: '*'
+  secret: U1ZBVHhrQXQybk9nTzRQTWZnNDduaWNrWWM0V1I4b1JMb0Y2a19kTm9WOTl4aGcyV3ltcDcycTFwMHRsYm9MVVRHSjlfZU1faDYxRFNkdVUzdkxDbWc=
+  expiration: 600000
+expresion-regular:
+  email: ^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$
+  password: ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$
+

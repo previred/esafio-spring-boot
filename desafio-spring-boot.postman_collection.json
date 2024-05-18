@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "4f415443-a67d-4fb9-ad4d-a6dae61352d0",
+		"name": "desafio-spring-boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7984492",
+		"_collection_link": "https://crimson-firefly-100779.postman.co/workspace/Novopayment~9bbe13f3-0c92-4d87-a321-55ee719561a0/collection/7984492-4f415443-a67d-4fb9-ad4d-a6dae61352d0?action=share&source=collection_link&creator=7984492"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"edwinhalo2y3@hotmail.com\",\r\n    \"pass\":\"66809988Aa@@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authentication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwMDQ2NTYsImV4cCI6MTcxNjAwNTI1Nn0.mL_2wEj0CaygFdXUIQvJuW62PrEUuSSv8fw_rmrQNUU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTU5ODQ2OTcsImV4cCI6MTcxNTk4NTI5N30.KPyxop4gegF--dOgYNEm6YAaumgonCDjSJEaPjjLL8Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/user-id/954cdc80-57e3-46b0-ae31-4173671bd5e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"user-id",
+								"954cdc80-57e3-46b0-ae31-4173671bd5e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwMDIwNDAsImV4cCI6MTcxNjAwMjY0MH0.jKCI50i38075amA-uSdXq_H8FbzOeDkExXy4f2qVGSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edwinhalo2y3@hotmai33d.com\",\r\n    \"name\": \"Edwin Gonzalez\",\r\n    \"password\": \"sdeljweijwoz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwNTk1NjIsImV4cCI6MTcxNjA2MDE2Mn0.UMvjozQ0IT6s3s7MW4zZHdBg_xl7eZnte7G403ebEX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUser\":\"954cdc80-57e3-46b0-ae31-4173671bd5e4\",\r\n    \"email\": \"edwinhalo2y3@hotmail.com\",\r\n    \"name\": \"Edwind Gonzalez\",\r\n    \"password\": \"66809988Aa@@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwNjAwNjMsImV4cCI6MTcxNjA2MDY2M30.f3SvRklbeafzR-OYdaWg8N2jDmYfBaqCSJso0gIXnhA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/delete/954cdc80-57e3-46b0-ae31-4173671bd5e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"delete",
+								"954cdc80-57e3-46b0-ae31-4173671bd5e4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTU5ODM5MzAsImV4cCI6MTcxNTk4NDUzMH0.YYz2y7Z9x9eCRVpkUxC8GSHkASHz9EPecbyTcJsCta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTU5ODg2MTksImV4cCI6MTcxNTk4OTIxOX0.pY7_d-RJJnNHe7ooMMaknclOTfLvUqwdMYZtXJ-CQl0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/task-id/44b1a2a6-9d0c-4aa4-b2e1-381bfba152ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"task-id",
+								"44b1a2a6-9d0c-4aa4-b2e1-381bfba152ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTU5ODk0NTgsImV4cCI6MTcxNTk5MDA1OH0.Q9KbMOYnFL1lYajzh2f_ztw38vJFPw6w4buRK1v1iis",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Tarea de Prueba\",\r\n    \"status\": \"DONE\",\r\n    \"idUser\": \"954cdc80-57e3-46b0-ae31-4173671bd5e4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/task/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwNTkwMzIsImV4cCI6MTcxNjA1OTYzMn0.r03_ZKKTmu7ZtcFlU60JlUIHQQEkFqGPwhRZrTd38VI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTask\":\"44b1a2a6-9d0c-4aa4-b2e1-381bfba152ab\",\r\n    \"description\": \"Tarea de Prueba\",\r\n    \"status\": \"DONE2\",\r\n    \"idUser\": \"954cdc80-57e3-46b0-ae31-4173671bd5e4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/task/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2wiOnsiYXV0aG9yaXR5IjoiVVNFUiJ9LCJzdWIiOiJlZHdpbmhhbG8yeTNAaG90bWFpbC5jb20iLCJpYXQiOjE3MTYwNjAwNjMsImV4cCI6MTcxNjA2MDY2M30.f3SvRklbeafzR-OYdaWg8N2jDmYfBaqCSJso0gIXnhA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/delete/44b1a2a6-9d0c-4aa4-b2e1-381bfba152ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"delete",
+								"44b1a2a6-9d0c-4aa4-b2e1-381bfba152ab"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
