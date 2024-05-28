@@ -7,6 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StateTaskDTO {
-    private long id;
+    private Long id;
     private String status;
 }
