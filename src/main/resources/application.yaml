@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:nisumdb
-    username: nisumdb
-    password: n1$umDB
+    url: jdbc:h2:mem:previred
+    username: previredb
+    password: previ123_
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
