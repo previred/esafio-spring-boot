@@ -1,6 +1,6 @@
 package cl.previred.desafio.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.*;
 
@@ -12,6 +12,6 @@ public class UserResponseDTO {
     private UUID id;
     private String email;
     private String fullname;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
