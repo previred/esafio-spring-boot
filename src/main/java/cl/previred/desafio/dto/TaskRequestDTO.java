@@ -9,6 +9,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskRequestDTO {
-    private UUID id_user;
+    private UUID idUser;
     private String description;
 }

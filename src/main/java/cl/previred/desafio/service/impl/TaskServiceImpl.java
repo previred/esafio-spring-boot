@@ -1,7 +1,9 @@
 package cl.previred.desafio.service.impl;
 
 import cl.previred.desafio.entity.TaskEntity;
+import cl.previred.desafio.enums.StateTaskEnum;
 import cl.previred.desafio.repository.TaskRepository;
+import cl.previred.desafio.service.StateTaskService;
 import cl.previred.desafio.service.TaskService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -20,6 +22,8 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
+    private final StateTaskService stateTaskService;
+
     @Override
     public List<TaskEntity> findAll() {
         return StreamSupport.stream(taskRepository.findAll().spliterator(), false)
@@ -28,6 +32,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskEntity createTask(TaskEntity task) {
+        task.setStatus(stateTaskService.findByName(StateTaskEnum.CREATED));
         return taskRepository.save(task);
     }
 

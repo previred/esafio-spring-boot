@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface StateTaskRepository extends CrudRepository<StateTaskEntity, Long> {
-    Optional<StateTaskEntity> findByName(StateTaskEnum name);
+    Optional<StateTaskEntity> findByName(String name);
 }
