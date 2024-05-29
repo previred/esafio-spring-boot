@@ -48,20 +48,28 @@ public class TaskController {
     @GetMapping("/{id}")
     public TaskResponseDTO getTaskById(@PathVariable String id){
         log.info(String.format("GET /tasks/%s", id));
-        return TaskResponseDTO.builder().id(UUID.fromString(id)).build();
+        return taskEntity2DTO(taskService.findById(UUID.fromString(id)));
     }
 
     @PutMapping("/{id}")
     public TaskResponseDTO updateTask(@PathVariable String id, @RequestBody TaskRequestDTO task){
         log.info(String.format("PUT /tasks/%s", id));
-        return TaskResponseDTO.builder().id(UUID.fromString(id)).description(task.getDescription()).build();
+        return taskEntity2DTO(taskService.update(UUID.fromString(id), task.getDescription()));
+    }
+
+    @PatchMapping("/{id}")
+    public TaskResponseDTO updateTaskStatus(@PathVariable String id, @RequestBody StateTaskDTO status){
+        log.info(String.format("PUT /tasks/%s", id));
+        return taskEntity2DTO(taskService.updateTaskStatus(UUID.fromString(id), status.getStatus()));
     }
 
     @DeleteMapping("/{id}")
     public TaskResponseDTO deleteTask(@PathVariable String id) {
         log.info(String.format("DELETE /tasks/%s", id));
-        return TaskResponseDTO.builder().id(UUID.fromString(id)).build();
+        return taskEntity2DTO(taskService.delete(UUID.fromString(id)));
     }
+
+
 
     /**
      * Transformations

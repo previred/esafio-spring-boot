@@ -43,10 +43,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskEntity update(UUID id, TaskEntity newTask) {
+    public TaskEntity update(UUID id, String description) {
         TaskEntity update = this.findById(id);
-        update.setDescription(newTask.getDescription());
-        update.setStatus(newTask.getStatus());
+        update.setDescription(description);
         return taskRepository.save(update);
     }
 
@@ -55,5 +54,12 @@ public class TaskServiceImpl implements TaskService {
         TaskEntity del = this.findById(id);
         taskRepository.delete(del);
         return del;
+    }
+
+    @Override
+    public TaskEntity updateTaskStatus(UUID id, String status) {
+        TaskEntity update = this.findById(id);
+        update.setStatus(stateTaskService.findByName(StateTaskEnum.valueOf(status)));
+        return taskRepository.save(update);
     }
 }

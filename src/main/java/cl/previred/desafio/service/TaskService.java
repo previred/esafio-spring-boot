@@ -14,7 +14,9 @@ public interface TaskService {
 
     TaskEntity findById(UUID id);
 
-    TaskEntity update(UUID id, TaskEntity newTask);
+    TaskEntity update(UUID id, String description);
 
     TaskEntity delete(UUID id);
+
+    TaskEntity updateTaskStatus(UUID id, String status);
 }
