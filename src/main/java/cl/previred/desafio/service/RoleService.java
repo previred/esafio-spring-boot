@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface RoleService {
     RoleEntity saveRole(RoleEntity role);
 
-    Optional<RoleEntity> findByName(RoleEnum admin);
+    Optional<RoleEntity> findByName(RoleEnum role);
 }

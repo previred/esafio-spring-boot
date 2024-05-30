@@ -12,6 +12,7 @@ import cl.previred.desafio.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class TaskController {
     private final UserService userService;
 
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     public List<TaskResponseDTO> getTaskList(){
         log.info("GET /tasks/");
         List<TaskResponseDTO> response = new ArrayList<>();
@@ -40,30 +42,35 @@ public class TaskController {
     }
 
     @PostMapping
+    @PreAuthorize("isAuthenticated()")
     public TaskResponseDTO createTask(@RequestBody TaskRequestDTO task){
         log.info("POST /tasks/ " + task);
         return taskEntity2DTO(taskService.createTask(taskDTO2Entity(task)));
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
     public TaskResponseDTO getTaskById(@PathVariable String id){
         log.info(String.format("GET /tasks/%s", id));
         return taskEntity2DTO(taskService.findById(UUID.fromString(id)));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public TaskResponseDTO updateTask(@PathVariable String id, @RequestBody TaskRequestDTO task){
         log.info(String.format("PUT /tasks/%s", id));
         return taskEntity2DTO(taskService.update(UUID.fromString(id), task.getDescription()));
     }
 
     @PatchMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
     public TaskResponseDTO updateTaskStatus(@PathVariable String id, @RequestBody StateTaskDTO status){
         log.info(String.format("PUT /tasks/%s", id));
         return taskEntity2DTO(taskService.updateTaskStatus(UUID.fromString(id), status.getStatus()));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public TaskResponseDTO deleteTask(@PathVariable String id) {
         log.info(String.format("DELETE /tasks/%s", id));
         return taskEntity2DTO(taskService.delete(UUID.fromString(id)));

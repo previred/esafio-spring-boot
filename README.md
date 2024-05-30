@@ -1,3 +1,45 @@
+# Desafío Previred
+@author Cristian Llanos
+
+Se presenta la solución del gestor de tareas para la empresa NUEVO SPA para mejorar la productividad y eficiencia de los equipos.
+
+## Tecnologías
+- Java 17.
+- Springboot 3.3.
+- H2 database.
+- JPA.
+- JWT.
+- OpenApi.
+- Swagger.
+
+## Documentación
+_(se necesita arrancar el proyecto para poder acceder)_
+* [Swagger del proyecto](http://localhost:8080/swagger-ui/index.html)
+* [Api docs](http://localhost:8080/api-docs)
+
+
+## Usuarios precargados
+
+| Usuario  | Password  |
+|---|---|
+| jcoltrane@gmail.com  | supreme  |
+| bevans@gmail.com  | undercurrent  |
+
+## Estados precargados
+- CREATED
+- WIP
+- DONE
+
+
+
+
+-------------------------------------
+
+
+
+
+
+
 # Desafío Técnico: Gestión de Tareas con Spring Boot y Java
 
 La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.

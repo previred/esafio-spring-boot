@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "7d1e104b-56b6-4967-9f75-6cf3955e5a92",
+		"name": "previred",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35324900"
+	},
+	"item": [
+		{
+			"name": "/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idUser\" : \"e3c4ddf9-0b16-46cb-899b-a35c7e7351dc\",\n    \"description\" : \"Escuchar musica\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tasks/af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\" : \"Escuchar musica jazz\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : \"DONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY29sdHJhbmVAZ21haWwuY29tIiwiaWF0IjoxNzE3MDUxMDQ2LCJleHAiOjE3MTcwNTEzNDZ9.lvjh2V3I3Q4VJeTcQlpY1ycpNphMsYsfAATLfsT2Xjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tasks/af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"af18e053-9dcf-4f3a-9ea7-a9f72fcf8c39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mdavis@gmail.com.cl\",\n    \"fullname\": \"Miles Davis\",\n    \"password\": \"milestones\",\n    \"role\": \"ROLE_USER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jcoltrane@gmail.com\",\n    \"password\": \"supreme\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

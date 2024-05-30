@@ -12,6 +12,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 @Slf4j
 @SpringBootApplication
@@ -26,26 +29,30 @@ public class DesafioApplication {
 	 *
 	 */
 	@Bean
-	CommandLineRunner run(UserService userService, StateTaskService stateTaskService, RoleService roleService){
+	CommandLineRunner run(UserService userService, StateTaskService stateTaskService, RoleService roleService, PasswordEncoder passwordEncoder){
 		return args -> {
 			log.info("generando dummy users...");
 
-			RoleEntity rolAdmin = roleService.saveRole(RoleEntity.builder().name(RoleEnum.ADMIN).build());
-			RoleEntity rolUser = roleService.saveRole(RoleEntity.builder().name(RoleEnum.USER).build());
+			roleService.saveRole(RoleEntity.builder().name(RoleEnum.ADMIN).build());
+			roleService.saveRole(RoleEntity.builder().name(RoleEnum.USER).build());
 
+			Optional<RoleEntity> optRoleUsr = roleService.findByName(RoleEnum.USER);
+			Optional<RoleEntity> optRoleAdm = roleService.findByName(RoleEnum.ADMIN);
 
 			UserEntity user1 = userService.createUser(UserEntity.builder()
 					.email("jcoltrane@gmail.com")
 					.fullname("John Coltrane")
-					.role(rolAdmin)
-					.password("supreme").build());
+					.role(optRoleAdm.get())
+					.password(passwordEncoder.encode("supreme"))
+					.build());
 			log.info("UUID user 1 " + user1.getId());
 
 			UserEntity user2 = userService.createUser(UserEntity.builder()
 					.email("bevans@gmail.com")
 					.fullname("Bill Evans")
-					.role(rolUser)
-					.password("undercurrent").build());
+					.role(optRoleUsr.get())
+					.password(passwordEncoder.encode("undercurrent"))
+					.build());
 			log.info("UUID user 2 " + user2.getId());
 
 			// generate task states

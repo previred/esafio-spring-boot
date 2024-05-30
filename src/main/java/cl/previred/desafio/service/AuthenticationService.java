@@ -50,7 +50,7 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(input.getEmail(), input.getPassword())
         );
         return userRepository.findByEmail(input.getEmail())
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Admin %s not found", input.getEmail())));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User %s not found", input.getEmail())));
     }
 
     public List<UserEntity> allUsers() {

@@ -27,11 +27,10 @@ public class UserEntity  implements UserDetails {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(unique = true, length = 100, nullable = false)
     private String email;
 
     private String fullname;
-    private transient String password;
+    private String password;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")

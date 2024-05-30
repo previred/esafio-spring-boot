@@ -1,5 +1,4 @@
 package cl.previred.desafio.config;
-
 import cl.previred.desafio.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,7 @@ public class ApplicationConfiguration {
     @Bean
     UserDetailsService userDetailsService() {
         return mail -> userRepository.findByEmail(mail)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("Email %s not found", mail)));
+                .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
     }
 
     @Bean
