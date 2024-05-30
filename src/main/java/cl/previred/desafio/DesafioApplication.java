@@ -1,7 +1,10 @@
 package cl.previred.desafio;
 
+import cl.previred.desafio.entity.RoleEntity;
 import cl.previred.desafio.entity.UserEntity;
+import cl.previred.desafio.enums.RoleEnum;
 import cl.previred.desafio.enums.StateTaskEnum;
+import cl.previred.desafio.service.RoleService;
 import cl.previred.desafio.service.StateTaskService;
 import cl.previred.desafio.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,19 +26,25 @@ public class DesafioApplication {
 	 *
 	 */
 	@Bean
-	CommandLineRunner run(UserService userService, StateTaskService stateTaskService){
+	CommandLineRunner run(UserService userService, StateTaskService stateTaskService, RoleService roleService){
 		return args -> {
 			log.info("generando dummy users...");
+
+			RoleEntity rolAdmin = roleService.saveRole(RoleEntity.builder().name(RoleEnum.ADMIN).build());
+			RoleEntity rolUser = roleService.saveRole(RoleEntity.builder().name(RoleEnum.USER).build());
+
 
 			UserEntity user1 = userService.createUser(UserEntity.builder()
 					.email("jcoltrane@gmail.com")
 					.fullname("John Coltrane")
+					.role(rolAdmin)
 					.password("supreme").build());
 			log.info("UUID user 1 " + user1.getId());
 
 			UserEntity user2 = userService.createUser(UserEntity.builder()
 					.email("bevans@gmail.com")
 					.fullname("Bill Evans")
+					.role(rolUser)
 					.password("undercurrent").build());
 			log.info("UUID user 2 " + user2.getId());
 
