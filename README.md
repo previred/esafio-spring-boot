@@ -70,3 +70,40 @@ Se evaluará la solución en función de los siguientes criterios:
 - Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
 - **Puntos extras si la generación de la API se realizo mediante API First**
+
+
+---
+
+# Solución desafío técnico
+
+## testMoveApps
+Test moveapps Jaime Cruz Ortega.
+
+Cargo: Desarrollador Java
+
+## Tecnología utilizada
+
+- Java jdk 21
+- SpringBoot 2.7.18
+- h2 Database
+- jwt
+- spring openapi 1.6.4
+- maven
+
+## Clonar el proyecto:
+git clone
+
+## Ejectuar el proyecto
+mvn spring-boot:run
+
+o bien se puede lanzar desde IDE Intellij
+
+## Collection para pruebas en Postman
+[PostmanCollectionV2]()   [PostmanCollectionV2_1]()
+![image]()
+
+
+## URL Documentacion Swagger (Una vez ejecutado el proyecto)
+[SwaggerApp](http://localhost:8080/swagger-ui/index.html)
+![image]()
+
