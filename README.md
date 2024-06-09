@@ -99,7 +99,7 @@ mvn spring-boot:run
 o bien se puede lanzar desde IDE Intellij
 
 ## Collection para pruebas en Postman
-[PostmanCollectionV2]()   [PostmanCollectionV2_1]()
+[PostmanCollectionV2](https://github.com/jaime2496333/desafio-spring-boot/blob/main/documentation/api.postman_collection_v2)   [PostmanCollectionV2_1](https://github.com/jaime2496333/desafio-spring-boot/blob/main/documentation/api.postman_collection_v2_1)
 ![image]()
 
 
