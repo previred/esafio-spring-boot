@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  api:
+    container_name: desafio-api
+    command: mvn spring-boot:run -pl desafio-spring-boot-ws
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"

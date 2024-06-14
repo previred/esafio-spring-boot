@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_status_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - createTable:
+            tableName: status
+            columns:
+              - column:
+                  name: id_status
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id_status
+                  value: 1
+              - column:
+                  name: status
+                  value: 'PENDING'
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id_status
+                  value: 2
+              - column:
+                  name: status
+                  value: 'DONE'
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id_status
+                  value: 3
+              - column:
+                  name: status
+                  value: "CANCELED"

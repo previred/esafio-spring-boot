@@ -1,0 +1,152 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_users_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id_user
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: table_roles_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id_role
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: table_user_role_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id_user
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_role
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: user_role
+            baseColumnNames: id_user
+            referencedTableName: users
+            referencedColumnNames: id_user
+            constraintName: fk_user_role_user
+        - addForeignKeyConstraint:
+            baseTableName: user_role
+            baseColumnNames: id_role
+            referencedTableName: roles
+            referencedColumnNames: id_role
+            constraintName: fk_user_role_role
+
+  - changeSet:
+      id: insert_roles_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id_role
+                  value: 10000
+              - column:
+                  name: name
+                  value: "Users"
+              - column:
+                  name: description
+                  value: "ROLE_USER"
+
+  - changeSet:
+      id: insert_users_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id_user
+                  value: 10000
+              - column:
+                  name: name
+                  value: "Administrator"
+              - column:
+                  name: lastname
+                  value: "Administrator"
+              - column:
+                  name: email
+                  value: "fabriciofabara@gmail.com"
+              - column:
+                  name: username
+                  value: "administrator"
+              - column:
+                  name: password
+                  value: "$2a$12$Ij.R/qly4.YtzEG.sId0o.vXTSib8c7Ji1G8UTAtBCm.ju4rQsUs."
+
+  - changeSet:
+      id: insert_user_role_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id_user
+                  value: 10000
+              - column:
+                  name: id_role
+                  value: 10000

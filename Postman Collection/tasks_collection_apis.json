@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "4b174b4b-0754-4bc4-af55-f619795b2273",
+		"name": "TASKS ENDPOINTS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11561737"
+	},
+	"item": [
+		{
+			"name": "Register Useres",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n  \"name\": \"a\",\n  \"lastname\": \"Lopez\",\n  \"email\": \"klopez@gmail.com\",\n  \"username\": \"klopez\",\n  \"password\": \"klopez\",\n  \"roles\": [\n    {\n      \"idRole\": 10000,\n      \"name\": \"Users\",\n      \"description\": \"ROLE_USER\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUTHENTICATE USERS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"administrator\",\n  \"password\": \"administrator\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE TASKS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwicm9sZSI6IlVzZXJzIiwiY3JlYXRlZCI6MTcxODM0MTMyNjcwOSwiZXhwIjoxNzE4MzU5MzI2LCJpYXQiOjE3MTgzNDEzMjZ9.zTkqNerSaVx0rXN-K4lSRkslHs5HHNDuwnspWoBZ0GW6vNKcNEV5fn-NSeIyp0naOL2BlPH3H0kEniUihHKMPQ"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idTasks\": null,\n  \"description\": \"Test task example\",\n  \"status\": {\n    \"idStatus\": \"1\",\n    \"status\": \"PENDING\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE TASKS",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwicm9sZSI6IlVzZXJzIiwiY3JlYXRlZCI6MTcxODM0MTMyNjcwOSwiZXhwIjoxNzE4MzU5MzI2LCJpYXQiOjE3MTgzNDEzMjZ9.zTkqNerSaVx0rXN-K4lSRkslHs5HHNDuwnspWoBZ0GW6vNKcNEV5fn-NSeIyp0naOL2BlPH3H0kEniUihHKMPQ"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idTasks\": \"8\",\n    \"description\": \"Test task example SPA\",\n    \"status\": {\n        \"idStatus\": \"2\",\n        \"status\": \"DONE\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL TASKS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwicm9sZSI6IlVzZXJzIiwiY3JlYXRlZCI6MTcxODM0MTMyNjcwOSwiZXhwIjoxNzE4MzU5MzI2LCJpYXQiOjE3MTgzNDEzMjZ9.zTkqNerSaVx0rXN-K4lSRkslHs5HHNDuwnspWoBZ0GW6vNKcNEV5fn-NSeIyp0naOL2BlPH3H0kEniUihHKMPQ"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET TASKS BY ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwicm9sZSI6IlVzZXJzIiwiY3JlYXRlZCI6MTcxODM0MTMyNjcwOSwiZXhwIjoxNzE4MzU5MzI2LCJpYXQiOjE3MTgzNDEzMjZ9.zTkqNerSaVx0rXN-K4lSRkslHs5HHNDuwnspWoBZ0GW6vNKcNEV5fn-NSeIyp0naOL2BlPH3H0kEniUihHKMPQ"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE TASKS",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwicm9sZSI6IlVzZXJzIiwiY3JlYXRlZCI6MTcxODM0MTMyNjcwOSwiZXhwIjoxNzE4MzU5MzI2LCJpYXQiOjE3MTgzNDEzMjZ9.zTkqNerSaVx0rXN-K4lSRkslHs5HHNDuwnspWoBZ0GW6vNKcNEV5fn-NSeIyp0naOL2BlPH3H0kEniUihHKMPQ"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/{id}?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"{id}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

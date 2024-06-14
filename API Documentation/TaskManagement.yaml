@@ -1,0 +1,311 @@
+openapi: 3.0.1
+info:
+  title: Tasks APIs
+  description: This APIs allow manage the tasks of the Desafio Spring Boot
+  contact:
+    name: Tasks APIs
+    email: fabriciofabara@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+    description: Authentication management
+  - name: Status
+    description: Status management
+  - name: Tasks
+    description: Tasks management
+paths:
+  /api/tasks/{id}:
+    get:
+      tags:
+        - Tasks
+      summary: API to get Task by id
+      operationId: getTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Task found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+        '404':
+          description: Task not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+    put:
+      tags:
+        - Tasks
+      summary: API to update Tasks
+      operationId: updateTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TasksTO'
+        required: true
+      responses:
+        '200':
+          description: Task updated
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+        '400':
+          description: Invalid input
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+        '404':
+          description: Task not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+    delete:
+      tags:
+        - Tasks
+      summary: API to delete Task by id
+      operationId: deleteTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Task deleted
+          content:
+            '*/*':
+              schema:
+                type: string
+        '404':
+          description: Task not found
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/tasks:
+    get:
+      tags:
+        - Tasks
+      summary: API to get all Tasks
+      operationId: getAllTasks
+      responses:
+        '200':
+          description: Tasks found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TasksTO'
+        '404':
+          description: Tasks not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TasksTO'
+    post:
+      tags:
+        - Tasks
+      summary: API to create Tasks
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TasksTO'
+        required: true
+      responses:
+        '201':
+          description: Task created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+        '400':
+          description: Invalid input
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+        '409':
+          description: Task already exists
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TasksTO'
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Registra um usuário
+      operationId: userRegister
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Realiza login de um usuário
+      operationId: userLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/status:
+    get:
+      tags:
+        - Status
+      summary: API to get all Status
+      operationId: getAllStatus
+      responses:
+        '200':
+          description: Status found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusTO'
+        '404':
+          description: Status not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusTO'
+  /api/status/{id}:
+    get:
+      tags:
+        - Status
+      summary: API to get Status by id
+      operationId: getStatusById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Status found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusTO'
+        '404':
+          description: Status not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatusTO'
+components:
+  schemas:
+    StatusTO:
+      type: object
+      properties:
+        idStatus:
+          type: string
+        status:
+          type: string
+    TasksTO:
+      type: object
+      properties:
+        idTasks:
+          type: string
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusTO'
+    Role:
+      type: object
+      properties:
+        idRole:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+    UserRegister:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    UserLogin:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

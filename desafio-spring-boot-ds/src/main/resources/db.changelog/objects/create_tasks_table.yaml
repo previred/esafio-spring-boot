@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_tasks_v1
+      author: fabriciofabara@gmail.com
+      changes:
+        - createTable:
+            tableName: tasks
+            columns:
+              - column:
+                  name: id_tasks
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_status
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: tasks
+            baseColumnNames: id_status
+            constraintName: fk_tasks_status
+            referencedTableName: status
+            referencedColumnNames: id_status
