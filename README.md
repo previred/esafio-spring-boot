@@ -5,68 +5,67 @@ La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para
 ## Objetivo:
 Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## Se realizo la prueba Satisfactoriamente, utilizando API First y todas las tecnologias utilizadas  
+la url base es : http://localhost:8080/
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+Los endpoints son :
 
-### Base de Datos:
+/login
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+para poder loguearse a la aplicaion previamente deben haber datos pre cargados y se verifica el email y password del usuario
+para realizar un login exitoso, posteriormente se le asigna un token que servira para poder acceder a los otros endpoints
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+/listar-tareas/{id}
 
-### JWT (JSON Web Token):
+Requiere token de acceso lista todas las tareas pertenecientes al usuario activo
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+/crear-tarea
 
-### OpenAPI y Swagger:
+Requiere token de acceso, Crea una nueva tarea, que debe tener relacion con el usuario actual y un estado de tarea, *(Existen estados de tarea precargados)
 
-- Documenta la API utilizando OpenAPI y Swagger.
+/actualizar-tarea/{id}
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+Requiere token de acceso, Actualiza una tarea existente, que debe tener relacion con el usuario actual y un estado de tarea
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+/borrar-tarea/{id}
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+Requiere token de acceso, Borra una tarea existente, que debe tener relacion con el usuario actual y un estado de tarea
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+cualquier otro enpoint se controla con el codigo 403 acceso prohibido (a excepcion de swwager openAPI, y h2 Console que es la Base de datos en memoria)
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+## Inicializar el proyecto
+Se deben descargar las librerias necesarias que usa el proyecto, Usando Maven
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+        mvn clean install
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+### Estructura del Proyecto
+com/desafio/desafiospringboot/controller
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+Aqui estan todos los controladores TareaController y UsuarioController
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+com/desafio/desafiospringboot/model
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+Aqui esta la logica de negocio, peticiones y manipulaciones de datos
+
+com/desafio/desafiospringboot/model/services/abstractfactory
+
+Aqui se hace uso del patron de diseño AbstractFactory
+
+test/java/com/desafio/desafiospringboot/model/services
+
+Aqui se hace uso de pruebas unitarias usando Junit5 y Mockito
+
+src/main/resources/openapi.yaml
+
+Este es el archivo utilizado para la generacion y documentacion del Api first
+
+src/main/resources/data.sql
+
+Aqui se cargan los datos de Usuario y estados de tarea
+
+### Archivo de prueba json generado por postman
+
+API documentation.postman_collection.json
+
+
+

@@ -1,0 +1,366 @@
+openapi: 3.0.0
+info:
+  title: Gestión de Tareas con Spring Boot y Java
+  description: Esta aplicación se encarga de gestionar usuarios y tareas, aplicando buenas prácticas y principios SOLID
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/
+tags:
+  - name: usuarios
+    description: Permite la autenticación de los Usuarios
+  - name: tareas
+    description: Permite realizar el CRUD de las tareas asignadas a un Usuario
+paths:
+  /login:
+    post:
+      tags:
+        - usuarios
+      summary: Permite el login del Usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioLogin'
+        required: true
+      responses:
+        200:
+          description: (OK) El login se realizo correcatamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoUsuarioLogin'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  /listar-tareas/{id}:
+    get:
+      tags:
+        - tareas
+      summary: Permite listar las tareas pertenecientes a un usuario
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - name: id
+          in: path
+          description: identificador del usuario del que se quiere obtener sus tareas
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: (OK) Se listaron correctamente las tareas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoListarTareas'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  /crear-tarea:
+    post:
+      tags:
+        - tareas
+      summary: Permite la creacion de una nueva tarea
+      parameters:
+        - $ref: '#/components/parameters/token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaCreate'
+      responses:
+        200:
+          description: (OK) La tarea fue creada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoTarea'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  /actualizar-tarea/{id}:
+    put:
+      tags:
+        - tareas
+      summary: Permite la creacion de una nueva tarea
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - name: id
+          in: path
+          description: identificador de la tarea que se quiere actualizar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaUpdate'
+      responses:
+        200:
+          description: (OK) La tarea fue actualizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoTarea'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  /borrar-tarea/{id}:
+    delete:
+      tags:
+        - tareas
+      summary: Permite la eliminacion de una tarea
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - name: id
+          in: path
+          description: identificador de la tarea que se quiere eliminar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDelete'
+      responses:
+        200:
+          description: (OK) La tarea fue creada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoTarea'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Unauthorized:
+      description: (Unauthorized) No tiene autorización para llamar al servicio
+    NotFound:
+      description: (NotFound) No se encontro la información que busca
+    BadRequest:
+      description: (BadRequest) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+    ServerError:
+      description: Error interno en el Servidor
+  parameters:
+    token:
+      in: header
+      name: token
+      description: Token de autenticación y restricción
+      required: true
+      schema:
+        type: string
+  schemas:
+    UsuarioLogin:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email para el login
+        password:
+          type: string
+          description: este es el password para el login
+    ExitoUsuarioLogin:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: el id es generado automaticamente cuando tiene exito el login
+        email:
+          type: string
+          description: email del usuario
+        password:
+          type: string
+          description: este es el password del usuario
+        passwordEncrypt:
+          type: string
+          description: este es el password encriptado
+        token:
+          type: string
+          description: este es el token generado automaticamente cuando el login tiene exito
+    TareaCreate:
+      type: object
+      properties:
+        titulo:
+          type: string
+          description: este es el titulo de la tarea
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: el id es generado automaticamente cuando tiene exito el login
+            email:
+              type: string
+              description: email del usuario
+            password:
+              type: string
+              description: este es el password del usuario
+            token:
+              type: string
+              description: este es el token generado automaticamente cuando el login tiene exito
+        estados_tarea:
+          type: object
+          properties:
+            estado:
+              type: string
+              description: este es el estado de la tarea
+    TareaUpdate:
+      type: object
+      properties:
+        titulo:
+          type: string
+          description: este es el titulo de la tarea
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: el id es generado automaticamente cuando tiene exito el login
+            email:
+              type: string
+              description: email del usuario
+            password:
+              type: string
+              description: este es el password del usuario
+            token:
+              type: string
+              description: este es el token generado automaticamente cuando el login tiene exito
+        estados_tarea:
+          type: object
+          properties:
+            estado:
+              type: string
+              description: este es el estado de la tarea
+    TareaDelete:
+      type: object
+      properties:
+        titulo:
+          type: string
+          description: este es el titulo de la tarea
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: el id es generado automaticamente cuando tiene exito el login
+            email:
+              type: string
+              description: email del usuario
+            password:
+              type: string
+              description: este es el password del usuario
+            token:
+              type: string
+              description: este es el token generado automaticamente cuando el login tiene exito
+        estados_tarea:
+          type: object
+          properties:
+            estado:
+              type: string
+              description: este es el estado de la tarea
+    ExitoTarea:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: este es el id unico para cada tarea
+        titulo:
+          type: string
+          description: este es el titulo de la tarea
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: el id es generado automaticamente cuando tiene exito el login
+            email:
+              type: string
+              description: email del usuario
+            password:
+              type: string
+              description: este es el password del usuario
+            token:
+              type: string
+              description: este es el token generado automaticamente cuando el login tiene exito
+        estados_tarea:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: este es el id unico para cada estado de tarea asociado a cada tarea
+            estado:
+              type: string
+              description: este es el estado de la tarea
+    ListarTareas:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id del usuario del que se quiere buscar las tareas
+    ExitoListarTareas:
+      type: array
+      properties:
+        id:
+          type: integer
+          description: este es el id unico para cada tarea
+        titulo:
+          type: string
+          description: este es el titulo de la tarea
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: el id es generado automaticamente cuando tiene exito el login
+            email:
+              type: string
+              description: email del usuario
+            password:
+              type: string
+              description: este es el password del usuario
+            token:
+              type: string
+              description: este es el token generado automaticamente cuando el login tiene exito
+        estados_tarea:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: este es el id unico para cada estado de tarea asociado a cada tarea
+            estado:
+              type: string
+              description: este es el estado de la tarea
+
+
+
+
+
+
+
