@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "f6dfc7f6-0119-4c74-a3e8-e71d889c9686",
+		"name": "Task Interview MoveApps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4626075"
+	},
+	"item": [
+		{
+			"name": "Get Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzOTUyMSwiaWF0IjoxNzE4NDIxNTIxfQ.uWzWxKS5Fm6No_Dbug5CAE1yTcKKZvGRkQ1bcstrqb9CBeBoL3X3qyXLBlWO94Pnhul6iwZLBhd7P2dc6bqr5g",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url_local}}/task",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MTgzNTEwMDYsImlhdCI6MTcxODMzMzAwNn0.h47p95D_ZRcDeXzak0XSrin6X3JTghVQjngEBaynGgwOMJp5USDTD8qrfeNWBObaMh-k3Ib3iaMNlYIPje577w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nameTask\": \"Pyhton Sr\",\r\n        \"descriptionTask\": \"realizarlo con framework Django\",\r\n        \"taskPriority\": \"ALTA\",\r\n        \"Responsible\": \"Fernando\",\r\n        \"StatusTask\": \"Complete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/task/save",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const token = pm.response.json().token",
+							"",
+							"pm.globals.set(\"token\",token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/api/auth/authenticate",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MTgzNTEwMDYsImlhdCI6MTcxODMzMzAwNn0.h47p95D_ZRcDeXzak0XSrin6X3JTghVQjngEBaynGgwOMJp5USDTD8qrfeNWBObaMh-k3Ib3iaMNlYIPje577w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"nameTask\": \"Pyhton Sr\",\r\n        \"descriptionTask\": \"realizarlo con Django V2\",\r\n        \"Responsible\": \"Fernando\",\r\n        \"StatusTask\": \"Complete\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_local}}/task/3",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE3MTgzNTEwMDYsImlhdCI6MTcxODMzMzAwNn0.h47p95D_ZRcDeXzak0XSrin6X3JTghVQjngEBaynGgwOMJp5USDTD8qrfeNWBObaMh-k3Ib3iaMNlYIPje577w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url_local}}/task/3",
+					"host": [
+						"{{url_local}}"
+					],
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
