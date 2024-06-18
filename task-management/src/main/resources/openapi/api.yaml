@@ -1,0 +1,396 @@
+openapi: 3.0.3
+info:
+  title: task-management
+  description: Task management to improve production
+  version: 1.3.0
+externalDocs:
+  description: Más información
+  url: https://github.com/AlexanderOchoa
+servers:
+  - url: https://www.hospitalcayetano.gob.pe/api/v1
+    description: La url es referencial.
+paths:
+  /security/login:
+    post:
+      tags:
+        - Security
+      summary: Autenticate.
+      description: |
+        Auth to the system.
+      operationId: login
+      requestBody:
+        required: true
+        description: Request to auth to the system.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Datos no válidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse400'
+        '404':
+          description: Recurso inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse404'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse500'
+  /tasks:
+    post:
+      tags:
+        - Task
+      summary: Create task.
+      description: |
+        This method will allow you to register a task.
+      operationId: create
+      requestBody:
+        required: true
+        description: Request required to create a task.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTaskResponse'
+        '400':
+          description: Datos no válidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse400'
+        '404':
+          description: Recurso inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse404'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse500'
+    put:
+      tags:
+        - Task
+      summary: Update task.
+      description: |
+        This method will allow you to update a task.
+      operationId: udpate
+      requestBody:
+        required: true
+        description: Request required to update a task.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTaskResponse'
+        '400':
+          description: Datos no válidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse400'
+        '404':
+          description: Recurso inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse404'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse500'
+  /tasks/{id}:
+    get:
+      tags:
+        - Task
+      summary: Get task.
+      description: |
+        This method will allow you to get a task.
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          description: "id of taks <br> formato: numeric"
+          required: true
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/GetTaskResponse'
+        '400':
+          description: Datos no válidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse400'
+        '404':
+          description: Recurso inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse404'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse500'
+    delete:
+      tags:
+        - Task
+      summary: Delete task.
+      description: |
+        This method will allow you to delete task.
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          description: "id of taks <br> formato: numeric"
+          required: true
+          schema:
+            type: number
+            example: 123
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTaskResponse'
+        '400':
+          description: Datos no válidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse400'
+        '404':
+          description: Recurso inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse404'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse500'
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      description: "request to auth to the system"
+      properties:
+        username:
+          type: string
+          description: "descripción: username <br> formato: any"
+          example: 'alexander@gmail.com'
+        password:
+          type: string
+          description: "descripción: código de registro EPI <br> formato: 0368964"
+          example: 'dsdsd32323'
+    LoginResponse:
+      type: object
+      description: "Response to the auth to the system"
+      properties:
+        data:
+          $ref: '#/components/schemas/LoginDataResponse'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    LoginDataResponse:
+      type: object
+      description: "Datos de respuesta del registro de la cuenta corriente"
+      properties:
+        Token:
+          type: string
+          description: "description: token jwt to access to the system <br> formato: string"
+          example: 'dsdsdsewew3232323...'
+    CreateTaskRequest:
+      type: object
+      description: "request to create task"
+      properties:
+        name:
+          type: string
+          description: "description: name <br> formato: string"
+          example: 'task 1'
+        status:
+          type: string
+          description: "descripción: status <br> formato: string"
+          example: 'created'
+    CreateTaskResponse:
+      type: object
+      description: "Response to create task"
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateTaskDataResponse'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    CreateTaskDataResponse:
+      type: object
+      description: "Datos de respuesta del registro de la cuenta corriente"
+      properties:
+        id:
+          type: integer
+          description: "description: id task <br> formato: numeric"
+          example: 123
+    UpdateTaskRequest:
+      type: object
+      description: "request to update task"
+      properties:
+        id:
+          type: integer
+          description: "description: id task <br> formato: numeric"
+          example: 123
+        name:
+          type: string
+          description: "description: name <br> formato: string"
+          example: 'task 2'
+        status:
+          type: string
+          description: "descripción: status <br> formato: string"
+          example: 'created'
+    UpdateTaskResponse:
+      type: object
+      description: "Response to create task"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    GetTaskResponse:
+      type: object
+      description: "Response to create task"
+      properties:
+        data:
+          $ref: '#/components/schemas/GetTaskDataResponse'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    GetTaskDataResponse:
+      type: object
+      description: "Datos de respuesta del registro de la cuenta corriente"
+      properties:
+        id:
+          type: integer
+          description: "description: id task <br> formato: numeric"
+          example: 123
+        name:
+          type: string
+          description: "description: name <br> formato: string"
+          example: 'alexander@gmail.com'
+        status:
+          type: array
+          items:
+            type: string
+            description: "descripción: status <br> formato: string"
+            example: 'created'
+    DeleteTaskResponse:
+      type: object
+      description: "Response to delete task"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      description: "Indica que la solicitud ha tenido éxito"
+      properties:
+        status:
+          type: integer
+          description: "descripción: códigos de estado de respuesta HTTP  <br> formato: numerico"
+          format: int32
+          example: 200
+        message:
+          type: string
+          description: "descripción: mensaje si el proceso fue exitoso  <br> formato: libre"
+          example: La operación fue exitosa.
+    ApiResponse400:
+      type: object
+      description: "Respuesta que el servidor no pudo interpretar la solicitud dada una sintaxis inválida"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ApiDataResponse400'
+    ApiDataResponse400:
+      type: object
+      description: "Respuesta que el servidor no pudo interpretar la solicitud dada una sintaxis inválida"
+      properties:
+        status:
+          type: integer
+          description: "descripción: códigos de estado de respuesta HTTP  <br> formato: numerico"
+          format: int32
+          example: 400
+        message:
+          type: string
+          description: "descripción: mensaje de respuesta HTTP  <br> formato: libre"
+          example: Los datos ingresados son inválidos.
+    ApiResponse404:
+      type: object
+      description: "La petición se ha completado con éxito pero su respuesta no tiene ningún contenido"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ApiDataResponse404'
+    ApiDataResponse404:
+      type: object
+      description: "La petición se ha completado con éxito pero su respuesta no tiene ningún contenido"
+      properties:
+        status:
+          type: integer
+          description: "descripción: códigos de estado de respuesta HTTP  <br> formato: numerico"
+          format: int32
+          example: 404
+        message:
+          type: string
+          description: "descripción: mensaje de respuesta HTTP  <br> formato: libre"
+          example: No se encontró contenido.
+    ApiResponse500:
+      type: object
+      description: "El servidor ha encontrado una situación que no sabe cómo manejarla"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ApiDataResponse500'
+    ApiDataResponse500:
+      type: object
+      description: "El servidor ha encontrado una situación que no sabe cómo manejarla"
+      properties:
+        status:
+          type: integer
+          description: "descripción: códigos de estado de respuesta HTTP  <br> formato: numerico"
+          format: int32
+          example: 500
+        message:
+          type: string
+          description: "descripción: mensaje de respuesta HTTP  <br> formato: libre"
+          example: >-
+            Ocurrió un error no esperado, por favor comuníquese con el área de
+            soporte.
