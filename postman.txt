@@ -1,0 +1,178 @@
+{
+  "info": {
+    "_postman_id": "abc12345-6789-0123-4567-890abcde1234",
+    "name": "Gestión de Tareas API",
+    "description": "Colección de Postman para probar la API de gestión de tareas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "Iniciar sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"user1\",\n    \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tareas",
+      "item": [
+        {
+          "name": "Listar tareas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear tarea",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Nueva tarea\",\n    \"description\": \"Descripción de la nueva tarea\",\n    \"status\": \"PENDING\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar tarea",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 1,\n    \"title\": \"Tarea actualizada\",\n    \"description\": \"Descripción actualizada\",\n    \"status\": \"COMPLETED\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar tarea",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/tasks?id=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
