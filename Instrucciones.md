@@ -68,8 +68,9 @@ Desde este controller podrá realizar todas las acciones relacionadas con la Ges
 
 ## Validaciones de datos en los endpoints
 
-**Creación de Tareas**: Para crear una tarea los datos obligatorios son **"title"** y **"description"**. Las nuevas tareas se crean con **"status" "PENDIENTE"**.
-**Actualizar Tarea**: En este endpoint es obligatorio el campo **"information"** y el campo **"status"**, este último debe ser alguno de los mencionados en la documentación del endpoint.
+>**Creación de Tareas**: Para crear una tarea los datos obligatorios son **"title"** y **"description"**. Las nuevas tareas se crean con **"status" "PENDIENTE"**.
+
+>**Actualizar Tarea**: En este endpoint es obligatorio el campo **"information"** y el campo **"status"**, este último debe ser alguno de los mencionados en la documentación del endpoint.
 
 ## Uso de la API
 
