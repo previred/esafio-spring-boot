@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>  <!-- Define el proyecto padre para configuraciones comunes de Spring Boot -->
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.12</version>  <!-- Versión de Spring Boot utilizada -->
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.nuevospa</groupId>  <!-- Identificador de grupo del proyecto -->
+	<artifactId>gestortareas</artifactId>  <!-- Identificador de artefacto del proyecto -->
+	<version>0.0.1-SNAPSHOT</version>  <!-- Versión del proyecto -->
+	<name>gestortareas</name>  <!-- Nombre del proyecto -->
+	<description>Gestor de Tareas</description>  <!-- Descripción del proyecto -->
+	<url/>  <!-- URL del proyecto -->
+	<licenses>
+		<license/>  <!-- Información de licencia -->
+	</licenses>
+	<developers>
+		<developer/>  <!-- Información del desarrollador -->
+	</developers>
+	<scm>
+		<connection/>  <!-- Configuración de conexión para control de versiones -->
+		<developerConnection/>  <!-- Configuración de conexión para desarrolladores -->
+		<tag/>  <!-- Etiqueta para el control de versiones -->
+		<url/>  <!-- URL del repositorio fuente -->
+	</scm>
+	<properties>
+		<java.version>17</java.version>  <!-- Versión de Java utilizada -->
+		<springdoc.version>1.7.0</springdoc.version>  <!-- Versión de Springdoc OpenAPI -->
+	</properties>
+	<dependencies>
+		<!-- Dependencias de Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>  <!-- Starter para Spring Data JPA -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>  <!-- Starter para Spring Security -->
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>  <!-- Starter para Spring Web -->
+		    <version>2.7.12</version>  <!-- Versión específica de Spring Boot Starter Web -->
+		</dependency>
+
+		<!-- Base de datos en memoria H2 para desarrollo -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- Dependencias de prueba -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Documentación de Swagger con OpenAPI -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>1.7.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-webmvc-core</artifactId>
+		    <version>1.7.0</version>
+		</dependency>
+			
+		<!-- JWT (JSON Web Token) -->
+		<dependency>
+	        <groupId>io.jsonwebtoken</groupId>
+	        <artifactId>jjwt-api</artifactId>
+	        <version>0.11.5</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>io.jsonwebtoken</groupId>
+	        <artifactId>jjwt-impl</artifactId>
+	        <version>0.11.5</version>
+	        <scope>runtime</scope>
+	    </dependency>
+	    <dependency>
+	        <groupId>io.jsonwebtoken</groupId>
+	        <artifactId>jjwt-jackson</artifactId>
+	        <version>0.11.5</version>
+	        <scope>runtime</scope>
+	    </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Plugin para empaquetar la aplicación como un JAR ejecutable -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Plugin para la gestión de recursos de Maven -->
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <version>3.1.0</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
