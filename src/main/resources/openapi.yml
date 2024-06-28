@@ -1,0 +1,365 @@
+openapi: 3.0.3
+info:
+  title: API de Gestión de Tareas
+  description: API para la gestión de tareas para los empleados de Nuevo SPA
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080/taskManager/api/v1
+tags:
+  - name: task
+    description: Módulo para la gestión de las tareas
+  - name: security
+    description: Modulo de seguridad
+  - name: user
+    description: Módulo para la gestion de usuarios
+
+paths:
+  /tasks:
+    post:
+      tags:
+        - task
+      summary: Crear una nueva tarea
+      requestBody:
+        description: Datos de la tarea a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+      responses:
+        '200':
+          description: Tarea creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+    get:
+      tags:
+        - task
+      summary: Obtener todas las tareas
+      responses:
+        '200':
+          description: Lista de todas las tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+    put:
+      tags:
+        - task
+      summary: Actualizar una tarea
+      requestBody:
+        description: Datos de la tarea a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDto'
+      responses:
+        '200':
+          description: Tarea actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+  /tasks/{id}:
+    get:
+      tags:
+        - task
+      summary: Obtener tarea por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles de la tarea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+    delete:
+      tags:
+        - task
+      summary: Eliminar tarea por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Tarea eliminada exitosamente
+  /tasks/{id}/status:
+    patch:
+      tags:
+        - task
+      summary: Actualizar estado de la tarea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Nombre del nuevo estado
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Estado de la tarea actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+  /tasks/{id}/priority:
+    patch:
+      tags:
+        - task
+      summary: Actualizar prioridad de la tarea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Nombre de la nueva prioridad
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Prioridad de la tarea actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+  /users:
+    get:
+      tags:
+        - user
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: Lista de todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+    post:
+      tags:
+        - user
+      summary: Crear un nuevo usuario
+      requestBody:
+        description: Datos del usuario a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+    put:
+      tags:
+        - user
+      summary: Actualizar un usuario
+      requestBody:
+        description: Datos del usuario a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+  /users/{id}:
+    get:
+      tags:
+        - user
+      summary: Obtener usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+    delete:
+      tags:
+        - user
+      summary: Eliminar usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuario eliminado exitosamente
+  /users/by-email:
+    get:
+      tags:
+        - user
+      summary: Obtener usuario por correo electrónico
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+  /users/{id}/password:
+    patch:
+      tags:
+        - user
+      summary: Actualizar contraseña del usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Nueva contraseña
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Contraseña actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+  /auth/login:
+    post:
+      tags:
+        - security
+      summary: Autenticar usuario y obtener token JWT
+      requestBody:
+        description: Datos de autenticación
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JwtRequest'
+      responses:
+        '200':
+          description: Token JWT generado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtResponse'
+components:
+  schemas:
+    TaskDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/StatusDto'
+        priority:
+          $ref: '#/components/schemas/PriorityDto'
+        user:
+          $ref: '#/components/schemas/UserDto'
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        lastName:
+          type: string
+        userName:
+          type: string
+        password:
+          type: string
+        role:
+          $ref: '#/components/schemas/RoleDto'
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+    StatusDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    PriorityDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    JwtRequest:
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+    JwtResponse:
+      type: object
+      properties:
+        token:
+          type: string
