@@ -6,14 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 @Schema(description = "SigninDto")
 public class SigninDto {
-    @Schema(description = "username", example = "AAcho")
+
+    @Schema(description = "username", example = "aariel")
+    @NotNull
     private String username;
-    @Schema(description = "Password", example = "********")
+
+    @Schema(description = "Password", example = "1234")
+    @NotNull
     private String password;
 }
