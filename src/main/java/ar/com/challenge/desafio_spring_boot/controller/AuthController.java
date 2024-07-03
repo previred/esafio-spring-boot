@@ -38,7 +38,7 @@ public class AuthController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {@Content(
                     schema = @Schema(implementation = AuthResponse.class), mediaType = MediaType.APPLICATION_JSON_VALUE)}),
-            @ApiResponse(responseCode = "400", content = {@Content(
+            @ApiResponse(responseCode = "406", content = {@Content(
                     schema = @Schema(implementation = Error.class),
                     mediaType = MediaType.APPLICATION_JSON_VALUE)}),
             @ApiResponse(responseCode = "500", content = {@Content(
@@ -62,7 +62,7 @@ public class AuthController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {@Content(
                     schema = @Schema(implementation = AuthResponse.class), mediaType = MediaType.APPLICATION_JSON_VALUE)}),
-            @ApiResponse(responseCode = "400", content = {@Content(
+            @ApiResponse(responseCode = "406", content = {@Content(
                     schema = @Schema(implementation = Error.class),
                     mediaType = MediaType.APPLICATION_JSON_VALUE)}),
             @ApiResponse(responseCode = "500", content = {@Content(

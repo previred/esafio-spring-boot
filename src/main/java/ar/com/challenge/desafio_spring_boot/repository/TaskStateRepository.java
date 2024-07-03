@@ -1,13 +1,13 @@
 package ar.com.challenge.desafio_spring_boot.repository;
 
-import ar.com.challenge.desafio_spring_boot.entity.User;
+import ar.com.challenge.desafio_spring_boot.entity.TaskState;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface TaskStateRepository  extends JpaRepository<TaskState, Integer> {
 
-    Optional<User> findByUsername(String username);
+    Optional<TaskState> findByStatus(String status);
 }
