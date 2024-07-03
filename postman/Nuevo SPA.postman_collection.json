@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "650af3d6-02bc-418c-b290-a2875eb20048",
+		"name": "Nuevo SPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2688415"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const authToken = pm.response.json().authToken;",
+							"pm.environment.set(\"auth_token\", authToken);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user001",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "demo1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_path}}/user/login",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tarea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const taskId = pm.response.json().taskId;",
+							"pm.environment.set(\"task_id\", taskId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Tarea 2\",\n    \"description\": \"Tarea de prueba\",\n    \"status\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_path}}/tasks",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Tareas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const taskId = pm.response.json().taskId;",
+							"pm.environment.set(\"task_id\", taskId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_path}}/tasks?page=1&size=10",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "title",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_path}}/tasks/{{task_id}}",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"tasks",
+						"{{task_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "description",
+							"value": "Tarea de prueba 2",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_path}}/tasks/{{task_id}}",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"tasks",
+						"{{task_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_path}}/tasks/{{task_id}}",
+					"host": [
+						"{{base_path}}"
+					],
+					"path": [
+						"tasks",
+						"{{task_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

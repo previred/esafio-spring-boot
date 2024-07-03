@@ -1,0 +1,423 @@
+openapi: 3.0.0
+info:
+  title: NUEVO SPA - Gestión de Tareas
+  description: |-
+    Describes the services to manage tasks for "NUEVO SPA"
+
+  contact:
+    email: milagros.ibanez@pucp.pe
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: task
+    description: Everything about your Tasks
+  - name: user
+    description: Operations about user
+paths:
+  /tasks:
+    post:
+      tags:
+        - task
+      summary: Adds a new task
+      description: Adds a new task
+      operationId: addTask
+      requestBody:
+        description: Adds a new task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid input
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          description: Validation exception
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - task
+      summary: Lists tasks
+      description: Lists tasks
+      operationId: listTasks
+      parameters:
+        - name: page
+          in: query
+          description: Current page of list
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: size
+          in: query
+          description: Size of the page
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: title
+          in: query
+          description: Title of the task to filter
+          required: false
+          schema:
+            type: string
+        - name: description
+          in: query
+          description: Description of the task to filter
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Status of tasks to return
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskPage'
+        '400':
+          description: Invalid input
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          description: Validation exception
+      security:
+        - bearerAuth: []
+  /tasks/{taskId}:
+    get:
+      tags:
+        - task
+      summary: Find task by ID
+      description: Returns a single task
+      operationId: getTaskById
+      parameters:
+        - name: taskId
+          in: path
+          description: ID of task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Task not found
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - task
+      summary: Updates a task with form data
+      description: ''
+      operationId: updateTaskWithForm
+      parameters:
+        - name: taskId
+          in: path
+          description: ID of task that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: title
+          in: query
+          description: Title of task that needs to be updated
+          schema:
+            type: string
+        - name: description
+          in: query
+          description: Description of task that needs to be updated
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Status of task that needs to be updated
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid input
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      security:
+        - bearerAuth: []
+    put:
+      tags:
+        - task
+      summary: Update an existing task
+      description: Update an existing task by Id
+      operationId: updateTask
+      parameters:
+        - name: taskId
+          in: path
+          description: ID of task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update an existent task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Task not found
+        '422':
+          description: Validation exception
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - task
+      summary: Deletes a task
+      description: delete a task
+      operationId: deleteTask
+      parameters:
+        - name: taskId
+          in: path
+          description: Task id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid task value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      security:
+        - bearerAuth: []
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: ''
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid username/password supplied
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+        phone:
+          type: string
+          example: '12345'
+        userStatus:
+          type: integer
+          description: User Status
+          format: int32
+          example: 1
+      xml:
+        name: user
+    Task:
+      required:
+        - title
+        - status
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: integer
+          format: int64
+      xml:
+        name: task
+    TokenResponse:
+      type: object
+      properties:
+        authToken:
+          type: string
+      xml:
+        name: token
+    TaskResponse:
+      type: object
+      properties:
+        taskId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+      xml:
+        name: taskResponse
+    TaskStatus:
+      type: object
+      properties:
+        statusId:
+          type: integer
+          format: int64
+        description:
+          type: string
+    TaskPage:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskResponse'
+  requestBodies:
+    Task:
+      description: Task object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Task'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Task'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
