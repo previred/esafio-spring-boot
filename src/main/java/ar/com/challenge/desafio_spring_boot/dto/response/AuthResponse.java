@@ -1,6 +1,5 @@
-package ar.com.challenge.desafio_spring_boot.response;
+package ar.com.challenge.desafio_spring_boot.dto.response;
 
-import ar.com.challenge.desafio_spring_boot.dto.TaskDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskResponse {
-    TaskDto taskDto;
+public class AuthResponse {
+    String token;
 }

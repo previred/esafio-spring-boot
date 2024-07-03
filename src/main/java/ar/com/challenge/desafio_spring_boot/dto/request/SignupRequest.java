@@ -1,4 +1,4 @@
-package ar.com.challenge.desafio_spring_boot.request;
+package ar.com.challenge.desafio_spring_boot.dto.request;
 
 import ar.com.challenge.desafio_spring_boot.dto.SignupDto;
 import lombok.AllArgsConstructor;

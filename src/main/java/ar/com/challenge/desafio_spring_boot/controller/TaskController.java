@@ -1,10 +1,12 @@
 package ar.com.challenge.desafio_spring_boot.controller;
 
+import ar.com.challenge.desafio_spring_boot.dto.response.Response;
+import ar.com.challenge.desafio_spring_boot.dto.response.TaskResponse;
+import ar.com.challenge.desafio_spring_boot.dto.response.TasksResponse;
 import ar.com.challenge.desafio_spring_boot.exception.ResourceFoundException;
 import ar.com.challenge.desafio_spring_boot.exception.ResourceNotFoundException;
-import ar.com.challenge.desafio_spring_boot.request.TaskRequest;
-import ar.com.challenge.desafio_spring_boot.response.*;
-import ar.com.challenge.desafio_spring_boot.response.Error;
+import ar.com.challenge.desafio_spring_boot.dto.request.TaskRequest;
+import ar.com.challenge.desafio_spring_boot.dto.response.Error;
 import ar.com.challenge.desafio_spring_boot.services.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +51,7 @@ public class TaskController {
                     mediaType = MediaType.APPLICATION_JSON_VALUE)})})
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public Response<TaskResponse, Error> save(@RequestBody TaskRequest request) throws ResourceFoundException, ResourceNotFoundException {
+    public Response<TaskResponse, Error> save(@Validated @RequestBody TaskRequest request) throws ResourceFoundException, ResourceNotFoundException {
 
         var tasks = taskService.save(request.getTaskDto());
 
@@ -70,7 +73,7 @@ public class TaskController {
                     schema = @Schema(implementation = Error.class),
                     mediaType = MediaType.APPLICATION_JSON_VALUE)})})
     @PatchMapping()
-    public Response<TaskResponse, Error> update(@RequestBody TaskRequest request) throws ResourceNotFoundException {
+    public Response<TaskResponse, Error> update(@Validated @RequestBody TaskRequest request) throws ResourceNotFoundException {
 
         var tasks = taskService.update(request.getTaskDto());
 

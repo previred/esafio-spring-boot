@@ -36,6 +36,7 @@ public class SecurityConfig {
                                         .antMatchers("/swagger-ui/**").permitAll()
                                         .antMatchers("/ui").permitAll()
                                         .antMatchers("/v3/api-docs/**").permitAll()
+                                        .antMatchers("/v3/api-docs.yaml").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))

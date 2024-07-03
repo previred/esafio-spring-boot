@@ -2,8 +2,8 @@ package ar.com.challenge.desafio_spring_boot.config;
 
 import ar.com.challenge.desafio_spring_boot.exception.ResourceFoundException;
 import ar.com.challenge.desafio_spring_boot.exception.ResourceNotFoundException;
-import ar.com.challenge.desafio_spring_boot.response.Response;
-import ar.com.challenge.desafio_spring_boot.response.Error;
+import ar.com.challenge.desafio_spring_boot.dto.response.Response;
+import ar.com.challenge.desafio_spring_boot.dto.response.Error;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;

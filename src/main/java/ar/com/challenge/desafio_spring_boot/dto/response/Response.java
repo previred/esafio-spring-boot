@@ -1,4 +1,4 @@
-package ar.com.challenge.desafio_spring_boot.response;
+package ar.com.challenge.desafio_spring_boot.dto.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

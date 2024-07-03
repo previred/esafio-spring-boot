@@ -1,4 +1,4 @@
-package ar.com.challenge.desafio_spring_boot.response;
+package ar.com.challenge.desafio_spring_boot.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,0 +1,378 @@
+openapi: 3.0.1
+info:
+  title: Desafio SpringBoot
+  description: APP Services Desafio
+  contact:
+    name: Ariel Andres Acho
+    email: ariel.andres.acho@gmail.com
+  version: 0.0.1
+servers:
+- url: http://localhost:8080
+  description: Dev Local
+tags:
+- name: Authentication
+  description: Authentication API
+- name: Task
+  description: Task API
+paths:
+  /task:
+    get:
+      tags:
+      - Task
+      summary: Search task
+      operationId: getAll
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TasksResponse'
+      security:
+      - Bearer Authentication: []
+    post:
+      tags:
+      - Task
+      summary: Create task
+      operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+        required: true
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+      security:
+      - Bearer Authentication: []
+    patch:
+      tags:
+      - Task
+      summary: Update task
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+        required: true
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+      security:
+      - Bearer Authentication: []
+  /auth/signup:
+    post:
+      tags:
+      - Authentication
+      summary: signup
+      operationId: signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                signupDto:
+                  name: Ariel
+                  lastname: Acho
+                  username: AAcho
+                  password: "1234"
+                  email: arielandresacho@gmail.com
+                  role: ADMIN
+        required: true
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /auth/signin:
+    post:
+      tags:
+      - Authentication
+      summary: singin
+      operationId: signin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                signinDto:
+                  username: aariel
+                  password: "1234"
+        required: true
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /task/{id}:
+    get:
+      tags:
+      - Task
+      summary: Search task by id
+      operationId: getById
+      parameters:
+      - name: id
+        in: path
+        description: Id de tarea
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+      security:
+      - Bearer Authentication: []
+    delete:
+      tags:
+      - Task
+      summary: Delete task by id
+      operationId: deleteById
+      parameters:
+      - name: id
+        in: path
+        description: Id de tarea
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "406":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectError'
+        "500":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "204":
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+      security:
+      - Bearer Authentication: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        error:
+          type: string
+        cause:
+          type: string
+    ResponseObjectError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+        error:
+          $ref: '#/components/schemas/Error'
+    TaskDto:
+      required:
+      - name
+      - status
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id de task
+          format: int32
+          example: 1
+        name:
+          type: string
+          description: Name task
+          example: Task 1
+        status:
+          $ref: '#/components/schemas/TaskStateDto'
+      description: TaskDto
+    TaskRequest:
+      required:
+      - taskDto
+      type: object
+      properties:
+        taskDto:
+          $ref: '#/components/schemas/TaskDto'
+    TaskStateDto:
+      required:
+      - status
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id del state task
+          format: int32
+          example: 1
+        status:
+          type: string
+          description: status
+          example: VALID
+      description: TaskStateDto
+    TaskResponse:
+      type: object
+      properties:
+        taskDto:
+          $ref: '#/components/schemas/TaskDto'
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    TasksResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskDto'
+  securitySchemes:
+    Bearer Authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

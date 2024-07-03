@@ -2,11 +2,11 @@ package ar.com.challenge.desafio_spring_boot.controller;
 
 import ar.com.challenge.desafio_spring_boot.exception.ResourceFoundException;
 import ar.com.challenge.desafio_spring_boot.exception.ResourceNotFoundException;
-import ar.com.challenge.desafio_spring_boot.request.SigninRequest;
-import ar.com.challenge.desafio_spring_boot.request.SignupRequest;
-import ar.com.challenge.desafio_spring_boot.response.AuthResponse;
-import ar.com.challenge.desafio_spring_boot.response.Response;
-import ar.com.challenge.desafio_spring_boot.response.Error;
+import ar.com.challenge.desafio_spring_boot.dto.request.SigninRequest;
+import ar.com.challenge.desafio_spring_boot.dto.request.SignupRequest;
+import ar.com.challenge.desafio_spring_boot.dto.response.AuthResponse;
+import ar.com.challenge.desafio_spring_boot.dto.response.Response;
+import ar.com.challenge.desafio_spring_boot.dto.response.Error;
 import ar.com.challenge.desafio_spring_boot.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,7 @@ public class AuthController {
                     schema = @Schema(implementation = Error.class),
                     mediaType = MediaType.APPLICATION_JSON_VALUE)})})
     @PostMapping("signin")
-    public Response<AuthResponse, Error> signin(@RequestBody SigninRequest request) throws ResourceNotFoundException {
+    public Response<AuthResponse, Error> signin(@Validated @RequestBody SigninRequest request) throws ResourceNotFoundException {
 
         var token = userService.loadUser(request.getSigninDto());
 
@@ -69,7 +70,7 @@ public class AuthController {
                     schema = @Schema(implementation = Error.class),
                     mediaType = MediaType.APPLICATION_JSON_VALUE)})})
     @PostMapping("signup")
-    public Response<AuthResponse, Error> signup(@RequestBody SignupRequest request) throws ResourceNotFoundException, ResourceFoundException {
+    public Response<AuthResponse, Error> signup(@Validated @RequestBody SignupRequest request) throws ResourceNotFoundException, ResourceFoundException {
 
         var password = passwordEncoder.encode(request.getSignupDto().getPassword());
 

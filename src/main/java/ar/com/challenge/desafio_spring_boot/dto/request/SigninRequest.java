@@ -1,6 +1,6 @@
-package ar.com.challenge.desafio_spring_boot.request;
+package ar.com.challenge.desafio_spring_boot.dto.request;
 
-import ar.com.challenge.desafio_spring_boot.dto.TaskDto;
+import ar.com.challenge.desafio_spring_boot.dto.SigninDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskRequest {
+public class SigninRequest {
 
     @NotNull
-    TaskDto taskDto;
+    SigninDto signinDto;
 }
