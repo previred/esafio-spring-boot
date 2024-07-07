@@ -1,0 +1,108 @@
+# Instrucciones para Ejecutar y Probar la Aplicación
+
+## Requisitos Previos
+
+1. Java Development Kit (JDK) 17
+
+2. Maven
+
+3. Git
+
+4. IDE: Se recomienda utilizar un entorno de desarrollo integrado (IDE) como STS, IntelliJ IDEA, Eclipse o VS Code.
+
+## Clonar el Repositorio
+
+Abre una terminal y clona el repositorio de la aplicación.
+   ```sh
+   git clone [URL_DEL_REPOSITORIO]
+   
+   Navega al directorio del proyecto.
+   cd task-management
+   
+Configuración de la Base de Datos H2
+   
+ La aplicación utiliza una base de datos en memoria H2.  No se necesita configuración adicional.
+ La consola H2 está habilitada y puede accederse desde http://localhost:8080/h2-console
+ 
+Configuración de Seguridad
+	La aplicación utiliza JWT para autenticación y autorización. 
+	Los usuarios precargados en la aplicación puedes verlos en el archivo : src\main\resources\data.sql
+	
+Construir y Ejecutar la Aplicación
+Para construir y ejecutar la aplicación, usar Maven. En la terminal, se ejecuta:
+	mvn clean install
+	mvn spring-boot:run
+	
+	
+Endpoints Disponibles
+		Autenticación
+			POST /authenticate: Genera un token JWT.
+				Request Body:
+				{
+				  "username": "user1",
+				  "password": "password1"
+				}	
+			
+		Gestión de Tareas:
+			-> GET /api/tareas: Obtiene todas las tareas.
+			-> GET /api/tareas/{id}: Obtiene una tarea por ID.
+			-> POST /api/tareas: Crea una nueva tarea.
+				Request Body
+					{
+					  "description": "Limpieza del Local",
+					  "statusId": "1"
+					}
+			-> PUT /api/tareas/{id}: Actualiza una tarea existente
+				Request Body:
+					{
+					  "description": "Limpieza del Local Actualizado",
+					  "statusId": "1"
+					}
+			-> DELETE /api/tareas/{id}: Elimina una tarea existente.
+			
+para Probar la Aplicación con Postman			
+Se agrega el archivo taskmanagement.postman_collection.json
+
+Documentación Swagger
+La documentación Swagger está disponible en: URL: http://localhost:8080/swagger-ui.html
+
+Observaciones Adicionales
+Todos los mensajes y rutas están externalizados en constantes para mantener el código limpio y aplicando buenas prácticas de desarrollo.
+
+En la aplicación que he desarrollado, ge  utilizado varios patrones de diseño comunes en el desarrollo de aplicaciones Java con Spring Boot. Aquí están algunos de los patrones de diseño que se han aplicado:
+
+Patrón de Inyección de Dependencias (Dependency Injection):
+
+Se utiliza en toda la aplicación, especialmente en la configuración de Spring Security (SecurityConfig) y en la inyección de servicios (TareaService, UsuarioService) en los controladores (TareaController, AuthController).
+Patrón de Diseño Modelo-Vista-Controlador (MVC):
+
+La estructura de la aplicación sigue el patrón MVC, donde:
+Los modelos (Tarea, Usuario) representan los datos de la aplicación.
+Los controladores (TareaController, AuthController) manejan las solicitudes HTTP y coordinan las respuestas.
+Las vistas no están explícitamente definidas en esta API RESTful, pero las respuestas JSON actúan como vistas.
+Patrón de Repositorio (Repository):
+
+Utilizado en las interfaces de repositorio (TareaRepository, UsuarioRepository) para abstraer la lógica de acceso a datos y permitir la interacción con la base de datos H2.
+Patrón de Servicio (Service Layer):
+
+Utilizado para encapsular la lógica de negocio en las clases de servicio (TareaService, UsuarioService) y sus implementaciones (TareaServiceImpl, UsuarioServiceImpl).
+Patrón de Transferencia de Datos (DTO - Data Transfer Object):
+
+Utilizado en los objetos TareaDTO para transferir datos entre las capas de la aplicación y evitar exponer directamente las entidades del modelo.
+Patrón de Fábrica (Factory Method):
+
+Aunque no se usa un patrón de fábrica explícito en el código proporcionado, el método passwordEncoder() en la clase de configuración de seguridad puede considerarse una forma simple de fábrica para crear instancias de PasswordEncoder.
+Patrón de Adaptador (Adapter):
+
+El JwtRequestFilter actúa como un adaptador que intercepta las solicitudes HTTP para agregar la lógica de validación del token JWT.
+Patrón de Mapeador (Mapper):
+
+Utilizado en la clase TareaMapper para convertir entre entidades y DTOs.
+Patrón de Proveedor de Servicios (Service Provider):
+
+Implementado por UsuarioServiceImpl que proporciona la implementación del servicio UserDetailsService.
+Patrón de Estrategia (Strategy):
+
+Implementado en la configuración de Spring Security, donde diferentes estrategias de autenticación y autorización se aplican según las rutas y las políticas de seguridad definidas.
+Estos patrones de diseño ayudan a mantener la aplicación modular, fácil de mantener y extensible. Si hay otros patrones específicos que te gustaría conocer más a fondo o si tienes alguna pregunta sobre la implementación de estos patrones, no dudes en preguntar.
+			
