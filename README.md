@@ -72,6 +72,6 @@ Se evaluará la solución en función de los siguientes criterios:
 - **Puntos extras si la generación de la API se realizo mediante API First**
 
 
-##Instrucciones de uso
+## Instrucciones de uso:
 
-Acceder al sirectorio desafio-spring-boot/task/src/main/resources/Instrucciones y en el archivo pasos_para_pruebas.txt encontrara las instrucciones para la realizacion de pruebas
+Acceder al directorio desafio-spring-boot/task/src/main/resources/Instrucciones y en el archivo pasos_para_pruebas.txt encontrara las instrucciones para la realizacion de pruebas
