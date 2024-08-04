@@ -1,0 +1,17 @@
+1. Clonar el proyecto en el directorio de su preferencia
+2. Acceder al directorio donde se encuentra el archivo pom.xml
+3. Ejecutar el comando mvn clean install, esto va a generar el archivo task-0.0.1-SNAPSHOT.jar de la aplicacion en el directorio /target
+4. Acceder al directorio /target y ejecutar el comando  java -jar task-0.0.1-SNAPSHOT.jar (Listo, en este paso ya tenemos la aplicacion ejecutandose)
+5. Abrir la aplicacion postman
+
+    5.1 En caso de no contar con la herramienta, realizar la instalación de la misma
+    siguiendo las instrucciones indicadas en https://learning.postman.com/docs/postman/launching-postman/installation-and-updates/
+    de acuedo al sistema operativo de su elección.
+
+    5.2 Una vez en postman, acceder al menu  Import --> files
+    y seleccionar el archivo desafio-spring-boot-task.postman_collection.json
+    y pulsar import.
+    Esto realizará la importación de un postman collection
+    que le permitira invocar a cada servicio REST para las pruebas correspondientes.
+
+6. Listo,ya puede realizar las pruebas desde postman.

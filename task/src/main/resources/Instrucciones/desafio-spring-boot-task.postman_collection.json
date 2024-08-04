@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "c526b22a-9b24-487f-b209-2e5eaf7f5c2f",
+		"name": "desafio-spring-boot-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3157688"
+	},
+	"item": [
+		{
+			"name": "api-ping",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRS0xIiwidGVzdCI6InZhbHVlLXRlc3QiLCJzdWIiOiJ1c2VyLTEiLCJpYXQiOjE3MjI3NzYzNjIsImV4cCI6MTcyMjc5NDM2Mn0.L0sajG4ytoB_aYtYTOeo1ekq1iQkq4lkYd7luCcc4gjCFgDSTX8TZ5SxIVhIb4M6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"user-1\",\r\n  \"password\": \"user-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRS0xIiwidGVzdCI6InZhbHVlLXRlc3QiLCJzdWIiOiJ1c2VyLTEiLCJpYXQiOjE3MjI3ODk5NjQsImV4cCI6MTcyMjgwNzk2NH0.W5gPmgA7wU08dKV6uPRe1f1q2Mcvb7HLelZQzMSKxMr1k8QTzYHs6vTVUCeYo4mF",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":null,\r\n  \"name\": \"Prueba save task\",\r\n  \"description\": \"Realizacion de prueba para el servicio save de una tarea\",\r\n  \"state\":{\r\n    \"id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "readAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRS0xIiwidGVzdCI6InZhbHVlLXRlc3QiLCJzdWIiOiJ1c2VyLTEiLCJpYXQiOjE3MjI3ODc1NzAsImV4cCI6MTcyMjgwNTU3MH0.bAMrBZGYptbSFEtftnqF1MJbEEX20XcUR1R3Ptwj21SM1BUJe4iE6WIkohLeghsl",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/task/readAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"readAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRS0xIiwidGVzdCI6InZhbHVlLXRlc3QiLCJzdWIiOiJ1c2VyLTEiLCJpYXQiOjE3MjI3ODg1MzcsImV4cCI6MTcyMjgwNjUzN30.cCAj_UAOiihg1q2nuC0H0lldyzV8JiFPrlLAIQJ7EBH65DPenqypeRWWr1ZsQFhn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \" UPDATE task\",\r\n    \"description\": \"prueba UPDATE de una task\",\r\n    \"state\": {\r\n        \"id\": 1,\r\n        \"name\": \"CREADA\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRS0xIiwidGVzdCI6InZhbHVlLXRlc3QiLCJzdWIiOiJ1c2VyLTEiLCJpYXQiOjE3MjI3ODk5NjQsImV4cCI6MTcyMjgwNzk2NH0.W5gPmgA7wU08dKV6uPRe1f1q2Mcvb7HLelZQzMSKxMr1k8QTzYHs6vTVUCeYo4mF",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/task/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
