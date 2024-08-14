@@ -1,0 +1,23 @@
+INSTRUCCIONES PARA REALIZAR LA PRUEBA DEL SERVICIO
+
+- Se debe levantar la aplicación 
+- Utilizando Postman se debe cargar el archivo nuevo_spa.json donde están las colecciones para realizar las distintas pruebas de cada endpoint
+- A excepción del endpoint de login todos los endpoint vienen con bloqueo de autenticación por lo que si se ejecutan dará un error 403
+- Se debe ejecutar el servicio de login con cualquiera de estos 3 json de prueba que vienen pre cargados en la aplicación:
+{
+  "email": "juan.perez@example.com",
+  "password": "123456"
+}
+
+{
+  "email": "ana.garcia@example.com",
+  "password": "123456"
+}
+
+{
+  "email": "luis.fernandez@example.com",
+  "password": "123456"
+}
+
+- Una vez logueado va a retornar un token en el header de la respuesta el cual se debe agregar dentro del valor Authorization en el header de los servicios que se desean probar. 
+Con este dato ya se van a poder ejecutar los demás servicios y se pueden realizar todas las pruebas que estimen convenientes. 

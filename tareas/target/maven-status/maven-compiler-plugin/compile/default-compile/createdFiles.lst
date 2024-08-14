@@ -1,0 +1,8 @@
+com\nuevospa\tareas\model\Usuario.class
+com\nuevospa\tareas\service\UsuarioService.class
+com\nuevospa\tareas\entity\UsuarioEntity.class
+com\nuevospa\tareas\controller\UsuarioController.class
+com\nuevospa\tareas\GestionTareasApplication.class
+com\nuevospa\tareas\configuration\SwaggerConfig.class
+com\nuevospa\tareas\entity\UsuarioEntity$UsuarioEntityBuilder.class
+com\nuevospa\tareas\repository\UsuarioRepository.class

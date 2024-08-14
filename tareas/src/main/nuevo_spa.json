@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "b30ba508-ec8c-4d9a-9372-b0955b4437e8",
+		"name": "NUEVO SPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6882891"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Usuarios - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTI4NzIzLCJpYXQiOjE3MjM1MjUxMjN9.6wBvWAkuAcYbHAmIgwgtUC-vkPU9Mq_VYlboTpXl2uE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTI4NzIzLCJpYXQiOjE3MjM1MjUxMjN9.6wBvWAkuAcYbHAmIgwgtUC-vkPU9Mq_VYlboTpXl2uE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jorge Aguilera\",\r\n    \"email\": \"jorge.aguilera@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios - Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTI4NzIzLCJpYXQiOjE3MjM1MjUxMjN9.6wBvWAkuAcYbHAmIgwgtUC-vkPU9Mq_VYlboTpXl2uE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jorge Aguilera\",\r\n    \"email\": \"jaguilera@example.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/actualizar/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"actualizar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTI4NzIzLCJpYXQiOjE3MjM1MjUxMjN9.6wBvWAkuAcYbHAmIgwgtUC-vkPU9Mq_VYlboTpXl2uE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/eliminar/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"eliminar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "Tareas - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Descripción de la tarea 4\",\r\n    \"estadoId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/tareas/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tareas - Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Nueva descripción de la tarea 4\",\r\n    \"estadoId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/tareas/actualizar/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"actualizar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tareas - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM2OTkwLCJpYXQiOjE3MjM1MzMzOTB9.vRYK_Ul9vapEWF_S_14wpG4VAddsySRKKen8XXV-igo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/tareas/eliminar/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"eliminar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tareas - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/tareas/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tareas",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estado-Tareas",
+			"item": [
+				{
+					"name": "Estado-Tarea - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estados-tarea/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados-tarea",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estado-tarea - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"bloqueada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estados-tarea/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados-tarea",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estado-tarea - Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"reasignada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estados-tarea/actualizar/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados-tarea",
+								"actualizar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estado-tarea - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiZXhwIjoxNzIzNTM1ODUwLCJpYXQiOjE3MjM1MzIyNTB9.t8jLu0Iw-nliw2TUs1hRzgnrCuH7JF1XtUlFxpuTYtc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estados-tarea/eliminar/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados-tarea",
+								"eliminar",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
