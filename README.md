@@ -15,10 +15,8 @@ Las instrucciones de uso se indican en el archivo /task/src/main/resources/READM
 
 1. **Clonar el Repositorio**
    
-   git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
-
-
+   git clone https://github.com/ppolancosan/desafio-spring-boot.git
+  
 url de documentacion de Postman :
 
 https://documenter.getpostman.com/view/10758773/2sA3s7kphu
