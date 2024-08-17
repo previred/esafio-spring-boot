@@ -1,0 +1,2 @@
+jwt.secret=clave1234  #clave secreta para firmar los tokens JWT.
+jwt.expiration=3600000  # 1 hora en milisegundos
