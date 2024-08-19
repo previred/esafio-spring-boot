@@ -1,0 +1,208 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 5f2pthcc1kphu
+info:
+  title: Task Manager
+  version: '1.0'
+  summary: ''
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /sign-up:
+    post:
+      summary: Sign Up
+      tags: []
+      responses:
+        '201':
+          description: Created
+      operationId: post-sign-up
+      x-stoplight:
+        id: mb6daqwmed1k4
+      requestBody:
+        $ref: '#/components/requestBodies/SignUpRequest'
+      security: []
+    parameters: []
+  /login:
+    post:
+      summary: Login
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+      operationId: post-login
+      x-stoplight:
+        id: 1s51v5rmcgmgt
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+      security: []
+  /task:
+    post:
+      summary: Create Task
+      tags: []
+      responses:
+        '201':
+          description: Created
+      operationId: post-task
+      x-stoplight:
+        id: 4gou3ne36br2p
+      requestBody:
+        $ref: '#/components/requestBodies/CreateTaskRequest'
+      parameters: []
+    get:
+      summary: Get Tasks
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+                  x-stoplight:
+                    id: gfs0a5sq7dasw
+      operationId: get-task
+      x-stoplight:
+        id: h6koj8jjwcqt8
+    parameters: []
+  '/task/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get Task
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+      operationId: get-task-id
+      x-stoplight:
+        id: diue3zv853cfx
+    delete:
+      summary: Delete Task
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-task-id
+      x-stoplight:
+        id: opdlonpqxkc0i
+    put:
+      summary: Update Task
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: put-task-id
+      x-stoplight:
+        id: tdqabvpm9sn8y
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    Task:
+      title: Task
+      x-stoplight:
+        id: lu1m3tup0ur52
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: wmkcsv909wkh8
+        title:
+          type: string
+          x-stoplight:
+            id: pzsh8vayk1kzm
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+          x-stoplight:
+            id: jndpzxbgwt8s3
+    TaskStatus:
+      title: TaskStatus
+      x-stoplight:
+        id: ug6jvuly5s9gm
+      enum:
+        - To Do
+        - In Progress
+        - Done
+    Token:
+      title: Token
+      x-stoplight:
+        id: vlr8iyeq3s2cn
+      type: object
+      properties:
+        token:
+          type: string
+          x-stoplight:
+            id: 3in2ihby7qvqx
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Token'
+      description: ''
+  securitySchemes:
+    token:
+      type: http
+      scheme: bearer
+  requestBodies:
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                x-stoplight:
+                  id: svt78hrii7q0x
+              password:
+                type: string
+                x-stoplight:
+                  id: l9idsq04tginc
+    SignUpRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                x-stoplight:
+                  id: luh5hghsa50kd
+              fullname:
+                type: string
+                x-stoplight:
+                  id: zpvr8b8x95b17
+              password:
+                type: string
+                x-stoplight:
+                  id: lt2h7kf5fk2re
+    CreateTaskRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                x-stoplight:
+                  id: 73a7b058x8ulk
+  responses: {}
+security:
+  - token: []

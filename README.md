@@ -1,72 +1,56 @@
-# Desafío Técnico: Gestión de Tareas con Spring Boot y Java
+# Spring Boot Task Manager Project
 
-La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. Además, se requiere autenticación mediante JWT y documentación de la API utilizando OpenAPI y Swagger.
+Este proyecto es un gestor de tareas desarrollado con Spring Boot. A continuación, se detallan los pasos para su instalación, configuración y pruebas.
 
-## Objetivo:
-Crear una API RESTful utilizando Spring Boot 2.7.x que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
+## Requisitos Previos
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+- Java 17 o superior.
+- Maven 3.5 o superior.
 
-### Spring Boot 2.7.x:
-- Construye la aplicación utilizando Spring Boot 2.7.x (última versión disponible).
+## Instalación
 
-### Base de Datos:
+1. **Clonar el repositorio:**
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+   ```bash
+   git clone https://github.com/cnorellanan/desafio-spring-boot.git
+   cd desafio-spring-boot
+   ```
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+2. **Compilar y empaquetar el proyecto:**
 
-### JWT (JSON Web Token):
+   ```bash
+   mvn clean package
+   ```
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
+3. **Ejecutar la aplicación:**
 
-### OpenAPI y Swagger:
+   ```bash
+   java -jar target/taskmanager-0.0.1-SNAPSHOT.jar
+   ```
 
-- Documenta la API utilizando OpenAPI y Swagger.
+## Carga Inicial de Datos
 
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
+Al iniciar la aplicación, se precargarán automáticamente las siguientes tablas con los datos iniciales:
 
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
+- **task_status:** Contiene los estados posibles para las tareas.
+- **user_entity:** Contiene los usuarios del sistema.
 
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
+## Usuarios de Prueba
 
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
+Los usuarios pre-cargado automaticamente para pruebas son los siguientes:
 
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
+- `usuario1@mail.com` : `Agosto2024`
+- `usuario2@mail.com` : `Agosto2024`
+- `usuario3@mail.com` : `Agosto2024`
 
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
+## Documentación de la API
 
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
+La documentación de la API generada con Swagger se encuentra disponible en la siguiente URL una vez que el proyecto esté en ejecución:
 
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
+```
+http://localhost:8080/task-manager/swagger-ui/
+```
 
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
+## Probar los Servicios
 
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 2.7.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+En la carpeta `/Postman` de este proyecto, encontrarás un archivo con las colecciones de Postman que te permitirá probar todos los servicios expuestos por la API.
