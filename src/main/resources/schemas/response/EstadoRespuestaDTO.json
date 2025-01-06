@@ -1,0 +1,17 @@
+{
+  "title": "Root Type for Respuesta",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "codigo": "000000",
+    "descripcion": "exito"
+  }
+}

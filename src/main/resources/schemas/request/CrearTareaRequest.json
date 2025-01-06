@@ -1,0 +1,31 @@
+{
+  "title": "Root Type for CrearTareaRequest",
+  "description": "",
+  "required": [
+    "nombre",
+    "descripcion",
+    "codigoTablero"
+  ],
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "codigoTablero": {
+      "description": "",
+      "type": "string"
+    }
+  },
+  "example": {
+    "nombre": "Crear tests unitarios",
+    "descripcion": "Crear tests unitarios",
+    "usuario": "jmartinez",
+    "codigoTablero": "PROY1"
+  }
+}

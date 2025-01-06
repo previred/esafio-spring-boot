@@ -1,0 +1,75 @@
+{
+  "title": "Root Type for RespuestaTableroDTO",
+  "description": "",
+  "required": [
+    "estado",
+    "informacionTablero"
+  ],
+  "type": "object",
+  "properties": {
+    "informacionTablero": {
+      "$ref": "../response/TableroDTO.json",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fechaCreacion": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "estado": {
+      "$ref": "../response/EstadoRespuestaDTO.json",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },
+    "tareas": {
+      "description": "",
+      "type": "array",
+      "items": {
+        "$ref": "../response/TareaDTO.json"
+      }
+    }
+  },
+  "example": {
+    "informacionTablero": {
+      "codigo": "PROY1",
+      "nombre": "Proyecto 1",
+      "descripcion": "Implementacion del proyecto 1",
+      "fechaCreacion": "2025-01-01 12:30:45.123"
+    },
+    "estado": {
+      "codigo": "000000",
+      "descripcion": "exito"
+    },
+    "tareas": [
+      {
+        "nombre": "Crear test unitarios2",
+        "usuario": "jperez",
+        "estado": "TO_DO",
+        "codigo": 1,
+        "fechaCreacion": "2025-01-04T23:49:57.849+00:00"
+      },
+      {
+        "nombre": "Crear test unitarios1",
+        "usuario": "fpacheco",
+        "estado": "IN_PROGRESS",
+        "codigo": 2,
+        "fechaCreacion": "2025-01-03T17:31:03.438+00:00"
+      }
+    ]
+  }
+}

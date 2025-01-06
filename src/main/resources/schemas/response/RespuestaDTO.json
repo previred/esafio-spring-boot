@@ -1,0 +1,48 @@
+{
+  "title": "Root Type for RespuestaDTO",
+  "description": "",
+  "required": [
+    "estado"
+  ],
+  "type": "object",
+  "properties": {
+    "estado": {
+      "$ref": "../response/EstadoRespuestaDTO.json",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },
+    "informacionTarea": {
+      "$ref": "../response/TareaDTO.json",
+      "description": ""
+    },
+    "tareas": {
+      "description": "",
+      "type": "array",
+      "items": {
+        "$ref": "../response/TareaDTO.json"
+      }
+    }
+  },
+  "example": {
+    "informacionTarea": {
+      "nombre": "Crear tests unitarios",
+      "descripcion": "Crear tests unitarios",
+      "codigo": 35,
+      "estado": "TO DO",
+      "usuario": "12345678-9",
+      "fechaCreacion": "2025-01-01 12:30:45.123",
+      "fechaAsignacion": "2025-01-01 12:30:45.123",
+      "fechaTermino": "2025-01-08 12:30:45.123"
+    },
+    "estado": {
+      "codigo": "000000",
+      "descripcion": "exito"
+    }
+  }
+}

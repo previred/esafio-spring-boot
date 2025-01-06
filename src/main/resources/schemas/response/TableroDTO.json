@@ -1,0 +1,26 @@
+{
+  "title": "Root Type for TableroDTO",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "fecha_creacion": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "example": {
+    "codigo": "PROY1",
+    "nombre": "Proyecto 1",
+    "descripcion": "Implementacion del proyecto 1",
+    "fechaCreacion": "2025-01-01 12:30:45.123"
+  }
+}

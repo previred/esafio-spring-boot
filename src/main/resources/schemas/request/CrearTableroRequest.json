@@ -1,0 +1,25 @@
+{
+  "title": "Root Type for CrearTableroRequest",
+  "description": "",
+  "required": [
+    "codigo",
+    "nombre"
+  ],
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "codigo": "PROY1",
+    "nombre": "Proyecto 1",
+    "descripcion": "Implementacion del proyecto 1"
+  }
+}

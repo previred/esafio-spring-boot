@@ -1,0 +1,48 @@
+{
+  "title": "Root Type for ActualizarTareaRequest",
+  "description": "",
+  "required": [
+    "nombre",
+    "descripcion"
+  ],
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "estado": {
+      "description": "",
+      "enum": [
+        "TO_DO",
+        "IN_PROGRESS",
+        "QA",
+        "DONE",
+        "PRODUCTION"
+      ],
+      "type": "string"
+    },
+    "fechaTermino": {
+      "format": "date-time",
+      "description": "",
+      "type": "string"
+    },
+    "codigoTablero": {
+      "description": "",
+      "type": "string"
+    }
+  },
+  "example": {
+    "nombre": "Crear tests unitarios",
+    "descripcion": "Crear tests unitarios",
+    "usuario": "jmartinez",
+    "codigoTablero": "PROY1",
+    "estado": "IN_PROGRESS",
+    "fechaTermino": "2025-01-08 12:30:45.123"
+  }
+}
