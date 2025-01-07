@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "7e46fc65-da9f-4750-a529-051dba39eb24",
+		"name": "gestion-tareas-v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30688239"
+	},
+	"item": [
+		{
+			"name": "tareas",
+			"item": [
+				{
+					"name": "obtenerTodas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcGVyZXoiLCJyb2xlcyI6WyJERVYiXSwiaWF0IjoxNzM2MjAxNjc0LCJleHAiOjE3MzYyMDUyNzR9.OLpUacNPQNA3S6o6zLJ99IB-oyvNnKqFSFwgU3Eeo0U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/tarea/obtener-todas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarea",
+								"obtener-todas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerTareasUsuario",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcGVyZXoiLCJyb2xlcyI6WyJERVYiXSwiaWF0IjoxNzM2MjAxNjc0LCJleHAiOjE3MzYyMDUyNzR9.OLpUacNPQNA3S6o6zLJ99IB-oyvNnKqFSFwgU3Eeo0U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/tarea/obtener-por-usuario/jperez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarea",
+								"obtener-por-usuario",
+								"jperez"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearTarea",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcGVyZXoiLCJyb2xlcyI6WyJERVYiXSwiaWF0IjoxNzM2MjAxNjc0LCJleHAiOjE3MzYyMDUyNzR9.OLpUacNPQNA3S6o6zLJ99IB-oyvNnKqFSFwgU3Eeo0U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"jperez\",\r\n    \"descripcion\": \"sdfsdfsdf\",\r\n    \"codigoTablero\": \"PROY1\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tarea/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarea",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarTarea",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqcGVyZXoiLCJyb2xlcyI6WyJERVYiXSwiaWF0IjoxNzM2MjAxNjc0LCJleHAiOjE3MzYyMDUyNzR9.OLpUacNPQNA3S6o6zLJ99IB-oyvNnKqFSFwgU3Eeo0U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"jperez\",\r\n    \"nombre\": \"Crear otra cosa\",\r\n    \"estado\": \"IN_PROGRESS\",\r\n    \"descripcion\": \"sdfsdfsdf\",\r\n    \"codigoTablero\": \"PROY1\",\r\n    \"fechaTermino\": \"2025-02-04T17:49:57.849+00:00\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tarea/actualizar/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarea",
+								"actualizar",
+								"33"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tableros",
+			"item": [
+				{
+					"name": "crearTablero",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZmVybmFuZGV6Iiwicm9sZXMiOlsiU0NNIl0sImlhdCI6MTczNjIwMTg3MCwiZXhwIjoxNzM2MjA1NDcwfQ.Z-u7-CXE2s4zlcY5fiZU79zjvbKvJxzPXgIRu-NZktk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"TEEO1\",\r\n    \"nombre\": \"Proyecto chamullo\",\r\n    \"descripcion\": \"Implementacion del proyecto 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tablero/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tablero",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerPorCodigo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tablero/obtener-por-codigo/PROY1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tablero",
+								"obtener-por-codigo",
+								"PROY1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login SCM",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "lfernandez",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Xea6PS2Zt93Q4hnNHmy8bW",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login DEV",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jperez",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "BFECmDP5LTwfYarhHM7nGU",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZmVybmFuZGV6Iiwicm9sZXMiOlsiU2NydW0gbWFzdGVyIl0sImlhdCI6MTczNjE5Mjc0MCwiZXhwIjoxNzM2MTk2MzQwfQ.PqoxT8GpQ18HQl1GQNUXAmte38Wt5rpvPEsRDjYIJdc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
