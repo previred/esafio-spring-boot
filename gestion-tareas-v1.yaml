@@ -1,0 +1,671 @@
+openapi: 3.0.2
+info:
+    title: gestion-tareas-v1
+    version: 1.0.0
+    description: Documentación de la API de Gestión de Tareas
+paths:
+    /api/tarea/crear:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CrearTareaRequest'
+                required: true
+            parameters:
+                -
+                    name: Authorization
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                crear tarea 200 example:
+                                    value:
+                                        estado:
+                                            codigo: '00000'
+                                            descripcion: Operación exitosa
+                                        informacionTarea:
+                                            nombre: Crear test unitarios1
+                                            descripcion: sdfsdfsdf
+                                            usuario: jperez
+                                            estado: TO_DO
+                                            codigo: 1
+                                            fechaAsignacion: '2025-01-06T22:29:29.492+00:00'
+                                            fechaCreacion: '2025-01-06T22:29:29.496+00:00'
+                                            tablero:
+                                                codigo: PROY1
+                                                nombre: Proyecto 1
+                                                descripcion: Implementacion Proyecto 1
+                                                fecha_creacion: '2025-01-04T17:49:57.849+00:00'
+                    description: Creacion exitosa
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                crear tarea 400 example:
+                                    value:
+                                        estado:
+                                            codigo: '00007'
+                                            descripcion: '{nombre=El campo nombre no puede estar vacío}'
+                    description: Request inválido
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                crear tarea 500:
+                                    value:
+                                        estado:
+                                            codigo: 00009
+                                            descripcion: Error en la conectividad con la base de datos
+                    description: Error no controlado
+            operationId: crear
+            summary: Crear tarea
+    /api/tarea/obtener-todas:
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                200 Example:
+                                    value:
+                                        estado:
+                                            codigo: '00000'
+                                            descripcion: Operación exitosa
+                                        tareas:
+                                            -
+                                                nombre: Crear test unitarios2
+                                                usuario: jperez
+                                                estado: TO_DO
+                                                codigo: 1
+                                                fechaCreacion: '2025-01-04T23:49:57.849+00:00'
+                                            -
+                                                nombre: Crear test unitarios1
+                                                usuario: fpacheco
+                                                estado: IN_PROGRESS
+                                                codigo: 2
+                                                fechaCreacion: '2025-01-03T17:31:03.438+00:00'
+                    description: Operación Exitosa
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                Tarea 404 example:
+                                    value:
+                                        estado:
+                                            codigo: '00004'
+                                            descripcion: No se encuentran tareas
+                    description: No se encontraron datos
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                Tarea 500 example:
+                                    value:
+                                        estado:
+                                            codigo: 00009
+                                            descripcion: Error en la conectividad con la base de datos
+                    description: 'Error del servidor. Por ejemplo, falla en la conectividad a la base de datos'
+            operationId: obtener-todas
+    /api/auth/login:
+        post:
+            requestBody:
+                content:
+                    application/x-www-form-urlencoded:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequestDTO'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTokenDTO'
+                            examples:
+                                login 200:
+                                    value:
+                                        codigo: '00000'
+                                        descripcion: Operación exitosa
+                                        token: >-
+                                            eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZmVybmFuZGV6Iiwicm9sZXMiOlsiU0NNIl0sImlhdCI6MTczNjIwNDYyMywiZXhwIjoxNzM2MjA4MjIzfQ.JECy0vgAT5H4xXhzmi3tvwv7KgSy3-vcPbzaTi8p2vg
+                    description: Operación Exitosa
+                '401':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTokenDTO'
+                            examples:
+                                login 401:
+                                    value:
+                                        codigo: 00009
+                                        descripcion: >-
+                                            Required request parameter 'password' for method parameter type
+                                            String is not present
+                    description: Credenciales no son válidas
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTokenDTO'
+                            examples:
+                                login 500:
+                                    value:
+                                        codigo: '00010'
+                                        descripcion: Error de conectividad con la base de datos
+                    description: Error no controlado
+            operationId: login
+    /api/tarea/actualizar:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ActualizarTareaRequest'
+                required: true
+            parameters:
+                -
+                    name: Authorization
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                200 example:
+                                    value:
+                                        informacionTarea:
+                                            nombre: Crear tests unitarios
+                                            descripcion: Crear tests unitarios
+                                            codigo: 35
+                                            estado: TO DO
+                                            usuario: 12345678-9
+                                            fechaCreacion: '2025-01-01 12:30:45.123'
+                                            fechaAsignacion: '2025-01-01 12:30:45.123'
+                                            fechaTermino: '2025-01-08 12:30:45.123'
+                                        estado:
+                                            codigo: '000000'
+                                            descripcion: exito
+                    description: Actualizacion Exitosa
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                actualizar tarea 400 example:
+                                    value:
+                                        estado:
+                                            codigo: '00007'
+                                            descripcion: El request no es válido
+                    description: Request inválido
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                actualizar tarea 404 example:
+                                    value:
+                                        estado:
+                                            codigo: '00004'
+                                            descripcion: No se encuentran tareas
+                    description: No se encontraron datos
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                actualizar tarea 500 example:
+                                    value:
+                                        estado:
+                                            codigo: 00009
+                                            descripcion: Error en la conectividad con la base de datos
+                    description: Error no controlado
+            operationId: actualizar
+            summary: Actualizar tarea
+    '/api/tarea/obtener-por-usuario/{usuario}':
+        get:
+            parameters:
+                -
+                    name: usuario
+                    description: usuario a buscar
+                    schema:
+                        type: string
+                    in: path
+                    required: true
+                -
+                    name: Authorization
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                200 Example:
+                                    value:
+                                        estado:
+                                            codigo: '00000'
+                                            descripcion: Operación exitosa
+                                        tareas:
+                                            -
+                                                nombre: Crear test unitarios2
+                                                usuario: jperez
+                                                estado: TO_DO
+                                                codigo: 1
+                                                fechaCreacion: '2025-01-04T23:49:57.849+00:00'
+                                            -
+                                                nombre: Crear test unitarios1
+                                                usuario: fpacheco
+                                                estado: IN_PROGRESS
+                                                codigo: 2
+                                                fechaCreacion: '2025-01-03T17:31:03.438+00:00'
+                    description: Operación Exitosa
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                Tarea 404 example:
+                                    value:
+                                        estado:
+                                            codigo: '00004'
+                                            descripcion: No se encuentran tareas
+                    description: No se encontraron datos
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaDTO'
+                            examples:
+                                Tarea 500 example:
+                                    value:
+                                        estado:
+                                            codigo: 00009
+                                            descripcion: Error en la conectividad con la base de datos
+                    description: 'Error del servidor. Por ejemplo, falla en la conectividad a la base de datos'
+            operationId: obtener-por-usuario
+    /api/tablero/crear:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CrearTableroRequest'
+                required: true
+            parameters:
+                -
+                    name: Authorization
+                    description: ''
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            examples:
+                                crear tablero 200:
+                                    value:
+                                        informacionTablero:
+                                            codigo: PROY5
+                                            nombre: Proyecto 5
+                                            descripcion: Implementacion del proyecto 5
+                                            fecha_creacion: '2025-01-06T22:52:55.936+00:00'
+                                        estado:
+                                            codigo: '00000'
+                                            descripcion: Operación exitosa
+                                        tareas: []
+                    description: Tablero creado
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTableroDTO'
+                            examples:
+                                crar tablero 400:
+                                    value:
+                                        estado:
+                                            codigo: '00007'
+                                            descripcion: '{codigo=El campo codigo no puede ser nulo}'
+                    description: Request inválido
+                '409':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTableroDTO'
+                            examples:
+                                crear tablero 409:
+                                    value:
+                                        estado:
+                                            codigo: '00006'
+                                            descripcion: El codigo del tablero ya existe
+                    description: El tablero ya existe
+                '500':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RespuestaTableroDTO'
+                    description: Error no controlado
+            operationId: crear-tablero
+components:
+    schemas:
+        CrearTareaRequest:
+            title: Root Type for CrearTareaRequest
+            description: ''
+            required:
+                - nombre
+                - descripcion
+                - codigoTablero
+            type: object
+            properties:
+                nombre:
+                    type: string
+                descripcion:
+                    type: string
+                usuario:
+                    type: string
+                codigoTablero:
+                    description: ''
+                    type: string
+            example:
+                nombre: Crear tests unitarios
+                descripcion: Crear tests unitarios
+                usuario: jmartinez
+                codigoTablero: PROY1
+        EstadoRespuestaDTO:
+            title: Root Type for Respuesta
+            description: ''
+            type: object
+            properties:
+                codigo:
+                    type: string
+                descripcion:
+                    type: string
+            example:
+                codigo: '000000'
+                descripcion: exito
+        RespuestaDTO:
+            title: Root Type for RespuestaDTO
+            description: ''
+            required:
+                - estado
+            type: object
+            properties:
+                estado:
+                    $ref: '#/components/schemas/EstadoRespuestaDTO'
+                    properties:
+                        codigo:
+                            type: string
+                        descripcion:
+                            type: string
+                informacionTarea:
+                    $ref: '#/components/schemas/TareaDTO'
+                    description: ''
+                tareas:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TareaDTO'
+            example:
+                informacionTarea:
+                    codigo: 35
+                    nombre: Crear tests unitarios
+                    descripcion: Crear tests unitarios
+                    estado: TO DO
+                    usuario: jmartinez
+                    fechaCreacion: '2025-01-01 12:30:45.123'
+                    fechaAsignacion: '2025-01-01 12:30:45.123'
+                    fechaTermino: '2025-01-08 12:30:45.123'
+                estado:
+                    codigo: '000000'
+                    descripcion: exito
+        TableroDTO:
+            title: Root Type for TableroDTO
+            description: ''
+            type: object
+            properties:
+                codigo:
+                    type: string
+                nombre:
+                    type: string
+                descripcion:
+                    type: string
+                fecha_creacion:
+                    format: date-time
+                    type: string
+            example:
+                codigo: PROY1
+                nombre: Proyecto 1
+                descripcion: Implementacion del proyecto 1
+                fechaCreacion: '2025-01-01 12:30:45.123'
+        CrearTableroRequest:
+            title: Root Type for CrearTableroRequest
+            description: ''
+            required:
+                - codigo
+                - nombre
+            type: object
+            properties:
+                codigo:
+                    type: string
+                nombre:
+                    type: string
+                descripcion:
+                    type: string
+            example:
+                codigo: PROY1
+                nombre: Proyecto 1
+                descripcion: Implementacion del proyecto 1
+        RespuestaTableroDTO:
+            title: Root Type for RespuestaTableroDTO
+            description: ''
+            required:
+                - estado
+                - informacionTablero
+            type: object
+            properties:
+                informacionTablero:
+                    $ref: '#/components/schemas/TableroDTO'
+                    properties:
+                        codigo:
+                            type: string
+                        nombre:
+                            type: string
+                        descripcion:
+                            type: string
+                        fechaCreacion:
+                            format: date-time
+                            type: string
+                estado:
+                    $ref: '#/components/schemas/EstadoRespuestaDTO'
+                    properties:
+                        codigo:
+                            type: string
+                        descripcion:
+                            type: string
+                tareas:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TareaDTO'
+            example:
+                informacionTablero:
+                    codigo: PROY1
+                    nombre: Proyecto 1
+                    descripcion: Implementacion del proyecto 1
+                    fechaCreacion: '2025-01-01 12:30:45.123'
+                estado:
+                    codigo: '000000'
+                    descripcion: exito
+                tareas:
+                    -
+                        nombre: Crear test unitarios2
+                        usuario: jperez
+                        estado: TO_DO
+                        codigo: 1
+                        fechaCreacion: '2025-01-04T23:49:57.849+00:00'
+                    -
+                        nombre: Crear test unitarios1
+                        usuario: fpacheco
+                        estado: IN_PROGRESS
+                        codigo: 2
+                        fechaCreacion: '2025-01-03T17:31:03.438+00:00'
+        TareaDTO:
+            title: Root Type for Tarea
+            description: ''
+            required:
+                - codigo
+                - fechaCreacion
+                - tablero
+            type: object
+            properties:
+                nombre:
+                    type: string
+                descripcion:
+                    description: ''
+                    type: string
+                usuario:
+                    type: string
+                estado:
+                    description: ''
+                    enum:
+                        - TO_DO
+                        - IN_PROGRESS
+                        - QA
+                        - DONE
+                        - PRODUCTION
+                    type: string
+                codigo:
+                    format: int64
+                    description: ''
+                    type: integer
+                fechaAsignacion:
+                    format: date-time
+                    description: ''
+                    type: string
+                fechaCreacion:
+                    format: date-time
+                    description: ''
+                    type: string
+                fechaTermino:
+                    format: date-time
+                    description: ''
+                    type: string
+                tablero:
+                    $ref: '#/components/schemas/TableroDTO'
+                    description: ''
+            example:
+                nombre: Crear tests unitarios
+                descripcion: Crear tests unitarios
+                codigo: 35
+                estado: TO DO
+                usuario: 12345678-9
+                fechaCreacion: '2025-01-01 12:30:45.123'
+                fechaAsignacion: '2025-01-01 12:30:45.123'
+                fechaTermino: '2025-01-08 12:30:45.123'
+                tablero:
+                    codigo: PROY1
+                    nombre: Proyecto 1
+                    descripcion: Implementacion del proyecto 1
+                    fechaCreacion: '2025-01-01 12:30:45.123'
+        RespuestaTokenDTO:
+            title: Root Type for RespuestaTokenDTO
+            description: ''
+            required:
+                - codigo
+                - descripcion
+            type: object
+            properties:
+                codigo:
+                    type: string
+                descripcion:
+                    type: string
+                token:
+                    type: string
+            example:
+                codigo: '00000'
+                descripcion: Operación exitosa
+                token: >-
+                    eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZmVybmFuZGV6Iiwicm9sZXMiOlsiU2NydW0gbWFzdGVyIl0sImlhdCI6MTczNjEyMTA4NSwiZXhwIjoxNzM2MTI0Njg1fQ.tgLYLcUpnT2SHOQ2oV7creMHPtx6l7xcZCcav3qhOrM
+        LoginRequestDTO:
+            title: Root Type for LoginRequestDTO
+            description: ''
+            required:
+                - password
+                - username
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+            example:
+                username: lfernandez
+                password: Xea6PS2Zt93Q4hnNHmy8bW
+        ActualizarTareaRequest:
+            title: Root Type for ActualizarTareaRequest
+            description: ''
+            type: object
+            properties:
+                nombre:
+                    type: string
+                descripcion:
+                    type: string
+                usuario:
+                    type: string
+                estado:
+                    description: ''
+                    enum:
+                        - TO_DO
+                        - IN_PROGRESS
+                        - QA
+                        - DONE
+                        - PRODUCTION
+                    type: string
+                fechaTermino:
+                    format: date-time
+                    description: ''
+                    type: string
+                codigoTablero:
+                    description: ''
+                    type: string
+            example:
+                nombre: Crear tests unitarios
+                descripcion: Crear tests unitarios
+                usuario: jmartinez
+                codigoTablero: PROY1
+                estado: IN_PROGRESS
+                fechaTermino: '2025-01-08 12:30:45.123'
