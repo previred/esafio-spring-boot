@@ -1,0 +1,880 @@
+{
+	"info": {
+		"_postman_id": "5435c56e-f92d-4b0a-8802-2d78cd248157",
+		"name": "Desafio-java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33936773"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"usuario\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/sing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"sing"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"usuario\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 21:14:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"mensaje\": \"Usuario creado exitosamente\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=43FEF871971853304B726D80224D9AE5"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"user1\",\n    \"password\":\"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=43FEF871971853304B726D80224D9AE5"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"1234\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 21:05:26 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCR0dVRCNzE3b29qVklSNWt5Tm85Ri8ueEpvY0guaFVnd05WRERWOXpSd0lMUU0uMzZEc0xHMiIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6IjEyMzQiLCJzdWIiOiIxIiwiaWF0IjoxNzM2MjgzOTIxLCJleHAiOjE3MzYzNzAzMjF9.s5Snnd6Wrh5GRaFG-8SMYifL_r0rg4f8Ndb45HJf8RZKPfa_ZdlGBp8CUG4fzFvb\"\n}"
+				}
+			]
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Segunda\",\r\n    \"description\": \"La Primera creada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/task/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"task",
+						"save"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Primera\",\r\n    \"description\": \"La Primera creada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api//task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"",
+								"task"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 21:33:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Primera\",\n    \"description\": \"La Primera creada\",\n    \"userId\": 1,\n    \"status\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"Segunda update\",\n    \"description\": \"La Segunda creada\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Segunda update\",\n    \"description\": \"La Segunda creada\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 21:49:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"mensaje\": \"Tarea actualizada con éxito\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "DeleteTask",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 21:52:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"mensaje\": \"Tarea eliminada correctamente\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "getAllTaks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06; JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/task/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=1A8ED703B84769260896A58C96D0AE06; JSESSIONID=1A8ED703B84769260896A58C96D0AE06"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 22:05:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Segunda\",\n        \"description\": \"La Primera creada\",\n        \"userId\": 1,\n        \"status\": 2\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Segunda2\",\n        \"description\": \"La Primera creada\",\n        \"userId\": 1,\n        \"status\": 2\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "gettaskById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJwYXNzd29yZCI6IiQyYSQxMCQwSXI4MTZ1b0t2aE0uSVlyUVBacXFlWkdmNTFPeHdlUVlGNVI5dVhEZjkxSXhRMXZ1TG94SyIsImlkIjoxLCJyb2wiOiJDTElFTlQiLCJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoiMSIsImlhdCI6MTczNjI4NDQ3MywiZXhwIjoxNzM2MzcwODczfQ.AxeKhl1wLrtsN35D4WjC0__cRBqiXNfhwEauM9zqIxyNsVNwk80YUU8iGLORwc8W",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Jan 2025 22:05:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Segunda\",\n    \"description\": \"La Primera creada\",\n    \"userId\": 1,\n    \"status\": 2\n}"
+				}
+			]
+		}
+	]
+}
