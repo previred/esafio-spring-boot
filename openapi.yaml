@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: API GESTIÓN TAREAS
+  description: >-
+    La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas
+    para mejorar la productividad de sus equipos. El sistema debe permitir a los
+    usuarios crear, actualizar, eliminar y listar tareas. 
+  termsOfService: https://www.previred.com/condiciones-de-uso/
+  contact:
+    name: Manuel Guerrero
+    url: https://www.linkedin.com/in/manufullstack/
+    email: manuelguerreroinostroza@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: DEV SERVER
+security:
+  - Security Token: []
+tags:
+  - name: Tasks
+    description: Controller for Tasks
+paths:
+  /api/v1/tasks/{id}:
+    get:
+      tags:
+        - Tasks
+      summary: Buscar tareas por id
+      description: Devuelve una tarea especifica segun id
+      operationId: findById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Tarea encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Tarea no encontrada
+          content:
+            '*/*':
+              schema: {}
+    put:
+      tags:
+        - Tasks
+      summary: Actualizar tareas por id
+      description: Actualiza una tarea especifica segun id
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: actualizo la tarea con el id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDTO'
+        required: true
+      responses:
+        '200':
+          description: Tarea actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Tarea no encontrada
+          content:
+            '*/*':
+              schema: {}
+    delete:
+      tags:
+        - Tasks
+      summary: Eliminar tareas por id
+      description: Elimina una tarea especifica segun id
+      operationId: deleteById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Tarea eliminada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Tarea no encontrada
+          content:
+            '*/*':
+              schema: {}
+  /api/v1/tasks:
+    get:
+      tags:
+        - Tasks
+      summary: Buscar todas las tareas
+      description: >-
+        Devuelve todas las tareas o un arreglo vacio en caso de no existir
+        ninguna
+      operationId: findAll
+      responses:
+        '200':
+          description: Tareas encontradas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Tareas no encontradas
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDTO'
+    post:
+      tags:
+        - Tasks
+      summary: Agregar tarea
+      description: Agrega una tarea
+      operationId: save
+      requestBody:
+        description: agrego una tarea
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDTO'
+        required: true
+      responses:
+        '200':
+          description: Tarea agregada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Tarea no agregada
+          content:
+            '*/*':
+              schema: {}
+  /api/v1/auth/register:
+    post:
+      tags:
+        - auth-controller
+      summary: Registrar usuario
+      description: Registra un usuario
+      operationId: register
+      requestBody:
+        description: registra un usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        '200':
+          description: Usuario agregado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Usuario no agregado
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+  /api/v1/auth/login:
+    post:
+      tags:
+        - auth-controller
+      summary: Iniciar Sesion
+      description: Iniciar sesion con usuario registrado
+      operationId: login
+      requestBody:
+        description: Iniciar sesion con username y password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        '200':
+          description: Usuario inisio sesion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDTO'
+        '404':
+          description: Usuario o contraseña incorrectos
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+components:
+  schemas:
+    TaskDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        state:
+          $ref: '#/components/schemas/TaskState'
+    TaskState:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nameState:
+          type: string
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+    ApiResponseDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data: {}
+  securitySchemes:
+    SecurityToken:
+      type: http
+      description: Access Token
+      name: Authorization
+      in: header
+      scheme: bearer
+      bearerFormat: JWT
