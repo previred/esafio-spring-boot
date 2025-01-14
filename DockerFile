@@ -1,0 +1,11 @@
+# Usar una imagen base con Java
+FROM openjdk:17-jdk-slim
+
+# Copiar el archivo JAR generado al contenedor
+COPY target/gestion-tareas-api-0.0.1.jar app.jar
+
+# Exponer el puerto que usará la aplicación
+EXPOSE 8080
+
+# Ejecutar el JAR al iniciar el contenedor
+ENTRYPOINT ["java", "-jar", "/app.jar"]
