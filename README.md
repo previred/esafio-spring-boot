@@ -5,68 +5,28 @@ La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para
 ## Objetivo:
 Crear una API RESTful utilizando Spring Boot que gestione usuarios y tareas, aplicando buenas prácticas, principios SOLID y utilizando las tecnologías especificadas.
 
-## Requisitos Técnicos:
-### Java:
-- Utiliza Java 17 para la implementación.
-- Utiliza las características de Java 17, como lambdas y streams, cuando sea apropiado.
-- Utilizar Maven como gestor de dependencias
+## como ejecutar la aplicación
 
-### Spring Boot 3.4.x:
-- Construye la aplicación utilizando Spring Boot 3.4.x (última versión disponible).
+### En VS Code
+Para ejecutar con las extensiones de Spring boot de VS Code, simplemente instale las debidas extensiones (Spring boot extension pack y el Spring boot dashboard), acceda al spring boot dashboard en la barra de navegación de la izquierda en VS Code, y de click a ejecutar en la app de desafio-spring-boot
 
-### Base de Datos:
+### Línea de comandos (Windows)
+Para ejecutar desde la línea de comandos, con maven instalado en el equipo, corra la aplicación con el comando: mvn spring-boot:run
 
-- Utiliza una base de datos H2.
-- Crea tres tablas: usuarios, tareas y estados_tarea.
-- La tabla usuarios debe contener datos pre cargados.
-- La tabla estados_tarea debe contener estados pre cargados.
+### Con el JAR
+Para ejecutar la app con el archivo JAR, debe correr por línea de comandos lo siguiente: 
+```java -jar .\desafio-spring-boot-0.0.1-SNAPSHOT.jar```
 
-### JPA:
-- Implementa una capa de persistencia utilizando JPA para almacenar y recuperar las tareas.
+## Probar las peticiones
+Una vez levantada la API, se debe importar el archivo de collection de postman ubicado en la raíz del proyecto (Desafio Spring Boot.postman_collection.json) y probar las peticiones según se muestran en el archivo swagger, están todas preparadas igualmente para ejecutar. 
+Debe seguir los siguientes pasos:
 
-### JWT (JSON Web Token):
+1 Ejecutar el POST login. Usuarios de prueba son:
+- Usuario 1
+    - nombreUsuario: arturovicencio
+    - Contraseña: secret
+- Usuario 2
+    - nombreUsuario: usuario_prueba
+    - Contraseña: secret
 
-- Implementa la autenticación utilizando JWT para validar usuarios.
-
-### OpenAPI y Swagger:
-
-- Documenta la API utilizando OpenAPI y Swagger.
-
-## Funcionalidades:
-### Autenticación:
-- Implementa un endpoint para la autenticación de usuarios utilizando JWT. 
-
-### CRUD de Tareas:
-- Implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las tareas.
-
-## Consideraciones:
-### Seguridad:
-- Asegúrate de que las operaciones CRUD de tareas solo sean accesibles para usuarios autenticados.
-
-### Documentación:
-- Utiliza OpenAPI y Swagger para documentar claramente la API.
-- Puntos adicionales si se genera el API mediante metodologia API First. Generar el archivo openapi.yml Nota: Ejemplo Plugin Maven groupId org.openapitools, artifactId openapi-generator-maven-plugin
-
-### Código Limpio:
-- Escribe código ordenado, aplicando buenas prácticas y principios SOLID.
-
-### Creatividad
-- Se espera dada la descripción del problema se creen las entidades y metodos en consecuencia a lo solicitado.
-
-## Entregables:
-### Repositorio de GitHub:
-- Realiza un Pull request a este repositorio indicando tu nombre, correo y cargo al que postulas.
-- Todos los PR serán rechazados, no es un indicador de la prueba.
-
-### Documentación:
-- Incluye instrucciones claras sobre cómo ejecutar y probar la aplicación.
-- **Incluir Json de prueba en un archivo texto o mediante un proyecto postman** Nota: Si no va se restaran puntos de la evaluación
-
-## Evaluación:
-Se evaluará la solución en función de los siguientes criterios:
-
-- Correcta implementación de las funcionalidades solicitadas.
-- Aplicación de buenas prácticas de desarrollo, patrones de diseño y principios SOLID.
-- Uso adecuado de Java 17, Spring Boot 3.4.x, H2, JWT, OpenAPI y Swagger.
-- Claridad y completitud de la documentación.
-- **Puntos extras si la generación de la API se realizo mediante API First**
+2 Ejecutar cualquier otra petición de prueba, preferentemente, crear tareas mediante POST tarea. El access token se guardará automáticamente como una variable de entorno y se usará en las demás peticiones a la API

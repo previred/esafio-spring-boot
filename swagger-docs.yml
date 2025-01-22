@@ -1,0 +1,375 @@
+openapi: 3.0.1
+info:
+  title: API Rest NUEVO SPA (Desafío previred)
+  description: API REST para administrar tareas con autenticación JWT
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Generated server url
+tags:
+  - name: Controlador de autenticación
+    description: Controla el login de usuario generando un access token y valida el token
+paths:
+  /tarea:
+    get:
+      tags:
+        - tarea-controller
+      summary: Obtiene una lista de todas las tareas
+      operationId: getTareas
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+    put:
+      tags:
+        - tarea-controller
+      summary: Permite actualizar totalmente una tarea existente (entregando todos los datos)
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+        '500':
+          description: Error interno (de actualización de la tarea)
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+    patch:
+      tags:
+        - tarea-controller
+      summary: Permite actualizar parcialmente una tarea existente
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+        '500':
+          description: Error interno (de actualización de la tarea)
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+    post:
+      tags:
+        - tarea-controller
+      summary: Permite crear una tarea
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+        '500':
+          description: Error interno (de creación de la tarea)
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+                
+  /tarea/{estadoId}:
+    get:
+      tags:
+        - tarea-controller
+      summary: Obtiene una lista de tareas filtrando por el id de estado
+      operationId: getTareas_1
+      parameters:
+        - name: estadoId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+                  
+  /tarea/{id}:
+    delete:
+      tags:
+        - tarea-controller
+      summary: Permite eliminar una tarea existente
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TareaEntity'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+        '500':
+          description: Error interno (de eliminación de la tarea)
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+                
+  /auth/validate:
+    post:
+      tags:
+        - Controlador de autenticación
+      summary: Valida el access token del usuario
+      operationId: jwtValidate
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TokenDto'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+                
+  /auth/login:
+    post:
+      tags:
+        - Controlador de autenticación
+      summary: Generar un access token usando credenciales de usuario
+      operationId: jwtCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/TokenDto'
+        '401':
+          description: No autorizado
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorPrincipalEntity'
+                
+components:
+  schemas:
+    TareaDto:
+      type: object
+      description: Mapeado de objeto tarea para transporte de datos (recibir datos)
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          example: "Actualizar información"
+        descripcion:
+          type: string
+          example: "Revisar y actualizar la documentación técnica del proyecto"
+        estado_tarea_id:
+          type: integer
+          format: int64
+          example: 1
+      required:
+        - id
+        - nombre
+        - descripcion
+        - estado_tarea_id
+    TareaDtoParcial:
+      type: object
+      description: Mapeado de objeto tarea para transporte de datos (recibir datos) con data parcial
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          example: "Actualizar tarea"
+        descripcion:
+          type: string
+          example: "Revisar y actualizar la documentación técnica del proyecto"
+        estado_tarea_id:
+          type: integer
+          format: int64
+          example: 1
+      required:
+        - id
+    EstadoTareaEntity:
+      type: object
+      description: Mapeado de objeto estado_tarea, representa los estados en que puede estar una tarea, para transporte de datos (recibir)
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          example: "Pendiente"
+      required:
+        - id
+        - nombre
+    TareaEntity:
+      type: object
+      description: Mapeado de objeto tarea (representación de la base de datos, datos de retorno)
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          example: "Actualizar información"
+        descripcion:
+          type: string
+          example: "Revisar y actualizar la documentación técnica del proyecto"
+        estado:
+          $ref: '#/components/schemas/EstadoTareaEntity'
+        usuario:
+          $ref: '#/components/schemas/UsuarioEntity'
+      required:
+        - id
+        - nombre
+        - descripcion
+        - estado
+        - usuario
+    UsuarioEntity:
+      type: object
+      description: Mapeado de objeto usuario (representación de la base de datos, datos de retorno)
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        nombreUsuario:
+          type: string
+          example: arturovicencio
+      required:
+        - id
+        - nombreUsuario
+    TokenDto:
+      type: object
+      description: Mapeado de objeto que contiene el access token
+      properties:
+        accessToken:
+          type: string
+          example: "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjIsInN1YiI6InVzdWFyaW9fcHJ1ZWJhIiwiaWF0IjoxNzM3NDk3NTM0LCJleHAiOjE3Mzc1MDExMzR9.eKDs5Z75E77Va25e6ADkFaPtleKu3rf2rgHaQZw6OtHcFrG2xnSL_Ho5uMtTSp1hxA8UvuWtdWyhzeseLecdlQ"
+      required:
+        - accessToken
+    UsuarioDto:
+      type: object
+      description: Mapeado de objeto usuario para transporte de datos (recibir)
+      properties:
+        nombreUsuario:
+          type: string
+          example: arturovicencio
+        password:
+          type: string
+          example: secret
+      required:
+        - nombreUsuario
+        - password
+    ErrorPrincipalEntity:
+      type: object
+      description: Objeto que representa un error controlado, este objeto representa a todos los errores que retorna la API REST
+      properties:
+        error:
+          type: string
+          description: 'Mensaje de error controlado'
+          example: 'No Authorization header'
+        message:
+          type: string
+          description: 'Mensaje de error más detallado'
+        status:
+          type: integer
+          description: 'Código de status de error'
+      required:
+        - error
+        - message
+        - status
