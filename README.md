@@ -21,7 +21,8 @@ Para ejecutar la app con el archivo JAR, debe correr por línea de comandos lo s
 Una vez levantada la API, se debe importar el archivo de collection de postman ubicado en la raíz del proyecto (Desafio Spring Boot.postman_collection.json) y probar las peticiones según se muestran en el archivo swagger, están todas preparadas igualmente para ejecutar. 
 Debe seguir los siguientes pasos:
 
-1 Ejecutar el POST login. Usuarios de prueba son:
+1 Establecer variable de entorno base_url en postman con valor http://localhost:3000
+2 Ejecutar el POST login. Usuarios de prueba son:
 - Usuario 1
     - nombreUsuario: arturovicencio
     - Contraseña: secret
@@ -29,4 +30,4 @@ Debe seguir los siguientes pasos:
     - nombreUsuario: usuario_prueba
     - Contraseña: secret
 
-2 Ejecutar cualquier otra petición de prueba, preferentemente, crear tareas mediante POST tarea. El access token se guardará automáticamente como una variable de entorno y se usará en las demás peticiones a la API
+3 Ejecutar cualquier otra petición de prueba, preferentemente, crear tareas mediante POST tarea. El access token se guardará automáticamente como una variable de entorno y se usará en las demás peticiones a la API
