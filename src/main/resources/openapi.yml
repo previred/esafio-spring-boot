@@ -55,6 +55,7 @@ paths:
     post:
       summary: Crear nueva tarea
       description: Permite crear una nueva tarea en el sistema.
+      operationId: createTask
       requestBody:
         description: Datos de la tarea
         required: true
@@ -70,10 +71,30 @@ paths:
         '401':
           description: No autorizado. El token JWT es requerido.
 
-  /tasks/{id}:
+  /task/create:
+    post:
+      summary: Crear tarea
+      description: Permite crear una nueva tarea.
+      operationId: createTaskAlternative
+      requestBody:
+        description: Datos de la tarea
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Tarea creada
+        '400':
+          description: Datos inválidos en la solicitud.
+        '401':
+          description: No autorizado. El token JWT es requerido.
+
+  /task/gettask/{id}:
     get:
       summary: Obtener tarea por ID
-      description: Recupera los detalles de una tarea específica por su identificador único.
+      description: Recupera los detalles de una tarea específica por su identificador único utilizando el nuevo endpoint.
       parameters:
         - name: id
           in: path
@@ -92,9 +113,11 @@ paths:
           description: Tarea no encontrada.
         '401':
           description: No autorizado. El token JWT es requerido.
+
+  /task/update/{id}:
     put:
       summary: Actualizar tarea
-      description: Actualiza los datos de una tarea específica por su identificador único.
+      description: Actualiza los datos de una tarea específica por su identificador único utilizando el nuevo endpoint.
       parameters:
         - name: id
           in: path
@@ -118,9 +141,11 @@ paths:
           description: Tarea no encontrada.
         '401':
           description: No autorizado. El token JWT es requerido.
+
+  /task/delete/{id}:
     delete:
       summary: Eliminar tarea
-      description: Elimina una tarea específica por su identificador único.
+      description: Elimina una tarea específica por su identificador único utilizando el nuevo endpoint.
       parameters:
         - name: id
           in: path

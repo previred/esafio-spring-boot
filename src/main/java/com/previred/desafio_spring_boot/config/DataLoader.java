@@ -7,12 +7,13 @@ import com.previred.desafio_spring_boot.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class DataLoader {
 
     @Bean
-    public CommandLineRunner initData(EstadoTareaRepository estadoTareaRepository, UsuarioRepository usuarioRepository) {
+    public CommandLineRunner initData(EstadoTareaRepository estadoTareaRepository, UsuarioRepository usuarioRepository, PasswordEncoder encoder) {
         return args -> {
             EstadoTarea estadoIniciado = new EstadoTarea();
             estadoIniciado.setNombre("Iniciada");
@@ -28,7 +29,7 @@ public class DataLoader {
 
             Usuario usuario = new Usuario();
             usuario.setUsername("UsuarioPrueba");
-            usuario.setPassword("123456");
+            usuario.setPassword(encoder.encode("123456"));
             usuario.setRole("ADMN");
 
             usuarioRepository.save(usuario);

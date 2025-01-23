@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tasks")
@@ -17,30 +18,46 @@ public class TareaController {
 
     @GetMapping
     public ResponseEntity<List<Tarea>> getAllTasks() {
-        return ResponseEntity.ok(tareaService.getAllTasks());
+        List<Tarea> tareas = tareaService.getAllTasks()
+                .stream()
+                .filter(tarea -> tarea.getEstado() != null)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(tareas);
     }
 
-    @GetMapping("/{id}")
+    @PostMapping("/create")
+    public ResponseEntity<Tarea> createTask(@RequestBody Tarea tarea) {
+        Tarea nuevaTarea = tareaService.createTask(tarea);
+        return ResponseEntity.status(201).body(nuevaTarea);
+    }
+
+    @GetMapping("/gettask/{id}")
     public ResponseEntity<Tarea> getTaskById(@PathVariable Long id) {
         Tarea tarea = tareaService.getTaskById(id);
-        return tarea != null ? ResponseEntity.ok(tarea) : ResponseEntity.notFound().build();
+        if (tarea != null) {
+            return ResponseEntity.ok(tarea);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PostMapping
-    public ResponseEntity<Tarea> createTask(@RequestBody Tarea tarea) {
-        Tarea createdTarea = tareaService.createTask(tarea);
-        return ResponseEntity.status(201).body(createdTarea);
-    }
-
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Tarea> updateTask(@PathVariable Long id, @RequestBody Tarea tarea) {
-        Tarea updatedTarea = tareaService.updateTask(id, tarea);
-        return updatedTarea != null ? ResponseEntity.ok(updatedTarea) : ResponseEntity.notFound().build();
+        Tarea tareaActualizada = tareaService.updateTask(id, tarea);
+        if (tareaActualizada != null) {
+            return ResponseEntity.ok(tareaActualizada);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        boolean deleted = tareaService.deleteTask(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        boolean eliminado = tareaService.deleteTask(id);
+        if (eliminado) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

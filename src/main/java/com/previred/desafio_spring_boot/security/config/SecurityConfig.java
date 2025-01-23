@@ -25,22 +25,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf().disable()
+        http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll() // Permitir autenticación sin token
                 .requestMatchers(
                         "/swagger-ui/**",    // Permitir acceso a Swagger UI
                         "/v3/api-docs/**",   // Permitir acceso a documentación OpenAPI
                         "/swagger-ui.html",  // Permitir acceso a la página principal de Swagger
-                        "/auth/login"        // Permitir acceso al login sin autenticación
+                        "/auth/login",// Permitir acceso al login sin autenticación
+                        "/h2-console/**"
                 )
                 .permitAll() // Acceso sin restricciones a H2 y Swagger
                 .requestMatchers("/tasks/**").authenticated() // Requerir autenticación para CRUD de tareas
                 .anyRequest().authenticated() // Requerir autenticación para cualquier otro endpoint
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .headers().frameOptions().disable();
+
+        return http.build();
     }
 
     @Bean

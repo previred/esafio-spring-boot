@@ -33,18 +33,16 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Usuario usuario) {
         try {
-            // Autenticar usuario
+
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword())
             );
 
-            // Cargar detalles del usuario y generar token
             final UserDetails userDetails = userDetailsService.loadUserByUsername(usuario.getUsername());
             final String jwtToken = jwtService.generateToken(userDetails);
-
-            // Retornar token en respuesta
             Map<String, String> response = new HashMap<>();
             response.put("token", jwtToken);
+
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
