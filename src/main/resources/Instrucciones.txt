@@ -1,0 +1,103 @@
+
+# Instrucciones para levantar la aplicación y probar los endpoints de la API
+
+## Precondiciones:
+1. Levanta la aplicación con mvn spring-boot:run
+2. Verifica que tienes un token JWT válido. Si no lo tienes, obtén uno mediante el endpoint `/auth/login`.
+3. Utiliza herramientas como Postman, cURL o Swagger UI para realizar las pruebas.
+
+---
+
+## 1. Endpoint: '/auth/login' (POST)
+- **Descripción**: Autenticar usuario y obtener un token JWT.
+- **URL**: `http://localhost:8080/auth/login`
+- **Headers**: Ninguno.
+- **Body (JSON)**:
+```json
+{
+  "username": "tu_usuario",
+  "password": "tu_contraseña"
+}
+```
+- **Respuesta esperada (200)**:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+---
+
+## 2. Endpoint: '/tasks' (GET)
+- **Descripción**: Obtener todas las tareas.
+- **URL**: `http://localhost:8080/tasks`
+- **Headers**:
+  - `Authorization`: `Bearer <tu_token_jwt>`
+- **Body**: No requerido.
+- **Respuesta esperada (200)**: Lista de tareas en formato JSON.
+
+---
+
+## 3. Endpoint: '/task/create' (POST)
+- **Descripción**: Crear una nueva tarea.
+- **URL**: `http://localhost:8080/task/create`
+- **Headers**:
+  - `Authorization`: `Bearer <tu_token_jwt>`
+- **Body (JSON)**:
+```json
+{
+  "nombre": "Nueva Tarea",
+  "descripcion": "Descripción de la tarea",
+  "estado": {
+    "id": 1
+  }
+}
+```
+- **Respuesta esperada (201)**: Detalles de la tarea creada.
+
+---
+
+## 4. Endpoint: '/task/gettask/{id}' (GET)
+- **Descripción**: Obtener una tarea por su ID.
+- **URL**: `http://localhost:8080/task/gettask/{id}`
+- **Headers**:
+  - `Authorization`: `Bearer <tu_token_jwt>`
+- **Path Variable**:
+  - `id`: ID de la tarea (entero).
+- **Respuesta esperada (200)**: Detalles de la tarea.
+
+---
+
+## 5. Endpoint: '/task/update/{id}' (PUT)
+- **Descripción**: Actualizar una tarea existente.
+- **URL**: `http://localhost:8080/task/update/{id}`
+- **Headers**:
+  - `Authorization`: `Bearer <tu_token_jwt>`
+- **Path Variable**:
+  - `id`: ID de la tarea (entero).
+- **Body (JSON)**:
+```json
+{
+  "nombre": "Tarea Actualizada",
+  "descripcion": "Nueva descripción",
+  "estado": {
+    "id": 2
+  }
+}
+```
+- **Respuesta esperada (200)**: Detalles de la tarea actualizada.
+
+---
+
+## 6. Endpoint: '/task/delete/{id}' (DELETE)
+- **Descripción**: Eliminar una tarea por su ID.
+- **URL**: `http://localhost:8080/task/delete/{id}`
+- **Headers**:
+  - `Authorization`: `Bearer <tu_token_jwt>`
+- **Path Variable**:
+  - `id`: ID de la tarea (entero).
+
+
+## Notas:
+- Reemplaza `<tu_token_jwt>` con el token obtenido en el endpoint `/auth/login`.
+- Usa IDs válidos para tareas y estados existentes al probar los endpoints con IDs.

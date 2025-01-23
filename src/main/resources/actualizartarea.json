@@ -1,0 +1,8 @@
+{
+  "nombre": "Nueva Tarea",
+  "descripcion": "Descripción actualizada",
+  "estado": {
+    "id": 2,
+    "nombre": "En proceso"
+  }
+}

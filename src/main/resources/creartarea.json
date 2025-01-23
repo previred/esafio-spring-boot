@@ -1,0 +1,7 @@
+{
+  "nombre": "Nueva tarea",
+  "descripcion": "Descripción de la tarea",
+  "estado": {
+    "id": 1
+  }
+}
