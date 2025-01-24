@@ -1,0 +1,8 @@
+src/main/java/com/previred/api/dtos/AuthRequestDTO.java
+src/main/java/com/previred/api/dtos/EstadosTareaDTO.java
+src/main/java/com/previred/api/dtos/TareaDTO.java
+src/main/java/com/previred/api/dtos/TareaResponseDTO.java
+src/main/java/com/previred/api/dtos/UsuarioDTO.java
+src/main/java/com/previred/api/services/ApiUtil.java
+src/main/java/com/previred/api/services/AuthApi.java
+src/main/java/com/previred/api/services/TareasApi.java

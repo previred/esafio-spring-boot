@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: Api - Nuevo Spa
+  description: |-
+    La empresa NUEVO SPA desea desarrollar una plataforma de gestión de tareas para mejorar la productividad de sus equipos. El sistema debe permitir a los usuarios crear, actualizar, eliminar y listar tareas. 
+  version: 1.0-SNAPSHOT
+tags:
+  - name: Tarea
+    description: Operaciones entre las tareas
+  - name: Autorizacion
+    description: Autorizacion de api
+
+paths:
+  /auth/registrarse:
+    post:
+      tags:
+        - Autorizacion
+      summary: Registrarse en la api
+      description: Registrarse en la api
+      operationId: registrarse
+      requestBody:
+        description: Registrarse en la api
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+        required: true
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Operacion exitosa
+  /auth/generarToken:
+    post:
+      tags:
+        - Autorizacion
+      summary: Generar token en la api
+      description: Generar token en la api
+      operationId: generarToken
+      requestBody:
+        description: Generar token en la api
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Operacion exitosa
+  /tareas:
+    post:
+      tags:
+        - Tarea
+      summary: Crear nueva tarea
+      description: Crear nueva tarea
+      operationId: crearTarea
+      requestBody:
+        description: Crear nueva tarea
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDTO'
+        required: true
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '400':
+          description: Input invalido
+    put:
+      tags:
+        - Tarea
+      summary: Actualizar una tarea
+      description: Actualizar una tarea
+      operationId: actualizarTarea
+      requestBody:
+        description: Actualizar una tarea
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDTO'
+        required: true
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Tarea para actualizar no encontrada
+  /tareas/listar:
+    get:
+      tags:
+        - Tarea
+      summary: Listar todas las tareas
+      description: Listar todas las tareas
+      operationId: listarTareas
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TareaResponseDTO'
+        '404':
+          description: Tareas no encontradas
+  /tareas/{tareaId}:
+    get:
+      tags:
+        - Tarea
+      summary: Buscar tarea por id
+      description: Buscar tarea por id
+      operationId: buscarPorId
+      parameters:
+        - name: tareaId
+          in: path
+          description: Buscar tarea por id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaResponseDTO'
+        '404':
+          description: Tarea no encontrada
+    delete:
+      tags:
+        - Tarea
+      summary: Eliminar tarea
+      description: Eliminar tarea
+      operationId: eliminarTarea
+      parameters:
+        - name: tareaId
+          in: path
+          description: Eliminar tarea
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Tarea no encontrada
+
+components:
+  schemas:
+    AuthRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Usuario1
+        password:
+          type: string
+          example: Usuario1
+    UsuarioDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: usuario1
+        password:
+          type: string
+          example: password
+        email:
+          type: string
+          example: email@email.com
+        roles:
+          type: string
+          example: USER
+    EstadosTareaDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        estado:
+          type: string
+          example: estado1
+    TareaDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        tarea:
+          type: string
+          example: tarea1
+        usuarioId:
+          type: integer
+          format: int64
+          example: 10
+        estadoId:
+          type: integer
+          format: int64
+          example: 10
+    TareaResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        tarea:
+          type: string
+          example: tarea1
+        usuario:
+          $ref: "#/components/schemas/UsuarioDTO"
+        estado:
+          $ref: "#/components/schemas/EstadosTareaDTO"
