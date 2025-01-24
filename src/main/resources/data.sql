@@ -1,0 +1,2 @@
+INSERT INTO usuarios (username, password) VALUES ('user1', '$2a$10$EIX5Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1'); -- password: password
+INSERT INTO estados_tarea (estado) VALUES ('Pendiente'), ('En Progreso'), ('Completada');
