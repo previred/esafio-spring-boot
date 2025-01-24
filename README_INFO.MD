@@ -28,7 +28,7 @@ Este proyecto consiste en la creación de un microservicio backend utilizando Ja
   consultar el resto de los servicios.
 
 # API's 
-  * Disponible en -> resources/Collection API
+  * Disponible en -> resources/Collection API.
 
 
 
