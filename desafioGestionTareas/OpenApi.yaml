@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: DESAFIO GESTIÓN TAREAS PREVIRED
+  description: 'CRUD api para gestor de tareas para cliente NUEVO SPA con JWT y OPENAPI '
+  termsOfService: 'https://www.NUEVO_SPA.com/terms-of-service/'
+  contact:
+    name: Rene Angel Silva Zuñiga
+    url: 'https://www.redessociales.com/reneangel.silva'
+    email: reneangel.silva@gmail.com
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8088'
+    description: DEVELOPER SERVER
+security:
+  - Security Token: []
+tags:
+  - name: Tareas
+    description: Controller para Tareas
+paths:
+  '/api/v1/tareas/{id}':
+    get:
+      tags:
+        - Tareas
+      summary: Buscar tarea por id
+      description: Retorna  tarea especifica por id
+      operationId: findById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Tareas asociadas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Tarea no asociadas
+          content:
+            '*/*':
+              schema:
+                type: object
+    put:
+      tags:
+        - Tareas
+      summary: Actualiza tareas segun id
+      description: Actualiza una tarea  segun id
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: actualizo la tarea con el id correctamente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDTO'
+        required: true
+      responses:
+        '200':
+          description: Tarea actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Tarea no asociada
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+        - Tareas
+      summary: Eliminar tarea por id
+      description: Elimina tarea por id
+      operationId: deleteById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Tarea eliminada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Tarea no asociada
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/tareas:
+    get:
+      tags:
+        - Tareas
+      summary: Buscar tareas
+      description: Retorna lista de tareas o vacio sino no existiera ninguna
+      operationId: findAll
+      responses:
+        '200':
+          description: Tareas asociadas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: ' no se encontraron Tareas asociadas'
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TareaDTO'
+    post:
+      tags:
+        - Tareas
+      summary: Tarea Nueva
+      description: Agrega una Nueva Tarea
+      operationId: save
+      requestBody:
+        description: se agrego una nueva tarea
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TareaDTO'
+        required: true
+      responses:
+        '200':
+          description: Tarea agregada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Tarea no se pudo agregada
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/auth/register:
+    post:
+      tags:
+        - auth-controller
+      summary: Registrar Usuario
+      description: Registra un Usuario
+      operationId: register
+      requestBody:
+        description: Registra un Usuario Nuevo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+        required: true
+      responses:
+        '200':
+          description: Usuario Registrado Correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: Usuario no agregado
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+  /api/v1/auth/login:
+    post:
+      tags:
+        - auth-controller
+      summary: Iniciar Sesion
+      description: Inicio de Sesion con Usuario registrado
+      operationId: login
+      requestBody:
+        description: Iniciar sesion con nombre de usuario y password registrada
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+        required: true
+      responses:
+        '200':
+          description: Inicio de Sesion de Usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TareaDTO'
+        '404':
+          description: 'Campo Usuario o contraseña incorrectos , favor reingresar'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+  /api/v1/auth/onlytoken:
+    get:
+      tags:
+        - auth-controller
+      operationId: token
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+components:
+  schemas:
+    TareaDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        state:
+          $ref: '#/components/schemas/TareaEstado'
+    TareaEstado:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nameState:
+          type: string
+    UsuarioDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+    ApiResponseDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    SecurityToken:
+      type: http
+      description: Access Token
+      name: Authorization
+      in: header
+      scheme: bearer
+      bearerFormat: JWT
