@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Task Management API
+  version: 1.0.0
+  description: API para gestionar tareas con autenticación JWT
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Servidor local
+security:
+  - BearerAuth: []
+
+paths:
+  /tasks:
+    get:
+      summary: Obtener todas las tareas
+      operationId: GetAllTasks
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Lista de tareas obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      summary: Crear una nueva tarea
+      operationId: PostNewTask
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Datos para crear una tarea
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskInput'
+      responses:
+        '201':
+          description: Tarea creada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /tasks/{taskId}:
+    get:
+      summary: Obtener una tarea por ID
+      operationId: GetTaskById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Tarea obtenida con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Actualizar una tarea existente
+      operationId: PutUpdateTaskById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Datos para actualizar la tarea
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskInput'
+      responses:
+        '200':
+          description: Tarea actualizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Eliminar una tarea existente
+      operationId: DelTaskById
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Tarea eliminada con éxito
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Task:
+      type: object
+      properties:
+        task_id:
+          type: integer
+          format: int64
+          readOnly: true
+        task_name:
+          type: string
+          example: "Completar informe mensual"
+        task_description:
+          type: string
+          nullable: true
+          example: "Preparar y revisar el informe mensual de actividades"
+        task_status_id:
+          type: integer
+          example: 1
+        task_status_name:
+          type: string
+          readOnly: true
+          example: "Pendiente"
+      required:
+        - task_name
+        - task_status_id
+    TaskInput:
+      type: object
+      properties:
+        task_name:
+          type: string
+          example: "Completar informe mensual"
+        task_description:
+          type: string
+          nullable: true
+          example: "Preparar y revisar el informe mensual de actividades"
+        task_status_id:
+          type: integer
+          example: 1
+      required:
+        - task_name
+        - task_status_id
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Recurso no encontrado"
+        details:
+          type: string
+          example: "El ID proporcionado no existe"
+  responses:
+    Unauthorized:
+      description: No autorizado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Solicitud inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

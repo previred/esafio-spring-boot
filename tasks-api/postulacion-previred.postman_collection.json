@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "9e078587-781b-4c0a-9834-05bb1248e87c",
+		"name": "postulacion-previred",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5448507"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"admin00\",\n    \"password\": \"user1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/tasks-api/api/v1/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"tasks-api",
+						"api",
+						"v1",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjAwIiwiaWF0IjoxNzM3NzI4MTE5LCJleHAiOjE3Mzc4MTQ1MTl9.585qkh4oyZz8QIzImrE4RRE4bxXTSWfMzw9fgA-M_Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/tasks-api/api/v1/private/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"tasks-api",
+						"api",
+						"v1",
+						"private",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjAwIiwiaWF0IjoxNzM3NzI4MTE5LCJleHAiOjE3Mzc4MTQ1MTl9.585qkh4oyZz8QIzImrE4RRE4bxXTSWfMzw9fgA-M_Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/tasks-api/api/v1/private/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"tasks-api",
+						"api",
+						"v1",
+						"private",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjAwIiwiaWF0IjoxNzM3NzI4MTE5LCJleHAiOjE3Mzc4MTQ1MTl9.585qkh4oyZz8QIzImrE4RRE4bxXTSWfMzw9fgA-M_Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_name\": \"Tarea01\",\n    \"task_description\": \"Tarea de prueba\",\n    \"task_status_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/tasks-api/api/v1/private/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"tasks-api",
+						"api",
+						"v1",
+						"private",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjAwIiwiaWF0IjoxNzM3NzI4MTE5LCJleHAiOjE3Mzc4MTQ1MTl9.585qkh4oyZz8QIzImrE4RRE4bxXTSWfMzw9fgA-M_Dw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_name\": \"Tarea01X\",\n    \"task_description\": \"Tarea de prueba X\",\n    \"task_status_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8086/tasks-api/api/v1/private/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"tasks-api",
+						"api",
+						"v1",
+						"private",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task by Id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
