@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "cfb937b8-95f3-425d-a10a-8ac53f17a4c2",
+		"name": "PreviredDesafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5301948"
+	},
+	"item": [
+		{
+			"name": "Autenticar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"user123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzM3Njg2MTg5fQ.3h1hRoS11rDTC9mQbGZfT1NrxipEMdM3lQyWLvY_ju0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/tareas/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzM3Njg2MTg5fQ.3h1hRoS11rDTC9mQbGZfT1NrxipEMdM3lQyWLvY_ju0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"titulo\": \"Tarea 5\",\r\n        \"descripcion\": \"Descripcion de la tarea 5\",\r\n        \"estado\": {\r\n            \"id\": 2\r\n            \r\n        },\r\n        \"usuario\": {\r\n            \"id\": 2\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tareas/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzM3Njg2MTg5fQ.3h1hRoS11rDTC9mQbGZfT1NrxipEMdM3lQyWLvY_ju0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \r\n        \"titulo\": \"Tarea 99\",\r\n        \"descripcion\": \"Descripcion de la tarea 1\",\r\n        \"estado\": {\r\n            \"id\": 1\r\n            \r\n        },\r\n        \"usuario\": {\r\n            \"id\": 2\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tareas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzM3NjgwMDM3fQ.VtCaeEMeEA-eHfv14ComE099_NejUYAE_gp0xRgC0_4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/tareas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

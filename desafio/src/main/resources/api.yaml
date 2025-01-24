@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Tareas API
+  description: API para gestionar usuarios y tareas
+  version: "1.0.0"
+paths:
+  /auth/login:
+    post:
+      summary: Autenticación de usuario con JWT
+      requestBody:
+        description: Credenciales de usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Token JWT generado exitosamente
+        401:
+          description: Credenciales inválidas
+
+  /usuarios:
+    get:
+      summary: Obtiene todos los usuarios
+      responses:
+        200:
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+
+  /tareas:
+    get:
+      summary: Obtiene todas las tareas
+      responses:
+        200:
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tarea'
+
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+    Tarea:
+      type: object
+      properties:
+        id:
+          type: integer
+        descripcion:
+          type: string
+        estado:
+          type: string
+        usuarioId:
+          type: integer
