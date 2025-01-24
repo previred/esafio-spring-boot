@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "c77ba0d2-0625-419e-9a49-164eacd99025",
+		"name": "Desafio Backend Previred",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3085128"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"Secret1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Login "
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzY2MjM3MDA1MCwiZXhwIjoxNzM3NjY1OTcwMDUwfQ.DwBAB5jVzFxruycML_oiLQ8qgmmE1CBySUoAVBwEQNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Crear tarea de analisis\",\n    \"status\": \"Pendiente\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tareas/crearTarea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tareas",
+						"crearTarea"
+					]
+				},
+				"description": "endpoint creacion de tarea"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tarea",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzY2MTI2NTM3NCwiZXhwIjoxNzM3NjY0ODY1Mzc0fQ.99I3IAKfxWnFYKtph6_pr6zl4XHL9QCyZsnfwgFbUOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Actualizar la tarea existente en descripcion y estado\",\n    \"status\": \"En Progreso\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tareas/actualizarTarea/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tareas",
+						"actualizarTarea",
+						"1"
+					]
+				},
+				"description": "endpoint actualizar tarea"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tareas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzY2MjM3MDA1MCwiZXhwIjoxNzM3NjY1OTcwMDUwfQ.DwBAB5jVzFxruycML_oiLQ8qgmmE1CBySUoAVBwEQNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/tareas/obtenerTareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tareas",
+						"obtenerTareas"
+					]
+				},
+				"description": "endpoint obtencion de todas las tareas"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tarea por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzY2MTI2NTM3NCwiZXhwIjoxNzM3NjY0ODY1Mzc0fQ.99I3IAKfxWnFYKtph6_pr6zl4XHL9QCyZsnfwgFbUOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/tareas/obtenerTarea/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tareas",
+						"obtenerTarea",
+						"1"
+					]
+				},
+				"description": "endpoint obtencion de tarea por ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzU5NzU1ODE3MSwiZXhwIjoxNzM3NjAxMTU4MTcxfQ.eU8sDmsFyCbunmLmE3pE7d9AqW6Yjxik-MANY5Wr880",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/tareas/eliminarTarea/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tareas",
+						"eliminarTarea",
+						"1"
+					]
+				},
+				"description": "endpoint para eliminar tarea por ID"
+			},
+			"response": []
+		}
+	]
+}
