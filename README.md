@@ -70,3 +70,51 @@ Se evaluará la solución en función de los siguientes criterios:
 - Uso adecuado de Java 17, Spring Boot 3.4.x, H2, JWT, OpenAPI y Swagger.
 - Claridad y completitud de la documentación.
 - **Puntos extras si la generación de la API se realizo mediante API First**
+
+## Instrucciones para Ejecutar y probar el aplicativo.
+
+La ruta del archivo para OpenApi esta en la siguiente ruta:
+- src/main/resources/openapi.yaml
+
+La ruta del archivo para la insercion de los datos para la tabla estados_tarea esta en la siguiente ruta:
+- src/main/resources/data.sql
+
+Para compilar el proyecto se debe ejecutar el siguiente comando:
+- mvn clean install -DskipTests
+
+Para ejecutar la aplicación en Spring con comandos, usar el siguiente comando:
+- mvn spring-boot:run
+
+Si queremos ver la base de datos, nos podemos conectar en la siguiente ruta:
+- http://localhost:8080/h2-console/
+
+Podemos acceder a swagger en la siguiente ruta:
+- http://localhost:8080/swagger-ui/index.html
+
+Podemos acceder al api docs en la siguiente ruta:
+- http://localhost:8080/api-docs
+
+La ruta del archivo json para las consultas se encuentra en la siguiente ruta:
+- src/main/resources/Json-backend-previred.json
+- Esta generado desde la aplicacion Insomnia.
+
+Para obtener el token de acceso para consultar a las apis se deben seguir las siguientes instrucciones:
+- Endpoint para la generacion del token:
+    - http://localhost:8080/auth/generarToken
+    - {
+	    "username": "Usuario1",
+	    "password": "Usuario1"
+      }
+    - {
+	    "username": "Usuario2",
+	    "password": "Usuario2"
+      }
+- Copiar token generado por el endpoint anterior y pegar en todos los endpoints en la opcion Bearer token.
+- Como extra se genero un endpoint para poder registarse de igual forma.
+    - http://localhost:8080/auth/registrarse
+    - {
+        "name": "Usuario3",
+        "password": "Usuario3",
+        "email": "usuario3@usuario3.cl",
+        "roles": "USER"
+      }

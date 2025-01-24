@@ -1,0 +1,13 @@
+com/previred/api/models/Usuarios.class
+com/previred/api/models/Tareas.class
+com/previred/api/models/EstadosTarea.class
+com/previred/api/services/UsuariosDetails.class
+com/previred/api/filters/JwtAuthFilter.class
+com/previred/api/repositories/UsuariosRepository.class
+com/previred/api/config/SecurityConfig.class
+com/previred/api/repositories/EstadosTareaRepository.class
+com/previred/api/services/TareasService$1.class
+com/previred/api/config/PasswordEncoderConfig.class
+com/previred/api/config/JwtUtil.class
+com/previred/api/repositories/TareasRepository.class
+com/previred/api/ApiApplication.class
