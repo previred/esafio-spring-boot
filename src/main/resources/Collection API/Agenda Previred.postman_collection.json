@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "4f65f50f-47af-48c1-9156-b6465a249367",
+		"name": "Agenda Previred",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.-Loguearse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"pass1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.- Crear Tarea",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTczNzc0NzY0NCwiZXhwIjoxNzM3NzgzNjQ0fQ.M_Xs5zWimNi9bE2dQvv8MBnYh6-ZHYdyVXBgZ6K2yAo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"statusId\": \"1\",\r\n    \"description\": \"Dentista\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.- Listar Tareas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTczNzc0NzY0NCwiZXhwIjoxNzM3NzgzNjQ0fQ.M_Xs5zWimNi9bE2dQvv8MBnYh6-ZHYdyVXBgZ6K2yAo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.- Lista Tarea Especifica x ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTczNzc0NzY0NCwiZXhwIjoxNzM3NzgzNjQ0fQ.M_Xs5zWimNi9bE2dQvv8MBnYh6-ZHYdyVXBgZ6K2yAo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tareas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tareas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.- Actualizar Tarea x ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTczNzc0NzY0NCwiZXhwIjoxNzM3NzgzNjQ0fQ.M_Xs5zWimNi9bE2dQvv8MBnYh6-ZHYdyVXBgZ6K2yAo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Medico\",\r\n    \"statusId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tareas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tareas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea x ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTczNzcyNzU5OCwiZXhwIjoxNzM3NzYzNTk4fQ.5gl8l6li_pZfnKx0SZuhLIVligyK7s83w81QpWwVXNM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/tareas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tareas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
