@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:gestiontareas
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+    initialization-mode: always
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+jwt:
+  secret: "mi-secreto"
+  expiration: 3600000
+
+logging:
+  level:
+    org:
+    hibernate:
+    SQL: DEBUG
