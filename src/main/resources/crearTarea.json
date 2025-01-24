@@ -1,0 +1,10 @@
+{
+  "titulo": "Actualizar sistema",
+  "descripcion": "Actualizar el sistema operativo a la última versión",
+  "usuario": {
+    "id": 1
+  },
+  "estado": {
+    "id": 1
+  }
+}

@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS usuarios (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS estados_tarea (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    estado VARCHAR(255)
+);
+
+CREATE TABLE tareas (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    usuario_id BIGINT NOT NULL,
+    estado_id BIGINT NOT NULL
+);
