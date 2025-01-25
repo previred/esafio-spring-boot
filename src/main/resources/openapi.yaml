@@ -1,0 +1,221 @@
+openapi: 3.0.3
+info:
+  title: Task Manager API
+  description: API para gestionar tareas y usuarios en la plataforma de NUEVO SPA.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+tags:
+  - name: auth
+    description: Autenticación de usuarios
+  - name: users
+    description: Operaciones con usuarios
+  - name: tasks
+    description: Operaciones con tareas
+paths:
+  /auth:
+    post:
+      summary: Autenticación de usuarios. Los usuarios son':' user1, user2 y user3. La contraseña es 123.
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Token JWT generado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Credenciales incorrectas
+
+  /users:
+    get:
+      summary: Lista todos los usuarios
+      tags:
+        - users
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponse'
+
+  /tasks:
+    get:
+      summary: Lista todas las tareas
+      tags:
+        - tasks
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      summary: Crea una nueva tarea
+      tags:
+        - tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '201':
+          description: Tarea creada
+
+  /tasks/{taskId}:
+    get:
+      summary: Obtiene una tarea por ID
+      tags:
+        - tasks
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles de la tarea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Tarea no encontrada
+    put:
+      summary: Actualiza una tarea
+      tags:
+        - tasks
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: Tarea actualizada
+        '404':
+          description: Tarea no encontrada
+    delete:
+      summary: Elimina una tarea
+      tags:
+        - tasks
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Tarea eliminada
+        '404':
+          description: Tarea no encontrada
+  /tasks/{taskId}/status:
+    post:
+      summary: Añade un nuevo estado a una tarea
+      tags:
+        - tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusTaskRequest'
+      responses:
+        '201':
+          description: Tarea creada
+
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        currentStatus:
+          $ref: '#/components/schemas/CurrentStatus'
+        statusHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusTask'
+    TaskRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        idUser:
+          type: integer
+    CurrentStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        statusName:
+          type: string
+        changedAt:
+          type: string
+    StatusTask:
+      type: object
+      properties:
+        id:
+          type: integer
+        statusName:
+          type: string
+        changedAt:
+          type: string
+    StatusTaskRequest:
+      type: object
+      properties:
+        statusName:
+          type: string
+          enum: [CREATED, PENDING, IN_PROGRESS, COMPLETED, CANCELLED]
+          default: CREATED
+        taskId:
+          type: integer
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
