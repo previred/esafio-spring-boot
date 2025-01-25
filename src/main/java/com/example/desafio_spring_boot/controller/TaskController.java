@@ -9,6 +9,9 @@ import com.example.desafio_spring_boot.domain.task.TaskResponseDto;
 import com.example.desafio_spring_boot.service.StatusTaskService;
 import com.example.desafio_spring_boot.service.TaskService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tasks")
+@Tag(name = "Tareas", description = "Gestiona las tareas de los usuarios")
+@SecurityRequirement(name = "bearerAuth")
 public class TaskController {
     private final TaskService taskService;
     private final StatusTaskService statusTaskService;
@@ -30,6 +35,7 @@ public class TaskController {
         this.statusTaskService = statusTaskService;
     }
 
+    @Operation(summary = "Lista todas las tareas")
     @GetMapping
     public ResponseEntity<List<TaskResponseDto>> getAllTasks() {
         List<TaskResponseDto> taskResponseDtos = taskService.getAllTasks().stream()
@@ -38,6 +44,7 @@ public class TaskController {
         return ResponseEntity.ok(taskResponseDtos);
     }
 
+    @Operation(summary = "Obtener una tarea por su ID")
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponseDto> getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id)
@@ -45,6 +52,7 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Crea una nueva tarea y su estado inicial: CREATED")
     @PostMapping
     public ResponseEntity<Task> createTask(@Valid @RequestBody TaskRequestDto task) {
         Task createdTask = taskService.createTask(task.toTask());
@@ -59,6 +67,7 @@ public class TaskController {
         return ResponseEntity.created(location).build();
     }
 
+    @Operation(summary = "Añade un nuevo estado a una tarea")
     @PostMapping("/{id}/status")
     public ResponseEntity<Task> createStatusTask(@Valid @RequestBody StatusTaskRequestDto statusTask) {
         StatusTask createdStatusTask = statusTaskService.createStatusTask(statusTask.toStatusTask());
@@ -69,12 +78,14 @@ public class TaskController {
         return ResponseEntity.created(location).build();
     }
 
+    @Operation(summary = "Actualiza una tarea")
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponseDto> updateTask(@PathVariable Long id, @RequestBody TaskRequestDto task) {
         Task updatedTask = taskService.updateTask(task.toTask(id));
         return ResponseEntity.ok(new TaskResponseDto(updatedTask));
     }
 
+    @Operation(summary = "Elimina una tarea")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);

@@ -6,11 +6,19 @@ info:
 servers:
   - url: http://localhost:8080
     description: Servidor local
-
+tags:
+  - name: auth
+    description: Autenticación de usuarios
+  - name: users
+    description: Operaciones con usuarios
+  - name: tasks
+    description: Operaciones con tareas
 paths:
-  /auth/login:
+  /auth:
     post:
-      summary: Autenticación de usuarios
+      summary: Autenticación de usuarios. Los usuarios son':' user1, user2 y user3. La contraseña es 123.
+      tags:
+        - auth
       requestBody:
         required: true
         content:
@@ -33,11 +41,13 @@ paths:
                   token:
                     type: string
         '401':
-          description: Credenciales inválidas
+          description: Credenciales incorrectas
 
   /users:
     get:
       summary: Lista todos los usuarios
+      tags:
+        - users
       responses:
         '200':
           description: Lista de usuarios
@@ -46,30 +56,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
-
-  /users/{userId}:
-    get:
-      summary: Obtiene un usuario por ID
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Detalles del usuario
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        '404':
-          description: Usuario no encontrado
+                  $ref: '#/components/schemas/UserResponse'
 
   /tasks:
     get:
       summary: Lista todas las tareas
+      tags:
+        - tasks
       responses:
         '200':
           description: Lista de tareas
@@ -81,12 +74,14 @@ paths:
                   $ref: '#/components/schemas/Task'
     post:
       summary: Crea una nueva tarea
+      tags:
+        - tasks
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Task'
+              $ref: '#/components/schemas/TaskRequest'
       responses:
         '201':
           description: Tarea creada
@@ -94,6 +89,8 @@ paths:
   /tasks/{taskId}:
     get:
       summary: Obtiene una tarea por ID
+      tags:
+        - tasks
       parameters:
         - name: taskId
           in: path
@@ -111,6 +108,8 @@ paths:
           description: Tarea no encontrada
     put:
       summary: Actualiza una tarea
+      tags:
+        - tasks
       parameters:
         - name: taskId
           in: path
@@ -122,12 +121,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Task'
+              $ref: '#/components/schemas/TaskRequest'
       responses:
         '200':
           description: Tarea actualizada
+        '404':
+          description: Tarea no encontrada
     delete:
       summary: Elimina una tarea
+      tags:
+        - tasks
       parameters:
         - name: taskId
           in: path
@@ -137,6 +140,22 @@ paths:
       responses:
         '204':
           description: Tarea eliminada
+        '404':
+          description: Tarea no encontrada
+  /tasks/{taskId}/status:
+    post:
+      summary: Añade un nuevo estado a una tarea
+      tags:
+        - tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusTaskRequest'
+      responses:
+        '201':
+          description: Tarea creada
 
 components:
   schemas:
@@ -145,29 +164,58 @@ components:
       properties:
         id:
           type: integer
-        titulo:
+        title:
           type: string
-        descripcion:
+        description:
           type: string
-        estado:
-          $ref: '#/components/schemas/StatusTask'
-        usuario:
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        currentStatus:
+          $ref: '#/components/schemas/CurrentStatus'
+        statusHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusTask'
+    TaskRequest:
+      type: object
+      properties:
+        title:
           type: string
-    User:
+        description:
+          type: string
+        idUser:
+          type: integer
+    CurrentStatus:
       type: object
       properties:
         id:
           type: integer
-        username:
+        statusName:
           type: string
-        role:
+        changedAt:
           type: string
     StatusTask:
       type: object
       properties:
         id:
           type: integer
-        nombre:
+        statusName:
           type: string
-        descripcion:
+        changedAt:
+          type: string
+    StatusTaskRequest:
+      type: object
+      properties:
+        statusName:
+          type: string
+          enum: [CREATED, PENDING, IN_PROGRESS, COMPLETED, CANCELLED]
+          default: CREATED
+        taskId:
+          type: integer
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
           type: string

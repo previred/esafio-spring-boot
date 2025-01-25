@@ -13,14 +13,19 @@ import com.example.desafio_spring_boot.service.AuthenticationService;
 import com.example.desafio_spring_boot.service.JwtService;
 import com.example.desafio_spring_boot.service.UserSecurityDetails;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Autenticación", description = "Gestiona la autenticación de los usuarios")
 public class AuthController {
     @Autowired
     private JwtService jwtService;
     @Autowired
     private AuthenticationService authenticationService;
 
+    @Operation(summary = "Autenticación de usuarios y obtención de un JWT. Los usuarios de prueba son: user1, user2, user3. La contraseña es para los tres es: 123")
     @PostMapping
     public ResponseEntity<LoginResponse> authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         UserSecurityDetails authenticatedUser = authenticationService.authenticate(authRequest);

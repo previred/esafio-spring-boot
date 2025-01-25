@@ -65,7 +65,6 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 return new ResponseEntity<Object>(errorDetails, HttpStatus.BAD_REQUEST);
         }
 
-        // quiero soobreescribir el metodo BadCredentialsException
         @ExceptionHandler(BadCredentialsException.class)
         public final ResponseEntity<ErrorDetails> handleBadCredentialsException(
                         BadCredentialsException ex, WebRequest request) {

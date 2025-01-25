@@ -37,7 +37,9 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/auth", "/h2-console/**", "/v3/api-docs/**", "/swagger-ui/**",
+                                "/swagger-ui.html")
+                        .permitAll()
                         .anyRequest().authenticated() // Protect all other endpoints
                 )
                 .sessionManagement(sess -> sess
@@ -53,7 +55,7 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Password encoding
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
