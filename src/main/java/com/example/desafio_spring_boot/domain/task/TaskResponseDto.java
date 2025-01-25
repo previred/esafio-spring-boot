@@ -12,7 +12,7 @@ public class TaskResponseDto {
     private final String title;
     private final String description;
     private final UserResponseDto user;
-    private final String currentStatus;
+    private final StatusTask currentStatus;
     private final List<StatusTask> statusHistory;
 
     public TaskResponseDto(Task task) {
@@ -21,6 +21,6 @@ public class TaskResponseDto {
         this.description = task.getDescription();
         this.user = new UserResponseDto(task.getIdUser().getId(), task.getIdUser().getUsername());
         this.statusHistory = task.getStatusHistory();
-        this.currentStatus = ""; // task.getCurrentStatus().toString();
+        this.currentStatus = task.getCurrentStatus();
     }
 }

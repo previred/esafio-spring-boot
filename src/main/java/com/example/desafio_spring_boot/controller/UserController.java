@@ -1,11 +1,13 @@
 package com.example.desafio_spring_boot.controller;
 
 import com.example.desafio_spring_boot.domain.user.User;
+import com.example.desafio_spring_boot.domain.user.UserResponseDto;
 import com.example.desafio_spring_boot.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -17,8 +19,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        List<UserResponseDto> userResponseDtos = userService.getAllUsers().stream()
+                .map(user -> new UserResponseDto(user))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(userResponseDtos);
     }
 
     @GetMapping("/{id}")

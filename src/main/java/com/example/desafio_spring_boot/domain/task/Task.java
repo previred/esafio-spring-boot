@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.example.desafio_spring_boot.domain.status_task.StatusTask;
 import com.example.desafio_spring_boot.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
